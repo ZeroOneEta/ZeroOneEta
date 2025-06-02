@@ -10,13 +10,42 @@
       margin: 0;
       padding: 0;
       background-color: #f4f4f4;
-      text-align: center;
+    }
+
+    /* Navigation Bar */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #222;
+      color: white;
+      padding: 10px 20px;
+    }
+
+    .navbar img {
+      height: 40px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+    }
+
+    .nav-links a:hover {
+      text-decoration: underline;
     }
 
     header {
-      background-color: #222;
-      color: white;
+      text-align: center;
       padding: 20px 0;
+      background-color: #444;
+      color: white;
     }
 
     h1 {
@@ -33,7 +62,6 @@
     .slideshow {
       max-width: 600px;
       width: 100%;
-      position: relative;
     }
 
     .slideshow img {
@@ -42,6 +70,7 @@
     }
 
     .section {
+      text-align: center;
       padding: 20px;
     }
 
@@ -64,6 +93,7 @@
       background-color: #222;
       color: white;
       padding: 10px 0;
+      text-align: center;
       position: fixed;
       bottom: 0;
       width: 100%;
@@ -71,35 +101,47 @@
   </style>
 </head>
 <body>
+
+  <!-- Navigation Bar -->
+  <div class="navbar">
+    <img src="logo.jpeg" alt="Logo">
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="https://yourbloglink.com" target="_blank">Blog</a>
+      <a href="https://zerooneeta.gumroad.com/l/ZeroOneEta" class="button">Product</a>
+    </div>
+  </div>
+
+  <!-- Header -->
   <header>
     <h1>ZeroOne Eta</h1>
     <p>Smart Automation Solutions</p>
   </header>
 
+  <!-- Slideshow -->
   <div class="slideshow-container">
     <div class="slideshow">
       <img src="settings.jpg" alt="Settings Image">
     </div>
   </div>
 
+  <!-- About Section -->
   <div class="section">
     <h2>About Us</h2>
     <img src="about_us.jpg" alt="About Us" width="300">
     <p>We develop machine learning-powered edge computing systems for automation and robotics applications.</p>
   </div>
 
+  <!-- Dataset Section -->
   <div class="section">
     <h2>Dataset Generation</h2>
     <img src="dataset_generation.jpg" alt="Dataset Generation" width="300">
     <p>Our tools simplify and accelerate data collection and annotation for computer vision projects.</p>
   </div>
 
-  <div class="section">
-    <a href="https://zerooneeta.gumroad.com/l/ZeroOneEta" class="button">Buy Our Product</a>
-  </div>
-
   <footer>
     &copy; 2025 ZeroOne Eta
   </footer>
+
 </body>
 </html>
