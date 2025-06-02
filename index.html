@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ZeroOneEta - AI Solutions</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #121212;
+      color: #f0f0f0;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #1e1e1e;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin: 0;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin-top: 5px;
+    }
+
+    .slideshow-container {
+      position: relative;
+      max-width: 100%;
+      height: 500px;
+      margin: 20px auto;
+      overflow: hidden;
+    }
+
+    .slide {
+      display: none;
+      width: 100%;
+      height: 100%;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .content {
+      padding: 30px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .content h2 {
+      font-size: 2rem;
+      color: #00d9ff;
+    }
+
+    .content ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .content li {
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
+
+    .cta-button {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 15px 30px;
+      background-color: #00d9ff;
+      color: #121212;
+      font-size: 1.2rem;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
+
+    .cta-button:hover {
+      background-color: #00b3cc;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🚀 Welcome to ZeroOneEta</h1>
+    <p>Powering Innovation with Machine Learning, AI Agents & Synthetic Data</p>
+  </header>
+
+  <div class="slideshow-container">
+    <div class="slide">
+      <img src="settings.jpg" alt="Settings">
+    </div>
+    <div class="slide">
+      <img src="about_us.jpg" alt="About Us">
+    </div>
+    <div class="slide">
+      <img src="dataset_generation.jpg" alt="Dataset Generation">
+    </div>
+  </div>
+
+  <div class="content">
+    <h2>👋 Who We Are</h2>
+    <p>At ZeroOneEta, we are shaping the future of AI-driven solutions. Our expertise lies in Machine Learning, AI Agents, and Synthetic Data Generation, helping businesses leverage cutting-edge technology to enhance automation, decision-making, and digital transformation.</p>
+
+    <h2>🌟 What We Do</h2>
+    <ul>
+      <li>🤖 <strong>AI Agents</strong> - Intelligent automation designed to optimize workflows and enhance user experiences.</li>
+      <li>📊 <strong>Machine Learning Solutions</strong> - From predictive analytics to deep learning, we develop scalable models for diverse industries.</li>
+      <li>🔬 <strong>Synthetic Data Generation</strong> - We craft high-quality synthetic datasets to train AI systems while preserving privacy and security.</li>
+    </ul>
+
+    <h2>💡 Our Vision</h2>
+    <p>We aim to bridge the gap between theoretical advancements and real-world applications, empowering businesses to harness AI responsibly and efficiently.</p>
+
+    <h2>🔗 Get In Touch</h2>
+    <p>📧 Reach us at <a href="mailto:zerooneeta@gmail.com" style="color:#00d9ff;">zerooneeta@gmail.com</a><br>
+       🌐 Visit our website: <a href="https://zerooneeta.com" style="color:#00d9ff;" target="_blank">ZeroOneEta</a></p>
+
+    <a class="cta-button" href="https://zerooneeta.gumroad.com/l/irlkh" target="_blank">🚀 Buy on Gumroad</a>
+  </div>
+
+  <footer>
+    &copy; 2025 ZeroOneEta. All rights reserved.
+  </footer>
+
+  <script>
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function showSlides() {
+      slides.forEach(slide => slide.style.display = "none");
+      slideIndex = (slideIndex + 1) % slides.length;
+      slides[slideIndex].style.display = "block";
+    }
+
+    showSlides();
+    setInterval(showSlides, 4000); // Change slide every 4 seconds
+  </script>
+</body>
+</html>
