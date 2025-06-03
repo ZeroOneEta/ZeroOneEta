@@ -61,9 +61,8 @@
     .slideshow-container {
       position: relative;
       width: 80%;
-      max-width: 1000px;
-      height: auto;
-      margin: 40px auto;
+      max-width: 900px;
+      margin: 30px auto;
       overflow: hidden;
       border-radius: 10px;
     }
@@ -120,7 +119,7 @@
       border: 1px solid #333;
       border-radius: 12px;
       padding: 30px;
-      margin: 60px auto;
+      margin: 40px auto;
       max-width: 400px;
       text-align: center;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
@@ -160,6 +159,7 @@
     <p>Powering Innovation with Machine Learning, AI Agents & Synthetic Data</p>
   </header>
 
+  <!-- Main slideshow 
   <div class="slideshow-container">
     <div class="slide">
       <img src="settings.jpg" alt="Settings" />
@@ -170,7 +170,7 @@
     <div class="slide">
       <img src="dataset_generation.jpg" alt="Dataset Generation" />
     </div>
-  </div>
+  </div> -->
 
   <div class="content">
     <h2>👋 Who We Are</h2>
@@ -191,18 +191,56 @@
        🌐 Website: <a href="https://zerooneeta.com" style="color:#00d9ff;" target="_blank">zerooneeta.com</a></p>
   </div>
 
-  <div id="product" class="product-box">
-    <h2>💼 Starter Plan</h2>
-    <p><strong>$1,000</strong> /month</p>
-    <p>Perfect for startups and small teams getting started with AI.</p>
-    <a class="cta-button" href="https://zerooneeta.gumroad.com/l/irlkh" target="_blank">🚀 Get Started</a>
-    <hr style="margin: 20px 0; border-color: #333;">
-    <h3>What's included:</h3>
+  <!-- Product Section -->
+  <div id="product" class="content">
+    <h1>🛠️ Our Products:</h1>
+    <br>
+    <h2>CreativeDatasetMaker – AI-Powered Dataset Generation</h2>
+
+    <div class="slideshow-container">
+      <div class="slide">
+        <img src="cdm1.jpg" alt="Screenshot 1" />
+      </div>
+      <div class="slide">
+        <img src="cdm2.jpg" alt="Screenshot 2" />
+      </div>
+      <div class="slide">
+        <img src="cdm3.jpg" alt="Screenshot 3" />
+      </div>
+    </div>
+
+    <p>Need high-quality datasets but don't have the time or resources to create them manually? Say hello to <strong>CreativeDatasetMaker</strong>, the AI-powered tool that makes dataset generation effortless.</p>
+
+    <p>Whether you're a data scientist, researcher, machine learning enthusiast, or educator, this application automates dataset creation using AI, helping you streamline your workflow and focus on what truly matters—innovation.</p>
+
+    <h3>👤 Who Can Use CreativeDatasetMaker?</h3>
     <ul>
-      <li>✅ 5 Model GBs per month</li>
-      <li>✅ 1 million prediction requests per month</li>
-      <li>✅ Email Support</li>
+      <li>📈 Data Scientists & ML Engineers – Generate diverse datasets to train and refine AI models.</li>
+      <li>🔬 Researchers – Create structured data for analytical studies and experimentation.</li>
+      <li>🎓 Educators & Students – Use AI-generated datasets for learning, teaching, and projects.</li>
+      <li>💼 Business Analysts & Developers – Speed up data-driven solutions with custom datasets.</li>
     </ul>
+
+    <h3>🧰 Requirements:</h3>
+    <ul>
+      <li>✅ Python 3.5 or above</li>
+    </ul>
+
+    <p>Save time, boost productivity, and power up your projects with CreativeDatasetMaker. Get started today!</p>
+
+    <div class="product-box">
+      <h2>💼 Starter Plan</h2>
+      <p><strong>$1,000</strong> /month</p>
+      <p>Perfect for startups and small teams getting started with AI.</p>
+      <a class="cta-button" href="https://zerooneeta.gumroad.com/l/irlkh" target="_blank">🚀 Get Started</a>
+      <hr style="margin: 20px 0; border-color: #333;">
+      <h3>What's included:</h3>
+      <ul>
+        <li>✅ 5 Model GBs per month</li>
+        <li>✅ 1 million prediction requests per month</li>
+        <li>✅ Email Support</li>
+      </ul>
+    </div>
   </div>
 
   <footer>
@@ -211,16 +249,26 @@
 
   <script>
     let slideIndex = 0;
-    const slides = document.querySelectorAll('.slide');
+    const allSlides = document.querySelectorAll(".slideshow-container");
 
-    function showSlides() {
-      slides.forEach(slide => slide.style.display = "none");
-      slideIndex = (slideIndex + 1) % slides.length;
-      slides[slideIndex].style.display = "block";
+    function cycleSlides(slideshow) {
+      const slides = slideshow.querySelectorAll(".slide");
+      slides.forEach(s => s.style.display = "none");
+      slideshow.dataset.index = (parseInt(slideshow.dataset.index || 0) + 1) % slides.length;
+      slides[slideshow.dataset.index].style.display = "block";
     }
 
-    showSlides();
-    setInterval(showSlides, 4000); // Change slide every 4 seconds
+    setInterval(() => {
+      allSlides.forEach(slideshow => cycleSlides(slideshow));
+    }, 4000);
+
+    window.addEventListener('DOMContentLoaded', () => {
+      allSlides.forEach(slideshow => {
+        slideshow.dataset.index = 0;
+        const slides = slideshow.querySelectorAll(".slide");
+        if (slides.length > 0) slides[0].style.display = "block";
+      });
+    });
   </script>
 </body>
 </html>
