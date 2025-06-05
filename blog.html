@@ -2,16 +2,44 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Synthetic Data Blog - ZeroOneEta</title>
+  <title>ZeroOneEta - AI Solutions</title>
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #121212;
       color: #f0f0f0;
       margin: 0;
       padding: 0;
-      line-height: 1.6;
+    }
+
+    nav {
+      background-color: #1e1e1e;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav img {
+      height: 40px;
+      margin-right: 20px;
+    }
+
+    nav a {
+      color: #f0f0f0;
+      margin-right: 20px;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
     }
 
     header {
@@ -30,34 +58,110 @@
       margin-top: 10px;
     }
 
+    .slideshow-container {
+      position: relative;
+      width: 80%;
+      max-width: 900px;
+      margin: 30px auto;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .slide {
+      display: none;
+    }
+
+    .slide img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
     .content {
       padding: 30px;
       max-width: 900px;
       margin: 0 auto;
     }
 
-    h2, h3, h4 {
+    .content h2 {
+      font-size: 2rem;
       color: #00d9ff;
     }
 
-    a {
-      color: #00d9ff;
+    .content ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .content li {
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
+
+    .cta-button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 24px;
+      background-color: #00d9ff;
+      color: #121212;
+      font-size: 1.1rem;
       text-decoration: none;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
     }
 
-    a:hover {
-      text-decoration: underline;
+    .cta-button:hover {
+      background-color: #00b3cc;
     }
 
-    ul {
-      list-style-type: disc;
-      padding-left: 20px;
+    .product-box {
+      background-color: #1e1e1e;
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 30px;
+      margin: 40px auto;
+      max-width: 400px;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
     }
 
-    img {
-      max-width: 100%;
-      border-radius: 10px;
-      margin: 20px 0;
+    .product-box ul {
+      list-style: none;
+      padding: 0;
+      text-align: left;
+      margin-top: 15px;
+    }
+
+    .product-box li {
+      margin: 10px 0;
+      font-size: 1rem;
+    }
+
+    .benefits-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .benefit-card {
+      background-color: #1e1e1e;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .benefit-card h3 {
+      color: #00d9ff;
+      margin-top: 0;
+    }
+
+    .product-box-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 40px;
     }
 
     footer {
@@ -70,49 +174,166 @@
 </head>
 <body>
 
-  <header>
-    <h1>🧠 Synthetic Data: Unlocking AI/ML Potential</h1>
-    <p>From ZeroOneEta – AI-Powered Solutions</p>
+  <nav>
+    <img src="logo.jpeg" alt="Logo" />
+    <a href="#home">Home</a>
+    <a href="https://zerooneeta.com/blog.html">Blog</a>
+    <a href="#product">Product</a>
+    <a href="#about">About</a>
+  </nav>
+  
+  <header id="home">
+    <h1>Synthetic Data: Unlocking AI/ML Potential</h1>
+    <p>Powering Innovation with Machine Learning, AI Agents & Synthetic Data</p>
   </header>
 
+  <!-- Synthetic Data Introduction Section -->
   <div class="content">
-    <img src="https://raw.githubusercontent.com/ZeroOneEta/ZeroOneEta/refs/heads/main/dataset_generation.jpg" alt="Synthetic Data">
+    <h2>Why Synthetic Data?</h2>
+    <p>Artificial intelligence and machine learning teams often face challenges like limited labeled data, high annotation costs, and strict privacy regulations. Synthetic data—artificially generated datasets that mimic real data distributions—provides a solution by enabling on-demand, high-volume data generation without using real personal records. This approach can accelerate development and reduce data bottlenecks, leading to more robust models across industries (healthcare, finance, automotive, etc.).</p>
+    
+    <h2>Key Benefits of Synthetic Data</h2>
+    <div class="benefits-container">
+      <div class="benefit-card">
+        <h3>💰 Cost-effectiveness</h3>
+        <p>Generating synthetic data is often much cheaper and faster than collecting and labeling large real-world datasets. Because artificial data can be produced automatically at scale, teams save on labor and infrastructure costs.</p>
+      </div>
+      
+      <div class="benefit-card">
+        <h3>🔒 Privacy and Compliance</h3>
+        <p>Synthetic datasets contain no real personal information, so they sidestep many privacy concerns and regulatory restrictions. This makes it easier to share data while remaining compliant with data protection laws.</p>
+      </div>
+      
+      <div class="benefit-card">
+        <h3>📈 Scalability</h3>
+        <p>Synthetic data can be generated in virtually unlimited quantities to cover diverse scenarios. Models can be trained on massive datasets—even when real data are scarce—improving performance.</p>
+      </div>
+      
+      <div class="benefit-card">
+        <h3>🎨 Data Diversity</h3>
+        <p>By tweaking generation parameters, synthetic data can include rare or edge-case examples that are hard to find in real datasets. This richer variety helps models generalize better to new situations.</p>
+      </div>
+      
+      <div class="benefit-card">
+        <h3>⚖️ Bias Reduction</h3>
+        <p>Carefully designed synthetic data can balance underrepresented groups and conditions, helping to mitigate biases present in the original data. This supports fairer models and more inclusive AI systems.</p>
+      </div>
+    </div>
+    
+    <p>Collectively, these advantages allow businesses to innovate faster. For example, teams in healthcare can generate patient-like data for testing algorithms without risking privacy, and autonomous vehicle developers can simulate rare traffic scenarios for safer models.</p>
+  </div>
 
-    <p>Artificial intelligence and machine learning teams often face challenges like limited labeled data, high annotation costs, and strict privacy regulations. <strong>Synthetic data</strong>—artificially generated datasets that mimic real data distributions—offers a transformative solution. It enables on-demand, high-volume data generation without exposing personal records or requiring complex data collection efforts.</p>
+  <!-- Product Section -->
+  <div id="product" class="content">
+    <h2>CreativeDatasetMaker: Rapid Synthetic Dataset Generation</h2>
+    <p>To put these benefits into practice, tools like CreativeDatasetMaker offer a turn-key solution. CreativeDatasetMaker is an AI-powered tool from ZeroOneETA that generates custom synthetic data effortlessly. It is designed for ML engineers, data scientists, and business analysts who need high-quality data fast.</p>
 
-    <h3>🎯 Key Benefits of Synthetic Data</h3>
+    <div class="slideshow-container">
+      <div class="slide">
+        <img src="https://raw.githubusercontent.com/ZeroOneEta/ZeroOneEta/refs/heads/main/dataset_generation.jpg" alt="Screenshot 1" />
+      </div>
+      <div class="slide">
+        <img src="https://raw.githubusercontent.com/ZeroOneEta/ZeroOneEta/refs/heads/main/settings.jpg" alt="Screenshot 2" />
+      </div>
+      <div class="slide">
+        <img src="https://raw.githubusercontent.com/ZeroOneEta/ZeroOneEta/refs/heads/main/about_us.jpg" alt="Screenshot 3" />
+      </div>
+    </div>
+
+    <p>Users can claim a free one-day license key on the <a href="https://zerooneeta.com" style="color:#00d9ff;">ZeroOneETA website</a> to try it out. For ongoing projects, the Pro plan (priced at $50 for 30 days) provides full access to advanced features. By automating dataset creation, CreativeDatasetMaker lets teams focus on model development and analysis instead of tedious data gathering.</p>
+
+    <h2>👤 Who Can Use CreativeDatasetMaker?</h2>
     <ul>
-      <li><strong>💸 Cost-effectiveness:</strong> Synthetic data is cheaper and faster to generate compared to collecting real-world datasets <em>(Sharma et al., 2020)</em>.</li>
-      <li><strong>🛡️ Privacy & Compliance:</strong> No real user data involved, which supports GDPR and HIPAA compliance <em>(Tucker, 2021)</em>.</li>
-      <li><strong>📈 Scalability:</strong> Generate vast amounts of data across different scenarios <em>(Muller et al., 2022)</em>.</li>
-      <li><strong>🧪 Diversity & Balance:</strong> Synthetic data can target rare cases and reduce dataset biases <em>(Kovar & Dinev, 2023)</em>.</li>
-      <li><strong>🔍 Edge-Case Simulation:</strong> Ideal for testing model robustness under abnormal or rare conditions.</li>
+      <li>📈 Data Scientists & ML Engineers – Generate diverse datasets to train and refine AI models</li>
+      <li>🔬 Researchers – Create structured data for analytical studies and experimentation</li>
+      <li>🎓 Educators & Students – Use AI-generated datasets for learning and projects</li>
+      <li>💼 Business Analysts – Speed up data-driven solutions with custom datasets</li>
+      <li>✅ Generate and save datasets offline</li>
     </ul>
 
-    <p>Industries such as finance, healthcare, autonomous systems, and cybersecurity are already leveraging synthetic data to improve ML performance and innovation.</p>
-
-    <h3>🚀 Introducing CreativeDatasetMaker</h3>
-    <p><strong>CreativeDatasetMaker</strong> from <a href="https://zerooneeta.com" target="_blank">ZeroOneEta</a> is an AI-powered software tool built to simplify dataset generation. It empowers professionals to:</p>
+    <h2>🧰 Requirements:</h2>
     <ul>
-      <li>⚙️ Create labeled datasets offline with full customization</li>
-      <li>📁 Export datasets in structured formats ready for ML pipelines</li>
-      <li>🔧 Integrate their OpenAI API key for advanced generation control</li>
+      <li>✅ Python 3.5 or above</li>
     </ul>
 
-    <img src="https://raw.githubusercontent.com/ZeroOneEta/ZeroOneEta/refs/heads/main/settings.jpg" alt="App Screenshot">
+    <div class="product-box-container">
+      <div class="product-box">
+        <h2>💼 Starter Plan</h2>
+        <p><strong>$0</strong> /month</p>
+        <p>Perfect for testing before buying</p>
+        <a class="cta-button" href="https://zerooneeta.gumroad.com/l/irlkh" target="_blank">🚀 Get Started</a>
+        <hr style="margin: 20px 0; border-color: #333;">
+        <h3>What's included:</h3>
+        <ul>
+          <li>✅ Add your OpenAI API key</li>
+          <li>✅ Free 1 day license key</li>
+          <li>✅ Email support</li>
+        </ul>
+      </div>
 
-    <h4>🧪 Trial Version</h4>
-    <p>Get started with a <strong>FREE 1-day license key</strong> via the <a href="https://zerooneeta.gumroad.com/l/irlkh" target="_blank">Starter Plan</a>. Perfect for testing the tool’s capabilities.</p>
+      <div class="product-box">
+        <h2>💼 Pro Plan</h2>
+        <p><strong>$50</strong> /month</p>
+        <p>For startups and power users</p>
+        <a class="cta-button" href="https://zerooneeta.gumroad.com/l/hhlwt" target="_blank">🚀 Get Started</a>
+        <hr style="margin: 20px 0; border-color: #333;">
+        <h3>What's included:</h3>
+        <ul>
+          <li>✅ Add your OpenAI API key</li>
+          <li>✅ 30 days license key</li>
+          <li>✅ Priority email support</li>
+        </ul>
+      </div>
+    </div>
+    
+    <p>With the right synthetic data workflow, your organization can reduce costs, protect privacy, and accelerate AI/ML innovation. Learn more about this tool and download it from the <a href="https://zerooneeta.gumroad.com/l/hhlwt" style="color:#00d9ff;">ZeroOneETA Gumroad page</a>.</p>
+  </div>
+  
+  <div id="about" class="content">
+    <h2>👋 Who We Are</h2>
+    <p>At ZeroOneEta, we are shaping the future of AI-driven solutions. Our expertise lies in Machine Learning, AI Agents, and Synthetic Data Generation, helping businesses leverage cutting-edge technology to enhance automation, decision-making, and digital transformation.</p>
 
-    <h4>💼 Pro Plan</h4>
-    <p>For heavy-duty users, the <a href="https://zerooneeta.gumroad.com/l/hhlwt" target="_blank">Pro Plan</a> ($50 for 30 days) provides extended usage and full features.</p>
+    <h2>🌟 What We Do</h2>
+    <ul>
+      <li>🤖 <strong>AI Agents</strong> – Intelligent automation designed to optimize workflows and enhance user experiences.</li>
+      <li>📊 <strong>Machine Learning Solutions</strong> – From predictive analytics to deep learning, we develop scalable models for diverse industries.</li>
+      <li>🔬 <strong>Synthetic Data Generation</strong> – We craft high-quality synthetic datasets to train AI systems while preserving privacy and security.</li>
+    </ul>
 
-    <p>Join professionals across industries who are accelerating development with synthetic data. <a href="https://zerooneeta.com" target="_blank">Visit ZeroOneEta.com</a> to learn more or <a href="https://zerooneeta.gumroad.com/l/hhlwt" target="_blank">download CreativeDatasetMaker</a> today.</p>
+    <h2>💡 Our Vision</h2>
+    <p>We aim to bridge the gap between theoretical advancements and real-world applications, empowering businesses to harness AI responsibly and efficiently.</p>
+
+    <h2>🔗 Get In Touch</h2>
+    <p>📧 Email: <a href="mailto:zerooneeta@gmail.com" style="color:#00d9ff;">zerooneeta@gmail.com</a><br>
+       🌐 Website: <a href="https://zerooneeta.com" style="color:#00d9ff;" target="_blank">zerooneeta.com</a></p>
   </div>
 
   <footer>
-    &copy; 2025 ZeroOneEta. All rights reserved.
+    &copy; 2025 ZeroOneEta. All rights reserved. Sources: Industry and academic studies confirm synthetic data offers cost savings, scalability, privacy protection, and improved fairness in ML workflows.
   </footer>
 
+  <script>
+    let slideIndex = 0;
+    const allSlides = document.querySelectorAll(".slideshow-container");
+
+    function cycleSlides(slideshow) {
+      const slides = slideshow.querySelectorAll(".slide");
+      slides.forEach(s => s.style.display = "none");
+      slideshow.dataset.index = (parseInt(slideshow.dataset.index || 0) + 1) % slides.length;
+      slides[slideshow.dataset.index].style.display = "block";
+    }
+
+    setInterval(() => {
+      allSlides.forEach(slideshow => cycleSlides(slideshow));
+    }, 4000);
+
+    window.addEventListener('DOMContentLoaded', () => {
+      allSlides.forEach(slideshow => {
+        slideshow.dataset.index = 0;
+        const slides = slideshow.querySelectorAll(".slide");
+        if (slides.length > 0) slides[0].style.display = "block";
+      });
+    });
+  </script>
 </body>
 </html>
