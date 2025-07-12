@@ -2,15 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Zero-One-Eta - AI Solutions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zero-One-Eta | AI-Powered Data Solutions</title>
   <style>
     :root {
-      --primary: #00d9ff;
-      --secondary: #1a2a6c;
-      --dark: #121212;
-      --darker: #0d0d0d;
-      --card-bg: #1e1e1e;
-      --border: #333;
+      --primary: #2a7fff;
+      --secondary: #0f3057;
+      --dark: #1a1a2e;
+      --darker: #0d0d1a;
+      --card-bg: #1e2736;
+      --border: #2c3e50;
+      --text-light: #f5f9fc;
+      --text-secondary: #b0c4de;
     }
     
     * {
@@ -24,29 +27,33 @@
     }
 
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: linear-gradient(135deg, var(--darker), var(--dark));
-      color: #f0f0f0;
+      color: var(--text-light);
       line-height: 1.6;
       overflow-x: hidden;
     }
 
+    @supports (font-variation-settings: normal) {
+      body { font-family: 'Inter var', sans-serif; }
+    }
+
     nav {
-      background-color: rgba(30, 30, 30, 0.9);
-      padding: 15px 30px;
+      background-color: rgba(26, 26, 46, 0.98);
+      padding: 18px 8%;
       display: flex;
       align-items: center;
       position: sticky;
       top: 0;
       z-index: 1000;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+      border-bottom: 1px solid rgba(44, 62, 80, 0.3);
     }
 
     nav img {
-      height: 45px;
-      margin-right: 25px;
-      filter: drop-shadow(0 0 5px var(--primary));
+      height: 42px;
+      margin-right: 30px;
     }
 
     .nav-links {
@@ -55,14 +62,13 @@
     }
     
     nav a {
-      color: #f0f0f0;
-      margin-right: 25px;
+      color: var(--text-light);
+      margin-right: 32px;
       text-decoration: none;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 500;
-      padding: 8px 12px;
-      border-radius: 8px;
-      transition: all 0.3s ease;
+      padding: 8px 0;
+      transition: color 0.3s ease;
       position: relative;
     }
 
@@ -87,59 +93,42 @@
 
     header {
       background: linear-gradient(135deg, var(--secondary), var(--dark));
-      padding: 80px 20px;
+      padding: 100px 20px 80px;
       text-align: center;
       position: relative;
       overflow: hidden;
     }
-    
-    header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle, rgba(0, 217, 255, 0.1) 0%, transparent 70%);
-      pointer-events: none;
-    }
 
     header h1 {
-      font-size: 3.2rem;
+      font-size: 3rem;
       margin: 0;
-      background: linear-gradient(90deg, var(--primary), #fff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 15px rgba(0, 217, 255, 0.3);
-      margin-bottom: 15px;
+      color: var(--text-light);
+      margin-bottom: 20px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
     }
 
-    header p {
-      font-size: 1.4rem;
-      max-width: 800px;
+    .subtitle {
+      font-size: 1.3rem;
+      max-width: 760px;
       margin: 0 auto;
-      opacity: 0.9;
+      color: var(--text-secondary);
+      font-weight: 400;
     }
     
-    .header-emoji {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-      animation: float 3s ease-in-out infinite;
-    }
-    
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-15px); }
+    .accent-text {
+      color: var(--primary);
+      font-weight: 600;
     }
 
     .slideshow-container {
       position: relative;
       width: 85%;
       max-width: 1000px;
-      margin: 40px auto;
+      margin: 50px auto;
       overflow: hidden;
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      border-radius: 12px;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
     }
 
     .slide {
@@ -155,24 +144,24 @@
     .slide img {
       width: 100%;
       height: auto;
-      border-radius: 16px;
+      border-radius: 12px;
       display: block;
     }
 
     .content {
-      padding: 50px 30px;
-      max-width: 1100px;
+      padding: 60px 8%;
+      max-width: 1200px;
       margin: 0 auto;
     }
 
     .section-title {
-      font-size: 2.5rem;
+      font-size: 2.2rem;
       color: var(--primary);
-      position: relative;
       padding-bottom: 15px;
-      margin-top: 40px;
-      margin-bottom: 30px;
+      margin: 60px 0 40px;
       text-align: center;
+      font-weight: 700;
+      position: relative;
     }
     
     .section-title::after {
@@ -181,143 +170,140 @@
       bottom: 0;
       left: 50%;
       transform: translateX(-50%);
-      width: 100px;
+      width: 80px;
       height: 4px;
       background: var(--primary);
       border-radius: 4px;
     }
 
     .content p {
-      font-size: 1.15rem;
-      margin-bottom: 25px;
+      font-size: 1.1rem;
+      margin-bottom: 28px;
       line-height: 1.7;
       text-align: center;
       max-width: 900px;
       margin-left: auto;
       margin-right: auto;
+      color: var(--text-light);
     }
     
     .content ul {
       list-style-type: none;
       padding-left: 0;
       max-width: 800px;
-      margin: 0 auto 40px;
+      margin: 0 auto 50px;
     }
     
     .content li {
-      margin-bottom: 18px;
-      font-size: 1.15rem;
-      padding-left: 35px;
+      margin-bottom: 16px;
+      font-size: 1.1rem;
+      padding: 16px 24px 16px 60px;
       position: relative;
-      background: rgba(30, 30, 30, 0.6);
-      padding: 15px 20px;
+      background: rgba(30, 39, 54, 0.7);
       border-radius: 10px;
       border-left: 3px solid var(--primary);
+      transition: transform 0.3s ease;
+    }
+    
+    .content li:hover {
+      transform: translateX(10px);
     }
     
     .content li::before {
-      content: "▹";
+      content: "•";
       position: absolute;
-      left: 15px;
-      top: 15px;
+      left: 30px;
+      top: 16px;
       color: var(--primary);
-      font-size: 1.2rem;
+      font-size: 1.5rem;
     }
 
     .cta-button {
       display: inline-block;
-      margin-top: 20px;
-      padding: 14px 32px;
-      background: linear-gradient(90deg, var(--primary), #00b3cc);
-      color: #121212;
-      font-size: 1.15rem;
+      margin-top: 25px;
+      padding: 14px 38px;
+      background: var(--primary);
+      color: #fff;
+      font-size: 1.1rem;
       font-weight: 600;
       text-decoration: none;
-      border-radius: 10px;
+      border-radius: 8px;
       transition: all 0.3s ease;
       border: none;
-      box-shadow: 0 5px 15px rgba(0, 217, 255, 0.3);
+      box-shadow: 0 6px 20px rgba(42, 127, 255, 0.25);
     }
 
     .cta-button:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 25px rgba(0, 217, 255, 0.5);
+      background: #1a6ae6;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(42, 127, 255, 0.35);
     }
     
     .product-box-container {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 35px;
-      margin-top: 50px;
+      gap: 40px;
+      margin-top: 60px;
     }
 
     .product-box {
-      background: linear-gradient(145deg, var(--card-bg), #252525);
+      background: linear-gradient(145deg, #1e2736, #1a2230);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 35px;
+      border-radius: 14px;
+      padding: 40px 35px;
       width: 100%;
       max-width: 450px;
       text-align: center;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-      transition: all 0.4s ease;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
     }
-    
-    .product-box::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 5px;
-      background: var(--primary);
-    }
 
     .product-box:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 35px rgba(0, 217, 255, 0.2);
+      box-shadow: 0 15px 40px rgba(42, 127, 255, 0.15);
+      border-color: rgba(42, 127, 255, 0.4);
     }
 
     .product-box h2 {
-      font-size: 1.9rem;
+      font-size: 1.7rem;
       margin-top: 0;
       margin-bottom: 15px;
-      color: var(--primary);
+      color: var(--text-light);
     }
     
     .product-box .price {
       font-size: 2rem;
       font-weight: 700;
-      margin: 15px 0;
+      margin: 15px 0 5px;
       color: var(--primary);
     }
     
     .product-box .price-sub {
-      font-size: 1.1rem;
-      opacity: 0.8;
-      margin-bottom: 20px;
+      font-size: 1rem;
+      color: var(--text-secondary);
+      margin-bottom: 25px;
     }
 
     .product-box p {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       margin-bottom: 25px;
+      color: var(--text-secondary);
     }
 
     .product-box ul {
       list-style: none;
       padding: 0;
       text-align: left;
-      margin-top: 25px;
+      margin-top: 30px;
     }
 
     .product-box li {
-      margin: 15px 0;
-      font-size: 1.05rem;
-      padding: 10px 15px 10px 45px;
-      background: rgba(40, 40, 40, 0.5);
+      margin: 16px 0;
+      font-size: 1rem;
+      padding: 12px 20px 12px 50px;
+      background: rgba(40, 50, 70, 0.4);
       border-radius: 8px;
       position: relative;
       border-left: none;
@@ -326,260 +312,276 @@
     .product-box li::before {
       content: "✓";
       position: absolute;
-      left: 15px;
+      left: 20px;
       top: 50%;
       transform: translateY(-50%);
       color: var(--primary);
-      font-size: 1.3rem;
+      font-weight: bold;
     }
     
     .divider {
-      height: 2px;
+      height: 1px;
       background: linear-gradient(90deg, transparent, var(--border), transparent);
-      margin: 25px 0;
+      margin: 30px 0;
+    }
+
+    .mission-statement {
+      background: rgba(42, 127, 255, 0.08);
+      border-left: 4px solid var(--primary);
+      padding: 30px;
+      margin: 50px auto;
+      border-radius: 0 10px 10px 0;
+      max-width: 800px;
+    }
+
+    .mission-statement p {
+      font-style: italic;
+      text-align: left;
+      color: var(--text-secondary);
+      font-size: 1.15rem;
+      line-height: 1.8;
     }
 
     footer {
       text-align: center;
-      padding: 40px 20px;
+      padding: 50px 20px;
       font-size: 1rem;
-      color: #888;
-      background-color: #0d0d0d;
-      margin-top: 60px;
-      border-top: 1px solid #222;
+      color: var(--text-secondary);
+      background-color: #0d0d1a;
+      margin-top: 80px;
+      border-top: 1px solid rgba(44, 62, 80, 0.4);
+    }
+    
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin: 25px 0;
+    }
+    
+    .contact-info a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .contact-info a:hover {
+      color: #fff;
+      text-decoration: underline;
     }
     
     .social-links {
       display: flex;
       justify-content: center;
-      gap: 20px;
-      margin: 20px 0;
+      gap: 18px;
+      margin: 30px 0;
     }
     
     .social-links a {
-      display: inline-block;
-      width: 45px;
-      height: 45px;
+      display: inline-flex;
+      width: 46px;
+      height: 46px;
       border-radius: 50%;
-      background: var(--card-bg);
+      background: rgba(42, 127, 255, 0.15);
       color: var(--primary);
-      display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       transition: all 0.3s ease;
     }
     
     .social-links a:hover {
-      transform: translateY(-5px);
       background: var(--primary);
-      color: #121212;
-    }
-    
-    .particles {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: -1;
-    }
-    
-    .particle {
-      position: absolute;
-      border-radius: 50%;
-      background: rgba(0, 217, 255, 0.2);
-      animation: floatParticle 15s infinite linear;
-    }
-    
-    @keyframes floatParticle {
-      0% {
-        transform: translateY(0) translateX(0);
-        opacity: 0;
-      }
-      10% {
-        opacity: 1;
-      }
-      90% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-100vh) translateX(100px);
-        opacity: 0;
-      }
+      color: #fff;
+      transform: translateY(-3px);
     }
     
     /* Responsive design */
-    @media (max-width: 768px) {
+    @media (max-width: 900px) {
       nav {
-        flex-direction: column;
-        padding: 15px;
+        padding: 15px 5%;
       }
       
       .nav-links {
-        margin-top: 15px;
+        justify-content: flex-start;
         flex-wrap: wrap;
-        justify-content: center;
       }
       
       nav a {
-        margin: 5px;
+        margin: 0 20px 10px 0;
         font-size: 1rem;
       }
       
-      header h1 {
-        font-size: 2.5rem;
+      header {
+        padding: 80px 20px 60px;
       }
       
-      header p {
-        font-size: 1.2rem;
+      header h1 {
+        font-size: 2.4rem;
+      }
+      
+      .subtitle {
+        font-size: 1.15rem;
       }
       
       .section-title {
-        font-size: 2rem;
+        font-size: 1.9rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .nav-links {
+        margin-top: 20px;
+        width: 100%;
+      }
+      
+      nav a {
+        margin: 0 15px 10px 0;
       }
       
       .product-box-container {
         flex-direction: column;
         align-items: center;
+        gap: 30px;
       }
       
       .product-box {
         max-width: 100%;
       }
+      
+      .content {
+        padding: 50px 5%;
+      }
     }
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Animated background particles -->
-  <div class="particles" id="particles"></div>
-
   <nav>
     <img src="https://raw.githubusercontent.com/ZeroOneEta/ZeroOneEta/main/logo.jpeg" alt="ZeroOneEta Logo" />
     <div class="nav-links">
       <a href="#home">Home</a>
       <a href="https://zerooneeta.com/blog.html">Blog</a>
-      <a href="#product">Product</a>
-      <a href="#about">About</a>
+      <a href="#product">Solutions</a>
+      <a href="#about">Company</a>
     </div>
   </nav>
   
   <header id="home">
-    <div class="header-emoji">🚀</div>
-    <h1>Welcome to Zero-One-Eta</h1>
-    <p>Powering Innovation with Machine Learning, AI Agents & Synthetic Data</p>
+    <h1>Advanced AI Solutions for Modern Enterprises</h1>
+    <p class="subtitle">Harnessing machine intelligence for <span class="accent-text">data generation</span>, <span class="accent-text">predictive analytics</span>, and <span class="accent-text">automation systems</span></p>
   </header>
 
-  <!-- Product Section -->
   <div id="product" class="content">
-    <h2 class="section-title">🛠️ CreativeDatasetMaker</h2>
-    <p>An AI-Powered Dataset Generation Software Application</p>
+    <h2 class="section-title">CreativeDatasetMaker</h2>
+    <p>AI-Powered Dataset Generation Platform</p>
 
     <div class="slideshow-container">
       <div class="slide">
-        <img src="https://raw.githubusercontent.com/ZeroOneEta/ZeroOneEta/refs/heads/main/dataset_generation.jpg" alt="Dataset Generation" />
+        <img src="https://raw.githubusercontent.com/ZeroOneEta/ZeroOneEta/refs/heads/main/dataset_generation.jpg" alt="Dataset Generation Interface" />
       </div>
       <div class="slide">
-        <img src="https://raw.githubusercontent.com/ZeroOneEta/ZeroOneEta/refs/heads/main/settings.jpg" alt="Application Settings" />
+        <img src="https://raw.githubusercontent.com/ZeroOneEta/ZeroOneEta/refs/heads/main/settings.jpg" alt="Configuration Settings" />
       </div>
       <div class="slide">
-        <img src="https://raw.githubusercontent.com/ZeroOneEta/ZeroOneEta/refs/heads/main/about_us.jpg" alt="About the Application" />
+        <img src="https://raw.githubusercontent.com/ZeroOneEta/ZeroOneEta/refs/heads/main/about_us.jpg" alt="Platform Information" />
       </div>
     </div>
 
-    <p>Need high-quality datasets but don't have the time or resources to create them manually? Say hello to <strong>CreativeDatasetMaker</strong>, the AI-powered tool that makes dataset generation effortless.</p>
+    <p>Generate high-quality datasets without manual effort using our AI-powered platform. CreativeDatasetMaker streamlines data creation workflows, enabling professionals to focus on innovation and analysis.</p>
 
-    <p>Whether you're a data scientist, researcher, machine learning enthusiast, or educator, this application automates dataset creation using AI, helping you streamline your workflow and focus on what truly matters—innovation.</p>
-
-    <h2 class="section-title">👤 Who Can Use CreativeDatasetMaker?</h2>
+    <h2 class="section-title">Target Users</h2>
     <ul>
-      <li>📈 Data Scientists & ML Engineers – Generate diverse datasets to train and refine AI models</li>
-      <li>🔬 Researchers – Create structured data for analytical studies and experimentation</li>
-      <li>🎓 Educators & Students – Use AI-generated datasets for learning, teaching, and projects</li>
-      <li>💼 Business Analysts & Developers – Speed up data-driven solutions with custom datasets</li>
-      <li>✅ Generate and save datasets offline</li>
+      <li>Data Science Teams - Create diverse datasets for model training and validation</li>
+      <li>Research Professionals - Generate structured data for analytical studies</li>
+      <li>Academic Institutions - Educational datasets for coursework and research</li>
+      <li>Business Analysts - Custom datasets for strategic decision-making</li>
+      <li>Development Teams - Synthetic data for application testing</li>
     </ul>
 
-    <h2 class="section-title">🧰 Requirements</h2>
+    <h2 class="section-title">Technical Requirements</h2>
     <ul>
-      <li>✅ Python 3.5 or above</li>
-      <li>✅ OpenAI API Key</li>
-      <li>✅ Internet connection for initial setup</li>
+      <li>Python 3.5+ environment</li>
+      <li>Valid OpenAI API credentials</li>
+      <li>Internet connectivity for initial configuration</li>
     </ul>
-
-    <p>Save time, boost productivity, and power up your projects with CreativeDatasetMaker. Get started today!</p>
 
     <div class="product-box-container">
       <div class="product-box">
-        <h2>💼 Starter Plan</h2>
+        <h2>Starter Plan</h2>
         <div class="price">$0</div>
-        <div class="price-sub">per month</div>
-        <p>Perfect for individuals and businesses who would like to test this product before buying.</p>
-        <a class="cta-button" href="https://zerooneeta.gumroad.com/l/irlkh" target="_blank">🚀 Get Started</a>
+        <div class="price-sub">Evaluation license</div>
+        <p>Comprehensive trial for platform assessment</p>
+        <a class="cta-button" href="https://zerooneeta.gumroad.com/l/irlkh" target="_blank">Start Evaluation</a>
         <div class="divider"></div>
-        <h3>What's included:</h3>
+        <h3>Core Features:</h3>
         <ul>
-          <li>Add your OpenAI API key</li>
-          <li>Free 14 days license key</li>
-          <li>Email us for support and feedback</li>
-          <li>Basic dataset generation features</li>
+          <li>OpenAI API integration</li>
+          <li>14-day trial license</li>
+          <li>Basic dataset generation</li>
           <li>CSV export functionality</li>
+          <li>Standard support channels</li>
         </ul>
       </div>
 
       <div class="product-box">
-        <h2>💼 Pro Plan</h2>
+        <h2>Professional Plan</h2>
         <div class="price">$20</div>
-        <div class="price-sub">per month</div>
-        <p>Perfect for startups and individuals who generate lots of synthetic data</p>
-        <a class="cta-button" href="https://zerooneeta.gumroad.com/l/hhlwt" target="_blank">🚀 Get Started</a>
+        <div class="price-sub">Monthly subscription</div>
+        <p>Enterprise-grade synthetic data generation</p>
+        <a class="cta-button" href="https://zerooneeta.gumroad.com/l/hhlwt" target="_blank">Subscribe Now</a>
         <div class="divider"></div>
-        <h3>What's included:</h3>
+        <h3>Enhanced Features:</h3>
         <ul>
-          <li>All Starter features plus:</li>
-          <li>Add your OpenAI API key</li>
-          <li>30 days license key</li>
-          <li>Priority email support</li>
-          <li>Advanced dataset customization</li>
-          <li>Multiple export formats (CSV, JSON, Excel)</li>
-          <li>Larger dataset generation capacity</li>
+          <li>All Starter features included</li>
+          <li>30-day renewable license</li>
+          <li>Advanced customization options</li>
+          <li>Multi-format exports (CSV, JSON, Excel)</li>
+          <li>Priority technical support</li>
+          <li>Increased generation capacity</li>
         </ul>
       </div>
     </div>
   </div>
   
   <div id="about" class="content">
-    <h2 class="section-title">👋 Who We Are</h2>
-    <p>At <a href="https://zerooneeta.com" target="_blank" style="color:#00d9ff;">ZeroOneEta</a>, we are shaping the future of AI-driven solutions. Our expertise lies in Machine Learning, AI Agents, and Synthetic Data Generation, helping businesses leverage cutting-edge technology to enhance automation, decision-making, and digital transformation.</p>
+    <h2 class="section-title">Corporate Overview</h2>
+    <p>ZeroOneEta develops enterprise-grade AI solutions focused on machine intelligence, autonomous systems, and synthetic data generation.</p>
 
-    <h2 class="section-title">🌟 What We Do</h2>
+    <h2 class="section-title">Core Capabilities</h2>
     <ul>
-      <li>🤖 <strong>AI Agents</strong> – Intelligent automation designed to optimize workflows and enhance user experiences.</li>
-      <li>📊 <strong>Machine Learning Solutions</strong> – From predictive analytics to deep learning, we develop scalable models for diverse industries.</li>
-      <li>🔬 <strong>Synthetic Data Generation</strong> – We craft high-quality synthetic datasets to train AI systems while preserving privacy and security.</li>
+      <li><strong>Intelligent Automation Systems</strong> - AI agents for workflow optimization and process enhancement</li>
+      <li><strong>Machine Learning Implementation</strong> - Custom predictive analytics and deep learning solutions</li>
+      <li><strong>Synthetic Data Platforms</strong> - Privacy-compliant data generation for AI training</li>
     </ul>
 
-    <h2 class="section-title">💡 Our Vision</h2>
-    <p>We aim to bridge the gap between theoretical advancements and real-world applications, empowering businesses to harness AI responsibly and efficiently.</p>
+    <h2 class="section-title">Strategic Vision</h2>
+    <p>We bridge theoretical AI advancements with practical enterprise applications, enabling responsible adoption of intelligent systems.</p>
     
-    <div style="background: rgba(0, 217, 255, 0.1); border-left: 4px solid var(--primary); padding: 25px; margin: 40px 0; border-radius: 0 12px 12px 0; max-width: 800px; margin-left: auto; margin-right: auto;">
-      <p>"At ZeroOneEta, we believe that AI should augment human capabilities, not replace them. Our mission is to create intelligent solutions that empower innovation."</p>
+    <div class="mission-statement">
+      <p>"At ZeroOneEta, we engineer AI systems that augment human expertise. Our mission is to deliver intelligent solutions that transform data into strategic advantage."</p>
     </div>
 
-    <h2 class="section-title">🔗 Get In Touch</h2>
-    <p>📧 Email: <a href="mailto:zerooneeta@gmail.com" style="color:#00d9ff;">zerooneeta@gmail.com</a><br>
-       🌐 Website: <a href="https://zerooneeta.com" style="color:#00d9ff;" target="_blank">zerooneeta.com</a>
-       👔 LinkedIn: <a href="https://linkedin.com/company/zerooneeta"  style="color:#00d9ff;" target="_blank">ZeroOneEta</a></p>
+    <h2 class="section-title">Contact Information</h2>
+    <div class="contact-info">
+      <a href="mailto:zerooneeta@gmail.com">zerooneeta@gmail.com</a>
+      <a href="https://zerooneeta.com" target="_blank">zerooneeta.com</a>
+      <a href="https://linkedin.com/company/zerooneeta" target="_blank">LinkedIn Company Profile</a>
+    </div>
        
     <div class="social-links">
-      <a href="https://linkedin.com/company/zerooneeta" target="_blank">👔</a>
+      <a href="https://linkedin.com/company/zerooneeta" target="_blank">in</a>
     </div>
   </div>
 
   <footer>
     <p>&copy; 2025 ZeroOneEta. All rights reserved.</p>
-    <p style="margin-top: 10px;">Page updated: June 18, 2025</p>
+    <p>Page updated: June 18, 2025</p>
   </footer>
 
   <script>
@@ -596,7 +598,7 @@
 
     setInterval(() => {
       allSlides.forEach(slideshow => cycleSlides(slideshow));
-    }, 4000);
+    }, 5000);
 
     window.addEventListener('DOMContentLoaded', () => {
       allSlides.forEach(slideshow => {
@@ -604,30 +606,6 @@
         const slides = slideshow.querySelectorAll(".slide");
         if (slides.length > 0) slides[0].style.display = "block";
       });
-      
-      // Create animated particles
-      const particlesContainer = document.getElementById('particles');
-      const particleCount = 30;
-      
-      for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.classList.add('particle');
-        
-        // Random properties
-        const size = Math.random() * 10 + 5;
-        const posX = Math.random() * 100;
-        const duration = Math.random() * 20 + 10;
-        const delay = Math.random() * 5;
-        
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
-        particle.style.left = `${posX}%`;
-        particle.style.bottom = `-${size}px`;
-        particle.style.animationDuration = `${duration}s`;
-        particle.style.animationDelay = `${delay}s`;
-        
-        particlesContainer.appendChild(particle);
-      }
     });
   </script>
 </body>
