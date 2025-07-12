@@ -2,161 +2,143 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>ZeroOneEta - AI Solutions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZeroOneEta | AI-Powered Synthetic Data Solutions</title>
   <style>
+    :root {
+      --primary: #2a7fff;
+      --secondary: #0f3057;
+      --dark: #1a1a2e;
+      --darker: #0d0d1a;
+      --card-bg: #1e2736;
+      --border: #2c3e50;
+      --text-light: #f5f9fc;
+      --text-secondary: #b0c4de;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
     html {
       scroll-behavior: smooth;
     }
 
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #121212;
-      color: #f0f0f0;
-      margin: 0;
-      padding: 0;
+      font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, var(--darker), var(--dark));
+      color: var(--text-light);
       line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    @supports (font-variation-settings: normal) {
+      body { font-family: 'Inter var', sans-serif; }
     }
 
     nav {
-      background-color: #1e1e1e;
-      padding: 10px 20px;
+      background-color: rgba(26, 26, 46, 0.98);
+      padding: 18px 8%;
       display: flex;
       align-items: center;
       position: sticky;
       top: 0;
       z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+      border-bottom: 1px solid rgba(44, 62, 80, 0.3);
     }
 
     nav img {
-      height: 40px;
-      margin-right: 20px;
+      height: 42px;
+      margin-right: 30px;
     }
 
+    .nav-links {
+      display: flex;
+      flex: 1;
+    }
+    
     nav a {
-      color: #f0f0f0;
-      margin-right: 20px;
+      color: var(--text-light);
+      margin-right: 32px;
       text-decoration: none;
-      font-size: 1rem;
+      font-size: 1.05rem;
+      font-weight: 500;
+      padding: 8px 0;
       transition: color 0.3s ease;
+      position: relative;
     }
 
     nav a:hover {
-      color: #00d9ff;
+      color: var(--primary);
+    }
+    
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+    
+    nav a:hover::after {
+      width: 100%;
     }
 
     header {
-      background: linear-gradient(135deg, #1a2a6c, #1e1e1e);
-      padding: 60px 20px;
+      background: linear-gradient(135deg, var(--secondary), var(--dark));
+      padding: 100px 20px 80px;
       text-align: center;
       position: relative;
       overflow: hidden;
     }
 
-    header::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle, rgba(0, 217, 255, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
-      pointer-events: none;
-    }
-
     header h1 {
-      font-size: 2.8rem;
+      font-size: 3rem;
       margin: 0;
+      color: var(--text-light);
+      margin-bottom: 20px;
+      font-weight: 700;
       letter-spacing: -0.5px;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
     }
 
-    header p {
+    .subtitle {
       font-size: 1.3rem;
-      margin-top: 15px;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-      opacity: 0.9;
-    }
-
-    .content {
-      padding: 40px 30px;
-      max-width: 1000px;
+      max-width: 760px;
       margin: 0 auto;
+      color: var(--text-secondary);
+      font-weight: 400;
     }
-
-    .content h2 {
-      font-size: 2.2rem;
-      color: #00d9ff;
-      position: relative;
-      padding-bottom: 10px;
-      margin-top: 40px;
-    }
-
-    .content h2::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 80px;
-      height: 3px;
-      background: #00d9ff;
-      border-radius: 3px;
-    }
-
-    .content ul {
-      list-style-type: none;
-      padding-left: 0;
-    }
-
-    .content li {
-      margin-bottom: 12px;
-      font-size: 1.1rem;
-      padding-left: 25px;
-      position: relative;
-    }
-
-    .content li::before {
-      content: "▹";
-      position: absolute;
-      left: 0;
-      color: #00d9ff;
-    }
-
-    .cta-button {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 28px;
-      background-color: #00d9ff;
-      color: #121212;
-      font-size: 1.1rem;
-      text-decoration: none;
-      border-radius: 8px;
-      transition: all 0.3s ease;
+    
+    .accent-text {
+      color: var(--primary);
       font-weight: 600;
-      border: 2px solid #00d9ff;
-    }
-
-    .cta-button:hover {
-      background-color: transparent;
-      color: #00d9ff;
-      transform: translateY(-3px);
-      box-shadow: 0 5px 15px rgba(0, 217, 255, 0.3);
     }
 
     .slideshow-container {
       position: relative;
-      width: 90%;
+      width: 85%;
       max-width: 1000px;
-      margin: 40px auto;
+      margin: 50px auto;
       overflow: hidden;
       border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
     }
 
     .slide {
       display: none;
+      animation: fade 1.5s ease;
+    }
+    
+    @keyframes fade {
+      from { opacity: 0.4; }
+      to { opacity: 1; }
     }
 
     .slide img {
@@ -166,103 +148,268 @@
       display: block;
     }
 
-    .benefits-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 25px;
-      margin-top: 35px;
+    .content {
+      padding: 60px 8%;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
-    .benefit-card {
-      background-color: #1e1e1e;
-      border: 1px solid #333;
+    .section-title {
+      font-size: 2.2rem;
+      color: var(--primary);
+      padding-bottom: 15px;
+      margin: 60px 0 40px;
+      text-align: center;
+      font-weight: 700;
+      position: relative;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--primary);
+      border-radius: 4px;
+    }
+
+    .content p {
+      font-size: 1.1rem;
+      margin-bottom: 28px;
+      line-height: 1.7;
+      text-align: center;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      color: var(--text-light);
+    }
+    
+    .content ul {
+      list-style-type: none;
+      padding-left: 0;
+      max-width: 800px;
+      margin: 0 auto 50px;
+    }
+    
+    .content li {
+      margin-bottom: 16px;
+      font-size: 1.1rem;
+      padding: 16px 24px 16px 60px;
+      position: relative;
+      background: rgba(30, 39, 54, 0.7);
       border-radius: 10px;
-      padding: 25px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-left: 3px solid var(--primary);
+      transition: transform 0.3s ease;
+    }
+    
+    .content li:hover {
+      transform: translateX(10px);
+    }
+    
+    .content li::before {
+      content: "•";
+      position: absolute;
+      left: 30px;
+      top: 16px;
+      color: var(--primary);
+      font-size: 1.5rem;
     }
 
-    .benefit-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    .cta-button {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 14px 38px;
+      background: var(--primary);
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      border: none;
+      box-shadow: 0 6px 20px rgba(42, 127, 255, 0.25);
     }
 
-    .benefit-card h3 {
-      color: #00d9ff;
-      margin-top: 0;
-      font-size: 1.4rem;
+    .cta-button:hover {
+      background: #1a6ae6;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(42, 127, 255, 0.35);
     }
-
+    
     .product-box-container {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 35px;
-      margin-top: 50px;
+      gap: 40px;
+      margin-top: 60px;
     }
 
     .product-box {
-      background-color: #1e1e1e;
-      border: 1px solid #333;
-      border-radius: 12px;
-      padding: 35px;
+      background: linear-gradient(145deg, #1e2736, #1a2230);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 40px 35px;
       width: 100%;
-      max-width: 400px;
+      max-width: 450px;
       text-align: center;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
     }
 
     .product-box:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0, 217, 255, 0.2);
+      box-shadow: 0 15px 40px rgba(42, 127, 255, 0.15);
+      border-color: rgba(42, 127, 255, 0.4);
     }
 
     .product-box h2 {
-      font-size: 1.8rem;
+      font-size: 1.7rem;
       margin-top: 0;
+      margin-bottom: 15px;
+      color: var(--text-light);
+    }
+    
+    .product-box .price {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 15px 0 5px;
+      color: var(--primary);
+    }
+    
+    .product-box .price-sub {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      margin-bottom: 25px;
     }
 
     .product-box p {
-      margin: 15px 0;
+      font-size: 1.05rem;
+      margin-bottom: 25px;
+      color: var(--text-secondary);
     }
 
     .product-box ul {
       list-style: none;
       padding: 0;
       text-align: left;
-      margin-top: 20px;
+      margin-top: 30px;
     }
 
     .product-box li {
-      margin: 12px 0;
+      margin: 16px 0;
       font-size: 1rem;
+      padding: 12px 20px 12px 50px;
+      background: rgba(40, 50, 70, 0.4);
+      border-radius: 8px;
+      position: relative;
+      border-left: none;
+    }
+    
+    .product-box li::before {
+      content: "✓";
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--primary);
+      font-weight: bold;
+    }
+    
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 30px 0;
+    }
+
+    .mission-statement {
+      background: rgba(42, 127, 255, 0.08);
+      border-left: 4px solid var(--primary);
+      padding: 30px;
+      margin: 50px auto;
+      border-radius: 0 10px 10px 0;
+      max-width: 800px;
+    }
+
+    .mission-statement p {
+      font-style: italic;
+      text-align: left;
+      color: var(--text-secondary);
+      font-size: 1.15rem;
+      line-height: 1.8;
     }
 
     footer {
       text-align: center;
-      padding: 30px 20px;
-      font-size: 0.95rem;
-      color: #888;
-      background-color: #1a1a1a;
-      margin-top: 60px;
+      padding: 50px 20px;
+      font-size: 1rem;
+      color: var(--text-secondary);
+      background-color: #0d0d1a;
+      margin-top: 80px;
+      border-top: 1px solid rgba(44, 62, 80, 0.4);
     }
-
-    /* Blog Section Styles */
+    
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin: 25px 0;
+    }
+    
+    .contact-info a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .contact-info a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      margin: 30px 0;
+    }
+    
+    .social-links a {
+      display: inline-flex;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: rgba(42, 127, 255, 0.15);
+      color: var(--primary);
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+    }
+    
+    .social-links a:hover {
+      background: var(--primary);
+      color: #fff;
+      transform: translateY(-3px);
+    }
+    
+    /* New components for blog content */
     .blog-section {
       max-width: 1000px;
       margin: 40px auto;
-      padding: 0 30px;
+      padding: 0 8%;
     }
 
     .blog-card {
-      background: linear-gradient(145deg, #1e1e1e, #252525);
-      border-radius: 12px;
+      background: linear-gradient(145deg, #1e2736, #1a2230);
+      border-radius: 14px;
       overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
       transition: transform 0.3s ease;
-      border: 1px solid #333;
+      border: 1px solid var(--border);
     }
 
     .blog-card:hover {
@@ -270,8 +417,8 @@
     }
 
     .blog-header {
-      padding: 30px;
-      background: linear-gradient(90deg, #1a2a6c, #00d9ff);
+      padding: 35px;
+      background: linear-gradient(90deg, var(--secondary), var(--primary));
     }
 
     .blog-header h2 {
@@ -282,38 +429,38 @@
 
     .blog-meta {
       display: flex;
-      margin-top: 15px;
+      margin-top: 20px;
       color: rgba(255, 255, 255, 0.85);
       font-size: 0.95rem;
       flex-wrap: wrap;
+      gap: 20px;
     }
 
     .blog-meta span {
-      margin-right: 20px;
       display: flex;
       align-items: center;
-      margin-bottom: 5px;
     }
 
     .blog-meta span i {
-      margin-right: 5px;
+      margin-right: 8px;
     }
 
     .blog-content {
-      padding: 30px;
+      padding: 40px;
     }
     
     .blog-content p {
       font-size: 1.1rem;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
       line-height: 1.7;
+      text-align: left;
     }
     
     .blog-content h3 {
       font-size: 1.6rem;
-      color: #00d9ff;
-      margin-top: 30px;
-      margin-bottom: 15px;
+      color: var(--primary);
+      margin-top: 35px;
+      margin-bottom: 20px;
       position: relative;
       padding-bottom: 8px;
     }
@@ -324,68 +471,75 @@
       bottom: 0;
       left: 0;
       width: 60px;
-      height: 2px;
-      background: #00d9ff;
+      height: 3px;
+      background: var(--primary);
     }
     
     .blog-content ul {
-      padding-left: 20px;
-      margin-bottom: 25px;
+      padding-left: 0;
+      margin-bottom: 30px;
+      text-align: left;
     }
     
     .blog-content li {
-      margin-bottom: 12px;
+      margin-bottom: 15px;
       font-size: 1.1rem;
       position: relative;
-      padding-left: 25px;
+      padding-left: 35px;
+      background: rgba(40, 50, 70, 0.3);
+      border-left: 3px solid var(--primary);
     }
     
     .blog-content li::before {
       content: "•";
       position: absolute;
-      left: 0;
-      color: #00d9ff;
-      font-size: 1.4rem;
-      line-height: 1;
+      left: 15px;
+      color: var(--primary);
+      font-size: 1.5rem;
     }
     
     .blog-content li strong {
-      color: #00d9ff;
+      color: var(--primary);
     }
     
     .blog-highlight {
-      background: rgba(0, 217, 255, 0.1);
-      border-left: 4px solid #00d9ff;
-      padding: 20px;
-      margin: 25px 0;
-      border-radius: 0 8px 8px 0;
+      background: rgba(42, 127, 255, 0.1);
+      border-left: 4px solid var(--primary);
+      padding: 25px;
+      margin: 30px 0;
+      border-radius: 0 10px 10px 0;
       font-size: 1.1rem;
     }
     
     .blog-cta {
       text-align: center;
-      margin-top: 30px;
+      margin-top: 40px;
     }
     
     .feature-list {
       list-style: none;
       padding: 0;
-      margin: 25px 0;
+      margin: 30px 0;
     }
     
     .feature-list li {
-      background: rgba(30, 30, 30, 0.7);
-      border: 1px solid #333;
-      border-radius: 8px;
-      padding: 20px;
-      margin-bottom: 15px;
+      background: rgba(30, 39, 54, 0.5);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 25px;
+      margin-bottom: 20px;
       display: flex;
       align-items: flex-start;
+      transition: transform 0.3s ease;
+    }
+    
+    .feature-list li:hover {
+      transform: translateY(-5px);
     }
     
     .feature-list .emoji {
       font-size: 1.8rem;
-      margin-right: 15px;
+      margin-right: 20px;
       min-width: 40px;
     }
     
@@ -394,99 +548,185 @@
     }
     
     .feature-list h4 {
-      margin: 0 0 8px 0;
+      margin: 0 0 10px 0;
       font-size: 1.3rem;
-      color: #00d9ff;
+      color: var(--primary);
     }
 
     /* Table Styles */
     .data-table {
       width: 100%;
       border-collapse: collapse;
-      margin: 30px 0;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      margin: 35px 0;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
       border-radius: 10px;
       overflow: hidden;
+      border: 1px solid var(--border);
     }
     
     .data-table th, .data-table td {
-      padding: 15px;
+      padding: 18px;
       text-align: left;
-      border-bottom: 1px solid #333;
+      border-bottom: 1px solid var(--border);
     }
     
     .data-table thead {
-      background: linear-gradient(90deg, #1a2a6c, #00d9ff);
+      background: linear-gradient(90deg, var(--secondary), var(--primary));
       color: white;
     }
     
     .data-table tbody tr {
-      background-color: #1e1e1e;
+      background-color: var(--card-bg);
       transition: background-color 0.3s;
     }
     
     .data-table tbody tr:hover {
-      background-color: rgba(0, 217, 255, 0.1);
+      background-color: rgba(42, 127, 255, 0.1);
     }
     
     .data-table tbody tr:nth-child(even) {
-      background-color: #252525;
+      background-color: rgba(30, 39, 54, 0.5);
     }
     
     .data-table th:first-child, .data-table td:first-child {
-      padding-left: 25px;
+      padding-left: 30px;
     }
     
     .data-table th:last-child, .data-table td:last-child {
-      padding-right: 25px;
+      padding-right: 30px;
     }
 
     /* Case Study Styles */
     .case-study {
-      background: rgba(30, 30, 30, 0.7);
-      border: 1px solid #333;
-      border-radius: 10px;
-      padding: 25px;
-      margin: 30px 0;
+      background: rgba(30, 39, 54, 0.5);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 30px;
+      margin: 35px 0;
       position: relative;
+      transition: transform 0.3s ease;
+    }
+    
+    .case-study:hover {
+      transform: translateY(-5px);
     }
     
     .case-study::before {
       content: "🏆";
       position: absolute;
-      top: 15px;
-      left: 15px;
+      top: 20px;
+      left: 20px;
       font-size: 1.8rem;
     }
     
     .case-study h4 {
       margin-top: 0;
-      color: #00d9ff;
+      color: var(--primary);
       font-size: 1.4rem;
-      padding-left: 35px;
+      padding-left: 45px;
+      margin-bottom: 15px;
     }
 
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-      header h1 {
-        font-size: 2.2rem;
+    .case-study p {
+      text-align: left;
+      padding-left: 45px;
+    }
+    
+    .benefits-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin: 40px 0;
+    }
+    
+    .benefit-card {
+      background: linear-gradient(145deg, #1e2736, #1a2230);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 30px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .benefit-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    }
+    
+    .benefit-card h3 {
+      color: var(--primary);
+      margin-top: 0;
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+    }
+
+    /* Responsive design */
+    @media (max-width: 900px) {
+      nav {
+        padding: 15px 5%;
       }
       
-      header p {
-        font-size: 1.1rem;
+      .nav-links {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+      }
+      
+      nav a {
+        margin: 0 20px 10px 0;
+        font-size: 1rem;
+      }
+      
+      header {
+        padding: 80px 20px 60px;
+      }
+      
+      header h1 {
+        font-size: 2.4rem;
+      }
+      
+      .subtitle {
+        font-size: 1.15rem;
+      }
+      
+      .section-title {
+        font-size: 1.9rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .nav-links {
+        margin-top: 20px;
+        width: 100%;
+      }
+      
+      nav a {
+        margin: 0 15px 10px 0;
       }
       
       .product-box-container {
         flex-direction: column;
         align-items: center;
+        gap: 30px;
       }
       
-      .benefits-container {
-        grid-template-columns: 1fr;
+      .product-box {
+        max-width: 100%;
+      }
+      
+      .content {
+        padding: 50px 5%;
       }
       
       .blog-header h2 {
         font-size: 1.8rem;
+      }
+      
+      .blog-content {
+        padding: 30px;
       }
       
       .blog-content h3 {
@@ -498,7 +738,7 @@
       }
       
       .feature-list .emoji {
-        margin-bottom: 10px;
+        margin-bottom: 15px;
       }
       
       .data-table {
@@ -507,170 +747,27 @@
       }
     }
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
   <nav>
-    <img src="logo.jpeg" alt="Logo" />
-    <a href="https://zerooneeta.com">Home</a>
-    <a href="https://zerooneeta.com/blog.html">Blog</a>
-    <a href="#product">Product</a>
-    <a href="#about">About</a>
+    <img src="https://raw.githubusercontent.com/ZeroOneEta/ZeroOneEta/main/logo.jpeg" alt="ZeroOneEta Logo" />
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#synthetic-data">Blog</a>
+      <a href="#product">Solutions</a>
+      <a href="#about">Company</a>
+    </div>
   </nav>
   
   <header id="home">
     <h1>Synthetic Data: Unlocking AI/ML Potential</h1>
-    <p>Powering Innovation with Machine Learning, AI Agents & Synthetic Data</p>
+    <p class="subtitle">Powering Innovation with Machine Learning, AI Agents & Synthetic Data</p>
   </header>
 
-  <!-- New Blog Section 
-  <div class="blog-section" id="avatalk">
-    <div class="blog-card">
-      <div class="blog-header">
-        <h2>Avatalk: The AI-Powered Digital Business Card for Smarter, Scalable Networking</h2>
-        <div class="blog-meta">
-          <span><i>📅</i> June 11, 2025</span>
-          <span><i>⏱️</i> 6 min read</span>
-          <span><i>👤</i> Avatalk Team</span>
-          <span><i>🏷️</i> Avatalk, AI networking, digital business card</span>
-        </div>
-      </div>
-      <div class="blog-content">
-        <p>In the age of AI agents, smart automation, and synthetic data shaping how we work and connect, one overlooked frontier still relied heavily on outdated habits: business networking. While companies embrace AI in data analysis and workflow automation, most professionals still hand out physical business cards, hoping for a follow-up that rarely happens. Enter <a href="https://avatalk.me" target="_blank" style="color:#00d9ff;">Avatalk</a>—a new kind of AI-powered Digital Business Card designed to carry your professional persona into the future.</p>
-        
-        <div class="blog-highlight">
-          <p><strong>What makes Avatalk unique?</strong> It doesn't just share your information. It speaks on your behalf—intelligently, engagingly, and around the clock.</p>
-        </div>
-        
-        <h3>Where <a href="https://zerooneeta.com" target="_blank" style="color:#00d9ff;">ZeroOneEta</a> Meets Avatalk</h3>
-        <p>At <a href="https://zerooneeta.com" target="_blank" style="color:#00d9ff;">ZeroOneEta</a>, your mission is to push the boundaries of what AI agents, machine learning, and synthetic data can do for automation and decision-making. You're building foundational tech that powers intelligent agents. <a href="https://avatalk.me" target="_blank" style="color:#00d9ff;">Avatalk</a> builds on that same AI agent philosophy—just applied to something surprisingly personal: you.</p>
-        
-        <p><a href="https://avatalk.me" target="_blank" style="color:#00d9ff;">Avatalk</a> creates AI-driven "networking agents" that represent individuals, not companies. These are not bots. They're intelligent digital twins trained on your professional bio, personality, and preferences. Think of it as an always-on networking assistant that speaks your language—literally and metaphorically.</p>
-        
-        <p>Rather than disrupting <a href="https://zerooneeta.com" target="_blank" style="color:#00d9ff;">ZeroOneEta</a>'s products, <a href="https://avatalk.me" target="_blank" style="color:#00d9ff;">Avatalk</a> complements them: while your tools build the AI backbone for enterprises, <a href="https://avatalk.me" target="_blank" style="color:#00d9ff;">Avatalk</a> humanizes AI for everyday professional interactions.</p>
-        
-        <h3>From Card to Conversation: A Paradigm Shift</h3>
-        <p>Let's rethink the traditional business card. It shares static details—your name, job title, and maybe a QR code. But today's interactions demand more than that. People want context, conversation, and convenience. <a href="https://avatalk.me" target="_blank" style="color:#00d9ff;">Avatalk</a> bridges that gap by offering:</p>
-        
-        <ul>
-          <li>A conversational AI trained on your input</li>
-          <li>24/7 availability, even when you're asleep</li>
-          <li>Real-time conversations with prospects or collaborators</li>
-          <li>Multimedia integration (image, video, and voice)</li>
-        </ul>
-        
-        <p>At a conference, instead of saying "Here's my card," you say: "Scan this, and my AI will introduce me and answer your questions."</p>
-        
-        <div class="blog-highlight">
-          <p>Learn how to <a href="https://avatalk.me" target="_blank" style="color:#00d9ff;">Create a Digital Business Card</a> that does more than exchange contact info—it engages, qualifies leads, and makes a memorable impression.</p>
-        </div>
-        
-        <h3>Use Case: The Personal AI Agent for Every Professional</h3>
-        <p>Picture this: a UX designer from Berlin attends a global online event. She shares her <a href="https://avatalk.me" target="_blank" style="color:#00d9ff;">Avatalk</a> link in the chat. Someone in San Francisco clicks it. Instantly, they're greeted by her AI twin, who not only explains her experience and portfolio but also answers specific questions like:</p>
-        
-        <ul>
-          <li>"What projects have you done with AI UX design?"</li>
-          <li>"Are you available for freelance work?"</li>
-        </ul>
-        
-        <p>This interaction doesn't just "represent" her. It qualifies leads, handles FAQs, and even gathers analytics about who visited and what they asked.</p>
-        
-        <p>It's AI meeting humanity—exactly the kind of synergy <a href="https://zerooneeta.com" target="_blank" style="color:#00d9ff;">ZeroOneEta</a> envisions for future-forward tools.</p>
-        
-        <h3>Why Avatalk Isn't Just a Tool—It's a Strategy</h3>
-        <p>Traditional networking is inefficient. We rely on serendipity, linear communication, and unscalable touchpoints. <a href="https://avatalk.me" target="_blank" style="color:#00d9ff;">Avatalk</a> addresses this with strategic advantages:</p>
-        
-        <ul class="feature-list">
-          <li>
-            <div class="emoji">🔄</div>
-            <div class="feature-content">
-              <h4>Scalable Conversations</h4>
-              <p>Instead of manually following up with dozens of contacts, your AI persona engages each of them in parallel.</p>
-            </div>
-          </li>
-          <li>
-            <div class="emoji">🧠</div>
-            <div class="feature-content">
-              <h4>Contextual Intelligence</h4>
-              <p>You feed the AI structured or free-form data about yourself. The system converts that into relevant responses, tone-matched to your professional brand.</p>
-            </div>
-          </li>
-          <li>
-            <div class="emoji">📈</div>
-            <div class="feature-content">
-              <h4>Built-in Analytics</h4>
-              <p>See who viewed your card, what they asked, and where they came from—insights that improve your outreach.</p>
-            </div>
-          </li>
-        </ul>
-        
-        <div class="blog-highlight">
-          <p>Ready to give it a go? <a href="https://avatalk.me" target="_blank" style="color:#00d9ff;">Get started with our Free Digital Business Card plan</a> and experience the future of AI-driven networking.</p>
-        </div>
-        
-        <h3>The AI Behind the Curtain</h3>
-        <p>Much like <a href="https://zerooneeta.com" target="_blank" style="color:#00d9ff;">ZeroOneEta</a>'s AI agents, <a href="https://avatalk.me" target="_blank" style="color:#00d9ff;">Avatalk</a> uses conversational language models, layered intent detection, and personalization layers to create a semi-autonomous agent. The magic lies in its ability to:</p>
-        
-        <ul>
-          <li>Understand nuances in user queries</li>
-          <li>Personalize answers based on stored persona data</li>
-          <li>Maintain tone consistency across responses</li>
-          <li>Trigger follow-ups or redirect to external actions (portfolio links, bookings, etc.)</li>
-        </ul>
-        
-        <p>This tech stack aligns perfectly with <a href="https://zerooneeta.com" target="_blank" style="color:#00d9ff;">ZeroOneEta</a>'s core expertise. For businesses already leveraging synthetic data, predictive models, or automation flows, <a href="https://avatalk.me" target="_blank" style="color:#00d9ff;">Avatalk</a> fits in as the human-facing edge—turning machine intelligence into relationship-building.</p>
-        
-        <h3>Who Benefits from Avatalk?</h3>
-        <p><a href="https://avatalk.me" target="_blank" style="color:#00d9ff;">Avatalk</a> is ideal for:</p>
-        
-        <ul>
-          <li><strong>👩‍💼 Freelancers & Consultants</strong> - Amplify your outreach. Let your AI handle early conversations and client inquiries.</li>
-          <li><strong>🧑‍💻 Developers & AI Engineers</strong> - Share your GitHub, pitch ideas, or explain your portfolio—all without lifting a finger.</li>
-          <li><strong>🎤 Speakers & Creators</strong> - Let event attendees interact with your AI twin, even after your talk ends.</li>
-          <li><strong>💼 Startups & Founders</strong> - Turn every pitch, investor email, or social post into a lead magnet with an interactive card.</li>
-        </ul>
-        
-        <div class="blog-highlight">
-          <p>Explore how a <a href="https://avatalk.me" target="_blank" style="color:#00d9ff;">Digital Business Card</a> can do more than introduce you—it can engage, qualify, and even close deals.</p>
-        </div>
-        
-        <h3>Built for Individuals, Scalable for Global Reach</h3>
-        <p>While many AI tools focus on teams, <a href="https://avatalk.me" target="_blank" style="color:#00d9ff;">Avatalk</a> takes a different route: it empowers individuals. The design philosophy is simple—start personal, then scale professionally. Whether you're a solo founder or a job seeker, your AI twin becomes your global ambassador.</p>
-        
-        <p>And yes, you can share your <a href="https://avatalk.me" target="_blank" style="color:#00d9ff;">Avatalk</a> card via URL, email signature, or even NFC tap. It's portable, powerful, and personal.</p>
-        
-        <h3>How Avatalk + ZeroOneEta = Complete AI Synergy</h3>
-        <p><a href="https://zerooneeta.com" target="_blank" style="color:#00d9ff;">ZeroOneEta</a> excels in the back-end of AI infrastructure: synthetic data for model training, intelligent agents for process automation, and scalable ML architectures. <a href="https://avatalk.me" target="_blank" style="color:#00d9ff;">Avatalk</a> lives at the front-end of that AI journey—where real users engage, learn, and convert.</p>
-        
-        <p>Together, they create a full stack of intelligent interaction:</p>
-        
-        <ul>
-          <li><a href="https://zerooneeta.com" target="_blank" style="color:#00d9ff;">ZeroOneEta</a> powers the logic and models</li>
-          <li><a href="https://avatalk.me" target="_blank" style="color:#00d9ff;">Avatalk</a> becomes the interactive human voice</li>
-        </ul>
-        
-        <p>It's the difference between a factory that makes engines and a car that people drive. Different roles—but built for each other.</p>
-        
-        <h3>Final Thoughts: You're Still the Product. Just Smarter.</h3>
-        <p>In a world of AI-generated content and synthetic data, what stands out is still you. But now, you don't need to show up every single time to make that impression. Your <a href="https://avatalk.me" target="_blank" style="color:#00d9ff;">Avatalk</a> persona handles the heavy lifting—letting you scale your time, your brand, and your opportunities.</p>
-        
-        <p>If you're already building with <a href="https://zerooneeta.com" target="_blank" style="color:#00d9ff;">ZeroOneEta</a>'s stack of AI capabilities, why not add a personal touch? <a href="https://avatalk.me" target="_blank" style="color:#00d9ff;">Try Avatalk today</a> and experience what it means to network at scale, powered by AI.</p>
-        
-        <div class="blog-highlight">
-          <p>Want to feature <a href="https://avatalk.me" target="_blank" style="color:#00d9ff;">Avatalk</a> in your project or collaborate on a deeper integration? We'd love to hear from you.</p>
-          <p>💌 Reach out anytime at <a href="mailto:hello@avatalk.me" style="color:#00d9ff;">hello@avatalk.me</a> or <a href="https://avatalk.me" target="_blank" style="color:#00d9ff;">connect with us through our site</a>.</p>
-        </div>
-        
-        <div class="blog-cta">
-          <a href="https://zerooneeta.com/blog.html" class="cta-button">Explore More Blog Posts</a>
-        </div>
-      </div>
-    </div>
-  </div>  -->
-
   <!-- Synthetic Data Introduction Section -->
-  <div class="content">
-    <h2>Why Synthetic Data?</h2>
+  <div class="content" id="synthetic-data">
+    <h2 class="section-title">Why Synthetic Data?</h2>
     <p>In today's data-hungry AI landscape, organizations face a paradoxical crisis: <strong>while global data generation explodes (projected at 120+ zettabytes in 2023)</strong>, suitability—not quantity—remains the bottleneck. Stringent privacy laws, biased datasets, and scarce high-risk scenarios (like fraud or rare diseases) cripple innovation. Synthetic data emerges as the keystone solution, artificially generating data that mirrors real-world statistical properties without containing actual sensitive information. By 2024, <strong>Gartner predicts 60% of AI data will be synthetically generated</strong>—a seismic shift in how enterprises build intelligent systems.</p>
     
     <h3>Why Traditional Data Fails Modern AI</h3>
@@ -751,8 +848,8 @@
       <p><strong>Best Practice</strong>: Adopt a "Synthetic-First" pipeline—generate data, then refine with targeted real-data injections for critical variables. Tools like Syntheticus automate iterative validation against privacy/bias benchmarks.</p>
     </div>
     
-    <h3><a href="https://zerooneeta.com" target="_blank" style="color:#00d9ff;">ZeroOneEta</a>'s Vision: Your Synthetic Data Partner</h3>
-    <p>At <a href="https://zerooneeta.com" target="_blank" style="color:#00d9ff;">ZeroOneEta</a>, we engineer <strong>purpose-built synthetic data solutions</strong> that go beyond mimicry to unlock new AI capabilities:</p>
+    <h3>ZeroOneEta's Vision: Your Synthetic Data Partner</h3>
+    <p>At ZeroOneEta, we engineer <strong>purpose-built synthetic data solutions</strong> that go beyond mimicry to unlock new AI capabilities:</p>
     <ul>
       <li><strong>CreativeDatasetMaker Pro</strong>: Generates privacy-compliant tabular data with enforced business rules and automatic bias scanning.</li>
       <li><strong>Domain-Specific Agents</strong>: Custom GANs for healthcare (patient records), finance (fraud chains), and retail (consumer behavior).</li>
@@ -766,79 +863,88 @@
 
   <!-- Product Section -->
   <div id="product" class="content">
-    <h2>CreativeDatasetMaker: Rapid Synthetic Dataset Generation</h2>
-    <p>To put these benefits into practice, tools like CreativeDatasetMaker offer a turn-key solution. CreativeDatasetMaker is an AI-powered tool from <a href="https://zerooneeta.com" target="_blank" style="color:#00d9ff;">ZeroOneETA</a> that generates custom synthetic data effortlessly. It is designed for ML engineers, data scientists, and business analysts who need high-quality data fast.</p>
+    <h2 class="section-title">CreativeDatasetMaker: Rapid Synthetic Dataset Generation</h2>
+    <p>To put these benefits into practice, tools like CreativeDatasetMaker offer a turn-key solution. CreativeDatasetMaker is an AI-powered tool from ZeroOneETA that generates custom synthetic data effortlessly. It is designed for ML engineers, data scientists, and business analysts who need high-quality data fast.</p>
 
     <div class="slideshow-container">
       <div class="slide">
-        <img src="https://raw.githubusercontent.com/ZeroOneEta/ZeroOneEta/refs/heads/main/dataset_generation.jpg" alt="Screenshot 1" />
+        <img src="https://raw.githubusercontent.com/ZeroOneEta/ZeroOneEta/refs/heads/main/dataset_generation.jpg" alt="Synthetic Data Generation Interface" />
       </div>
       <div class="slide">
-        <img src="https://raw.githubusercontent.com/ZeroOneEta/ZeroOneEta/refs/heads/main/settings.jpg" alt="Screenshot 2" />
+        <img src="https://raw.githubusercontent.com/ZeroOneEta/ZeroOneEta/refs/heads/main/settings.jpg" alt="Application Settings" />
       </div>
       <div class="slide">
-        <img src="https://raw.githubusercontent.com/ZeroOneEta/ZeroOneEta/refs/heads/main/about_us.jpg" alt="Screenshot 3" />
+        <img src="https://raw.githubusercontent.com/ZeroOneEta/ZeroOneEta/refs/heads/main/about_us.jpg" alt="About the Application" />
       </div>
     </div>
 
-    <p>Users can claim a free one-day license key on the <a href="https://zerooneeta.com" style="color:#00d9ff;">ZeroOneETA website</a> to try it out. For ongoing projects, the Pro plan (priced at $50 for 30 days) provides full access to advanced features. By automating dataset creation, CreativeDatasetMaker lets teams focus on model development and analysis instead of tedious data gathering.</p>
+    <p>Users can claim a free one-day license key on the ZeroOneETA website to try it out. For ongoing projects, the Pro plan provides full access to advanced features. By automating dataset creation, CreativeDatasetMaker lets teams focus on model development and analysis instead of tedious data gathering.</p>
 
-    <h2>👤 Who Can Use CreativeDatasetMaker?</h2>
+    <h3>Target Users</h3>
     <ul>
-      <li>📈 Data Scientists & ML Engineers – Generate diverse datasets to train and refine AI models</li>
-      <li>🔬 Researchers – Create structured data for analytical studies and experimentation</li>
-      <li>🎓 Educators & Students – Use AI-generated datasets for learning and projects</li>
-      <li>💼 Business Analysts – Speed up data-driven solutions with custom datasets</li>
-      <li>✅ Generate and save datasets offline</li>
+      <li><strong>Data Scientists & ML Engineers</strong> – Generate diverse datasets to train and refine AI models</li>
+      <li><strong>Researchers</strong> – Create structured data for analytical studies and experimentation</li>
+      <li><strong>Educators & Students</strong> – Use AI-generated datasets for learning and projects</li>
+      <li><strong>Business Analysts</strong> – Speed up data-driven solutions with custom datasets</li>
+      <li>Generate and save datasets offline</li>
     </ul>
 
-    <h2>🧰 Requirements:</h2>
+    <h3>Technical Requirements</h3>
     <ul>
-      <li>✅ Python 3.5 or above</li>
+      <li>Python 3.5 or above</li>
+      <li>OpenAI API Key</li>
+      <li>Internet connection for initial setup</li>
     </ul>
 
     <div class="product-box-container">
       <div class="product-box">
-        <h2>💼 Starter Plan</h2>
-        <p><strong>$0</strong> /month</p>
-        <p>Perfect for testing before buying</p>
-        <a class="cta-button" href="https://zerooneeta.gumroad.com/l/irlkh" target="_blank">🚀 Get Started</a>
-        <hr style="margin: 20px 0; border-color: #333;">
-        <h3>What's included:</h3>
+        <h2>Starter Plan</h2>
+        <div class="price">$0</div>
+        <div class="price-sub">Evaluation license</div>
+        <p>Comprehensive trial for platform assessment</p>
+        <a class="cta-button" href="https://zerooneeta.gumroad.com/l/irlkh" target="_blank">Start Evaluation</a>
+        <div class="divider"></div>
+        <h3>Core Features:</h3>
         <ul>
-          <li>✅ Add your OpenAI API key</li>
-          <li>✅ Free 14 days license key</li>
-          <li>✅ Email support</li>
+          <li>OpenAI API integration</li>
+          <li>14-day trial license</li>
+          <li>Email support channels</li>
+          <li>Basic dataset generation</li>
+          <li>CSV export functionality</li>
         </ul>
       </div>
 
       <div class="product-box">
-        <h2>💼 Pro Plan</h2>
-        <p><strong>$20</strong> /month</p>
-        <p>For startups and power users</p>
-        <a class="cta-button" href="https://zerooneeta.gumroad.com/l/hhlwt" target="_blank">🚀 Get Started</a>
-        <hr style="margin: 20px 0; border-color: #333;">
-        <h3>What's included:</h3>
+        <h2>Professional Plan</h2>
+        <div class="price">$20</div>
+        <div class="price-sub">Monthly subscription</div>
+        <p>Enterprise-grade synthetic data generation</p>
+        <a class="cta-button" href="https://zerooneeta.gumroad.com/l/hhlwt" target="_blank">Subscribe Now</a>
+        <div class="divider"></div>
+        <h3>Enhanced Features:</h3>
         <ul>
-          <li>✅ Add your OpenAI API key</li>
-          <li>✅ 30 days license key</li>
-          <li>✅ Priority email support</li>
+          <li>All Starter features included</li>
+          <li>30-day renewable license</li>
+          <li>Advanced customization options</li>
+          <li>Multi-format exports (CSV, JSON, Excel)</li>
+          <li>Priority technical support</li>
+          <li>Increased generation capacity</li>
         </ul>
       </div>
     </div>
     
-    <p>With the right synthetic data workflow, your organization can reduce costs, protect privacy, and accelerate AI/ML innovation. Learn more about this tool and download it from the <a href="https://zerooneeta.gumroad.com/l/hhlwt" style="color:#00d9ff;">ZeroOneETA Gumroad page</a>.</p>
+    <p>With the right synthetic data workflow, your organization can reduce costs, protect privacy, and accelerate AI/ML innovation. Learn more about this tool and download it from the ZeroOneETA Gumroad page.</p>
   </div>
   
   <div id="about" class="content">
-    <h2>👋 Who We Are</h2>
-    <p>At <a href="https://zerooneeta.com" target="_blank" style="color:#00d9ff;">ZeroOneEta</a>, we are shaping the future of AI-driven solutions. Our expertise lies in Machine Learning, AI Agents, and Synthetic Data Generation, helping businesses leverage cutting-edge technology to enhance automation, decision-making, and digital transformation.</p>
+    <h2 class="section-title">Corporate Overview</h2>
+    <p>At ZeroOneEta, we are shaping the future of AI-driven solutions. Our expertise lies in Machine Learning, AI Agents, and Synthetic Data Generation, helping businesses leverage cutting-edge technology to enhance automation, decision-making, and digital transformation.</p>
 
-    <h3>🌟 What We Do</h3>
+    <h3>Core Capabilities</h3>
     <ul>
-      <li><strong>🤖 AI Agents</strong> – Intelligent automation designed to optimize workflows and enhance user experiences.</li>
-      <li><strong>📊 Machine Learning Solutions</strong> – From predictive analytics to deep learning, we develop scalable models for diverse industries.</li>
-      <li><strong>🔬 Synthetic Data Generation</strong> – We craft high-quality synthetic datasets to train AI systems while preserving privacy and security.</li>
+      <li><strong>AI Agents</strong> – Intelligent automation designed to optimize workflows and enhance user experiences.</li>
+      <li><strong>Machine Learning Solutions</strong> – From predictive analytics to deep learning, we develop scalable models for diverse industries.</li>
+      <li><strong>Synthetic Data Generation</strong> – We craft high-quality synthetic datasets to train AI systems while preserving privacy and security.</li>
     </ul>
     
     <div class="benefits-container">
@@ -858,28 +964,36 @@
       </div>
     </div>
 
-    <h3>💡 Our Vision</h3>
+    <h3>Strategic Vision</h3>
     <p>We aim to bridge the gap between theoretical advancements and real-world applications, empowering businesses to harness AI responsibly and efficiently.</p>
     
-    <div class="blog-highlight">
-      <p>"At <a href="https://zerooneeta.com" target="_blank" style="color:#00d9ff;">ZeroOneEta</a>, we believe AI should augment human potential, not replace it. Our solutions are designed to empower teams, accelerate innovation, and create new possibilities."</p>
+    <div class="mission-statement">
+      <p>"At ZeroOneEta, we believe AI should augment human potential, not replace it. Our solutions are designed to empower teams, accelerate innovation, and create new possibilities."</p>
     </div>
 
-    <h3>🔗 Get In Touch</h3>
-    <p>📧 Email: <a href="mailto:zerooneeta@gmail.com" style="color:#00d9ff;">zerooneeta@gmail.com</a><br>
-       🌐 Website: <a href="https://zerooneeta.com" style="color:#00d9ff;" target="_blank">zerooneeta.com</a></p>
+    <h3>Contact Information</h3>
+    <div class="contact-info">
+      <a href="mailto:zerooneeta@gmail.com">zerooneeta@gmail.com</a>
+      <a href="https://zerooneeta.com" target="_blank">zerooneeta.com</a>
+      <a href="https://linkedin.com/company/zerooneeta" target="_blank">LinkedIn Company Profile</a>
+    </div>
        
+    <div class="social-links">
+      <a href="https://linkedin.com/company/zerooneeta" target="_blank">in</a>
+    </div>
+    
     <div class="blog-cta">
       <a href="mailto:zerooneeta@gmail.com" class="cta-button">Contact Our Team</a>
     </div>
   </div>
 
   <footer>
-    &copy; 2025 <a href="https://zerooneeta.com" target="_blank" style="color:#00d9ff;">ZeroOneEta</a>. All rights reserved. Sources: Industry and academic studies confirm synthetic data offers cost savings, scalability, privacy protection, and improved fairness in ML workflows.<br>
-    <span style="display: block; margin-top: 10px;">Page updated: June 18, 2025</span>
+    <p>&copy; 2025 ZeroOneEta. All rights reserved. Sources: Industry and academic studies confirm synthetic data offers cost savings, scalability, privacy protection, and improved fairness in ML workflows.</p>
+    <p>Page updated: June 18, 2025</p>
   </footer>
 
   <script>
+    // Slideshow functionality
     let slideIndex = 0;
     const allSlides = document.querySelectorAll(".slideshow-container");
 
@@ -892,7 +1006,7 @@
 
     setInterval(() => {
       allSlides.forEach(slideshow => cycleSlides(slideshow));
-    }, 4000);
+    }, 5000);
 
     window.addEventListener('DOMContentLoaded', () => {
       allSlides.forEach(slideshow => {
