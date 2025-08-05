@@ -472,6 +472,24 @@
       align-items: center;
       gap: 15px;
     }
+    .slideshow-container {
+      position: relative;
+      width: 100%;
+      height: auto;
+    }
+    
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: auto;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    
+    .slide.active {
+      opacity: 1;
+      position: relative;
+    }
 
     .author-avatar {
       width: 50px;
@@ -780,8 +798,10 @@
           <a href="#solutions" class="btn btn-outline">Explore Solutions</a>
         </div>
       </div>
-      <div class="hero-image">
-        <img src="https://raw.githubusercontent.com/ZeroOneEta/ZeroOneEta/refs/heads/main/dataset_generation.jpg" alt="CreativeDatasetMaker Interface" />
+      <div class="hero-image slideshow-container">
+        <img class="slide" src="https://raw.githubusercontent.com/ZeroOneEta/ZeroOneEta/refs/heads/main/dataset_generation.jpg" alt="CreativeDatasetMaker Interface" />
+        <img class="slide" src="https://raw.githubusercontent.com/ZeroOneEta/ZeroOneEta/refs/heads/main/about_us.jpg" alt="CreativeDatasetMaker Interface" />
+        <img class="slide" src="https://raw.githubusercontent.com/ZeroOneEta/ZeroOneEta/refs/heads/main/settings.jpg" alt="CreativeDatasetMaker Interface" />
       </div>
     </div>
   </section>
@@ -1059,6 +1079,23 @@
     document.querySelectorAll('.feature-card, .product-card, .testimonial-card').forEach(card => {
       observer.observe(card);
     });
+
+  // Slideshow functionality
+  let slideIndex = 0;
+  const slides = document.querySelectorAll('.slide');
+
+  function showSlides() {
+    slides.forEach((slide, i) => {
+      slide.classList.remove('active');
+    });
+
+    slideIndex = (slideIndex + 1) % slides.length;
+    slides[slideIndex].classList.add('active');
+  }
+
+  // Start slideshow
+  slides[0].classList.add('active'); // Show the first slide initially
+  setInterval(showSlides, 4000); // Change every 4 seconds
   </script>
 </body>
 </html>
