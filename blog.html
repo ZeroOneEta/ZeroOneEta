@@ -396,7 +396,7 @@
       transform: translateY(-3px);
     }
     
-    /* New components for blog content */
+    /* Blog content */
     .blog-section {
       max-width: 1000px;
       margin: 40px auto;
@@ -759,11 +759,54 @@
       <a href="#about">Company</a>
     </div>
   </nav>
-  
+
   <header id="home">
     <h1>Synthetic Data: Unlocking AI/ML Potential</h1>
     <p class="subtitle">Powering Innovation with Machine Learning, AI Agents & Synthetic Data</p>
   </header>
+
+  <!-- Blog Section -->
+  <div id="synthetic-data" class="content">
+    <div class="blog-section">
+      <div class="blog-card">
+        <div class="blog-header">
+          <h2>Synthetic Data for Computer Vision: A Game Changer</h2>
+          <div class="blog-meta">
+            <span><i class="far fa-calendar"></i> June 18, 2025</span>
+            <span><i class="far fa-clock"></i> 10 min read</span>
+            <span><i class="far fa-folder"></i> AI, Computer Vision</span>
+          </div>
+        </div>
+        <div class="blog-content">
+          <p><strong>Why Synthetic Data?</strong></p>
+          <p>Gathering and annotating real-world datasets for computer vision applications is expensive, time-consuming, and often insufficient to cover edge cases. Synthetic data, generated programmatically through simulation or rendering, offers an innovative alternative that addresses these challenges by providing abundant, perfectly labeled data at scale.</p>
+
+          <h3>Executive Summary</h3>
+          <p>Synthetic data generation has emerged as a critical tool in advancing computer vision models, enabling researchers and engineers to overcome limitations of real datasets. By creating artificial yet realistic images and videos, it is possible to train models that generalize better to real-world conditions, handle rare events, and adapt to new domains without costly data collection efforts.</p>
+
+          <h3>Key Benefits</h3>
+          <p>One of the primary advantages of synthetic data is the ability to produce unlimited quantities of labeled data. Labels such as bounding boxes, segmentation masks, and keypoints are automatically generated during rendering, eliminating the need for manual annotation. This reduces both cost and human error.</p>
+          <p>Moreover, synthetic data allows control over environmental variables like lighting, weather, and object placement. This control facilitates the creation of diverse training sets that improve model robustness and reduce bias. Synthetic environments can simulate rare or dangerous scenarios that are hard to capture otherwise, such as accidents or extreme weather conditions.</p>
+
+          <h3>How to Use CDM (Computer Vision Data Management)</h3>
+          <p>When integrating synthetic data into your computer vision pipeline, it's essential to combine it judiciously with real-world data to maximize performance. Techniques like domain randomization and domain adaptation help bridge the gap between synthetic and real data distributions.</p>
+          <p>Data management platforms (such as CDM) assist in organizing, versioning, and augmenting datasets. They provide tools for visualizing synthetic samples alongside real images, tracking experiment metadata, and automating retraining workflows.</p>
+
+          <h3>Examples and Use Cases</h3>
+          <p>Self-driving car companies leverage synthetic datasets to simulate urban, highway, and rural driving conditions with diverse vehicles and pedestrians. This synthetic data supplements real footage and enhances the training of perception and decision-making modules.</p>
+          <p>Robotics research benefits from synthetic data by simulating manipulation tasks in 3D environments, enabling robots to learn grasping and object recognition without extensive physical trials.</p>
+
+          <h3>Challenges and Limitations</h3>
+          <p>Despite its advantages, synthetic data is not without challenges. The so-called "reality gap" — the difference between synthetic images and real sensor data — can lead to performance drops when models trained solely on synthetic data are deployed in the wild. Closing this gap requires careful domain adaptation and realistic rendering techniques.</p>
+          <p>Generating high-fidelity synthetic data can be computationally expensive, and simulation environments might fail to capture the full complexity of the real world. Therefore, synthetic data is best viewed as a complementary tool rather than a complete replacement for real datasets.</p>
+
+          <h3>Conclusion</h3>
+          <p>Synthetic data represents a transformative approach to training computer vision models. By providing scalable, diverse, and richly labeled data, it accelerates research and development while reducing costs. The future of computer vision will likely rely heavily on hybrid datasets that blend the best of real and synthetic worlds.</p>
+          <p>Embracing synthetic data requires thoughtful integration and domain expertise but promises significant payoffs in model robustness, safety, and scalability.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Synthetic Data Introduction Section -->
   <div class="content" id="synthetic-data">
@@ -868,13 +911,13 @@
 
     <div class="slideshow-container">
       <div class="slide">
-        <img src="https://raw.githubusercontent.com/ZeroOneEta/ZeroOneEta/refs/heads/main/dataset_generation.jpg" alt="Synthetic Data Generation Interface" />
+        <img src="https://raw.githubusercontent.com/ZeroOneEta/ZeroOneEta/main/dataset_generation.jpg" alt="Synthetic Data Generation Interface" />
       </div>
       <div class="slide">
-        <img src="https://raw.githubusercontent.com/ZeroOneEta/ZeroOneEta/refs/heads/main/settings.jpg" alt="Application Settings" />
+        <img src="https://raw.githubusercontent.com/ZeroOneEta/ZeroOneEta/main/settings.jpg" alt="Application Settings" />
       </div>
       <div class="slide">
-        <img src="https://raw.githubusercontent.com/ZeroOneEta/ZeroOneEta/refs/heads/main/about_us.jpg" alt="About the Application" />
+        <img src="https://raw.githubusercontent.com/ZeroOneEta/ZeroOneEta/main/about_us.jpg" alt="About the Application" />
       </div>
     </div>
 
