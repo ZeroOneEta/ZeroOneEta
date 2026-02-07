@@ -1,30 +1,31 @@
 import subprocess
-import json
 import os
+import json
 import pytest
 
-CLI = os.path.abspath(os.path.join(os.path.dirname(__file__), 'main.py'))
-STATE = os.path.expanduser('~/.aishellnest/agents.json')
-
+# Adjust state path to temp directory for tests
 @pytest.fixture(autouse=True)
-def clean_state(tmp_path, monkeypatch):
-    # Use temp file for state
+def temp_state(tmp_path, monkeypatch):
     monkeypatch.setenv('AISHELLNEST_DIR', str(tmp_path))
-    # Adjust get_state_path to use env var
     yield
 
- def test_create_and_list(monkeypatch):
-    # Create agent
-    res = subprocess.run(['python3', CLI, 'create', 'test'], capture_output=True, text=True)
-    assert "Created agent 'test'" in res.stdout
-    # List agents
-    res = subprocess.run(['python3', CLI, 'list'], capture_output=True, text=True)
-    assert 'test' in res.stdout
+CLI = os.path.abspath(os.path.join(os.path.dirname(__file__), 'main.py'))
 
- def test_run(monkeypatch):
-    subprocess.run(['python3', CLI, 'create', 'runner'], capture_output=True)
-    res = subprocess.run(['python3', CLI, 'run', 'runner', 'do','work'], capture_output=True, text=True)
-    assert "running task: do work" in res.stdout
+def run_cmd(args):
+    result = subprocess.run(['python3', CLI] + args, capture_output=True, text=True)
+    return result
 
- if __name__=='__main__':
+def test_create_and_list():
+    res = run_cmd(['create', 'songwriter'])
+    assert "Created agent 'songwriter'" in res.stdout
+    res = run_cmd(['list'])
+    assert 'songwriter' in res.stdout
+
+def test_run_songwriter():
+    # ensure agent exists
+    run_cmd(['create', 'songwriter'])
+    res = run_cmd(['run', 'songwriter', 'write', 'a', 'song'])
+    assert "Agent 'songwriter' running task: write a song" in res.stdout
+
+if __name__ == '__main__':
     pytest.main()
