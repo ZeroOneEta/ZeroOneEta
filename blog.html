@@ -1,68 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ZeroOneEta Blog & Use Cases</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZeroOneEta Blog</title>
+
+<style>
+:root {
+  --primary: #2563eb;
+  --dark: #0f172a;
+  --darker: #020617;
+  --card: #1e293b;
+  --border: #334155;
+  --text: #f1f5f9;
+  --muted: #cbd5e1;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Inter, Segoe UI, sans-serif;
+  background: var(--dark);
+  color: var(--text);
+}
+
+/* NAVBAR */
+nav {
+  background: rgba(15,23,42,0.95);
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 700;
+  font-size: 1.4rem;
+}
+
+.nav-menu {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.nav-menu a {
+  text-decoration: none;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.nav-menu a:hover {
+  color: var(--text);
+}
+
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 80px 20px 40px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.hero h1 {
+  font-size: 2.6rem;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+
+/* BLOG GRID */
+.blog-container {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 25px;
+  transition: transform 0.2s ease, border 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary);
+}
+
+.card h2 {
+  margin-bottom: 10px;
+}
+
+.card p {
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+/* BUTTONS */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.btn-outline {
+  border: 1px solid var(--primary);
+  color: var(--primary);
+}
+
+.btn-outline:hover {
+  background: var(--primary);
+  color: white;
+}
+
+/* FOOTER */
+footer {
+  background: var(--darker);
+  padding: 30px;
+  text-align: center;
+  margin-top: 80px;
+  border-top: 1px solid var(--border);
+}
+</style>
 </head>
+
 <body>
-  <nav class="navbar">
-    <div class="container">
-      <a href="index.html" class="logo">ZeroOneEta</a>
-      <ul class="nav-menu">
-        <li><a href="index.html#products">Products</a></li>
-        <li><a href="index.html#how-it-works">How It Works</a></li>
-        <li><a href="#">Blog</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
-      </ul>
-    </div>
-  </nav>
 
-  <header class="section hero">
-    <div class="container">
-      <h1>Insights & Use Cases</h1>
-      <p>Dive into case studies, research, and how-to guides for enterprise AI and security.</p>
-    </div>
-  </header>
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-container">
+    <a href="index.html" class="logo">ZeroOneEta</a>
+    <ul class="nav-menu">
+      <li><a href="index.html#products">Products</a></li>
+      <li><a href="index.html#how-it-works">How It Works</a></li>
+      <li><a href="#">Blog</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
 
-  <main class="container section">
-    <article class="card">
-      <h2>Unified E-commerce AI</h2>
-      <p>Learn how to integrate AI across retail channels for real-time insights and personalized recommendations.</p>
-      <a href="#" class="btn btn-outline">Read Article</a>
-    </article>
+<!-- HERO -->
+<header class="hero">
+  <h1>Insights & Best Practices</h1>
+  <p>Dive into case studies, research, and practical guides for enterprise AI.</p>
+</header>
 
-    <article class="card">
-      <h2>Adversarial Testing 101</h2>
-      <p>Understand the fundamentals of red teaming with our comprehensive eBook, now updated with new methods.</p>
-      <a href="https://zerooneeta.gumroad.com/l/mczwmg" class="btn btn-outline">Get the eBook</a>
-    </article>
+<!-- BLOG CONTENT -->
+<main class="blog-container">
 
-    <article class="card">
-      <h2>AI-driven Security</h2>
-      <p>Discover strategies for automating threat detection and incident response using AI models.</p>
-      <a href="#" class="btn btn-outline">Read Article</a>
-    </article>
+  <article class="card">
+    <h2>Unified E-commerce AI</h2>
+    <p>Learn how to integrate AI across retail channels for real-time insights.</p>
+    <a href="#" class="btn btn-outline">Read Article</a>
+  </article>
 
-    <article class="card">
-      <h2>Healthcare Data Synthesis</h2>
-      <p>See how our synthetic data generator creates HIPAA-compliant datasets for training medical AI.</p>
-      <a href="#" class="btn btn-outline">Read Article</a>
-    </article>
+  <article class="card">
+    <h2>Adversarial Testing 101</h2>
+    <p>Understand the fundamentals of red teaming with our practical guide.</p>
+    <a href="https://zerooneeta.gumroad.com/l/mczwmg" class="btn btn-outline">
+      Get the eBook ($15)
+    </a>
+  </article>
 
-    <article class="card">
-      <h2>Financial Fraud Detection</h2>
-      <p>Our platform synthesizes rare fraud patterns to train robust detection models—reducing false positives by 30%.</p>
-      <a href="#" class="btn btn-outline">Read Article</a>
-    </article>
+  <article class="card">
+    <h2>AI-driven Security</h2>
+    <p>Discover strategies for automating threat detection using AI systems.</p>
+    <a href="#" class="btn btn-outline">Read Article</a>
+  </article>
 
-  </main>
+</main>
 
-  <footer class="section footer">
-    <div class="container">
-      <p>&copy; 2026 ZeroOneEta</p>
-    </div>
-  </footer>
+<!-- FOOTER -->
+<footer>
+  © 2026 ZeroOneEta
+</footer>
+
 </body>
 </html>
