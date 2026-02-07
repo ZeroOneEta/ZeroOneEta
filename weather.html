@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>World Weather Map | ZeroOneEta</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .search-bar { max-width:400px; margin:20px auto; display:flex; }
+    .search-bar input { flex:1; padding:10px; border:1px solid #ccc; border-radius:4px 0 0 4px; }
+    .search-bar button { padding:10px 20px; border:none; background:var(--primary); color:#fff; border-radius:0 4px 4px 0; cursor:pointer; }
+    .city-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; padding:20px; }
+    .city-card { background:var(--background-light); border-radius:8px; padding:20px; text-align:center; position:relative; }
+    .city-card img { width:100%; height:auto; border-radius:4px; }
+    .weather-info { margin-top:10px; font-size:1rem; color:var(--text-dark); }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container container">
+      <a href="index.html" class="logo">ZeroOneEta</a>
+      <ul class="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#products">Products</a></li>
+        <li><a href="index.html#how-it-works">How It Works</a></li>
+        <li><a href="index.html#blog">Blog</a></li>
+        <li><a href="weather.html">Weather</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="section hero" style="background:#e0f7fa;">
+    <div class="container">
+      <h1>World Weather Explorer</h1>
+      <p>Select a city to see its current weather in a fun, isometric style!</p>
+      <div class="search-bar">
+        <input type="text" id="city-input" placeholder="Enter city name..." />
+        <button onclick="searchCity()">Search</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="section container">
+    <div id="city-grid" class="city-grid">
+      <!-- City cards will be injected here -->
+    </div>
+  </section>
+
+  <script>
+    const sampleCities = [
+      {name:'New York', temp:'12°C', condition:'Rain', img:'assets/images/nyc.png'},
+      {name:'London', temp:'8°C', condition:'Cloudy', img:'assets/images/london.png'},
+      {name:'Tokyo', temp:'18°C', condition:'Sunny', img:'assets/images/tokyo.png'},
+      {name:'Paris', temp:'10°C', condition:'Snow', img:'assets/images/paris.png'}
+    ];
+    function renderCities(cities) {
+      const grid = document.getElementById('city-grid');
+      grid.innerHTML = '';
+      cities.forEach(c=>{
+        const card = document.createElement('div'); card.className='city-card';
+        let img = document.createElement('img'); img.src=c.img; img.alt=c.name;
+        let info = document.createElement('div'); info.className='weather-info';
+        info.innerHTML = `<strong>${c.name}</strong><br>${c.temp}, ${c.condition}`;
+        card.append(img,info); grid.append(card);
+      });
+    }
+    function searchCity(){
+      const q = document.getElementById('city-input').value.toLowerCase();
+      const filtered = sampleCities.filter(c=>c.name.toLowerCase().includes(q));
+      renderCities(filtered.length?filtered:sampleCities);
+    }
+    // initial render
+    renderCities(sampleCities);
+  </script>
+</body>
+</html>
