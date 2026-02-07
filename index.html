@@ -1,114 +1,345 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ZeroOneEta - Enterprise AI & Cybersecurity</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zero-One-Eta | AI-Powered Data Solutions</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --primary: #2563eb;
+  --primary-light: #3b82f6;
+  --secondary: #0f3057;
+  --dark: #0f172a;
+  --darker: #020617;
+  --light: #f8fafc;
+  --gray: #94a3b8;
+  --card-bg: #1e293b;
+  --border: #334155;
+  --text-light: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --success: #10b981;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--dark);
+  color: var(--text-light);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section {
+  padding: 100px 0;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 14px 32px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--primary);
+  color: var(--primary);
+}
+
+/* Navigation */
+nav {
+  background-color: rgba(15, 23, 42, 0.95);
+  padding: 18px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.logo img {
+  height: 40px;
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-light);
+}
+
+/* Hero */
+.hero {
+  padding: 140px 0 80px;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  color: var(--text-secondary);
+  max-width: 700px;
+  margin: auto;
+}
+
+/* Dual slideshow */
+.hero-dual {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-top: 60px;
+}
+
+.slideshow-container {
+  position: relative;
+  height: 420px;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+}
+
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+.product-tag {
+  margin-top: 16px;
+}
+
+.price {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--primary);
+}
+
+/* Sections */
+.section-title {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.section-subtitle {
+  text-align: center;
+  color: var(--text-secondary);
+  max-width: 700px;
+  margin: auto;
+}
+
+.features-grid,
+.product-grid,
+.testimonial-grid {
+  display: grid;
+  gap: 30px;
+  margin-top: 60px;
+}
+
+.features-grid { grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); }
+.product-grid { grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); }
+.testimonial-grid { grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); }
+
+.feature-card,
+.product-card,
+.testimonial-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 30px;
+  text-align: center;
+}
+
+/* Footer */
+footer {
+  background: var(--darker);
+  padding: 60px 0;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 900px) {
+  .hero-dual {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
 </head>
+
 <body>
-  <nav class="navbar">
-    <div class="nav-container container">
-      <a href="#" class="logo">ZeroOneEta</a>
-      <ul class="nav-menu">
-        <li><a href="#products">Products</a></li>
-        <li><a href="#use-cases">How It Works</a></li>
-        <li><a href="#testimonials">Testimonials</a></li>
-        <li><a href="#blog">Blog</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </div>
-  </nav>
 
-  <header class="hero">
-    <div class="container">
-      <h1>Empower Your Business with AI and Security</h1>
-      <p>Integrated AI platform, adversarial testing, and cybersecurity solutions designed for enterprise scale.</p>
-      <a href="#products" class="btn btn-primary">Explore Products</a>
+<nav>
+  <div class="nav-container">
+    <a href="#home" class="logo">
+      <img src="https://raw.githubusercontent.com/ZeroOneEta/ZeroOneEta/main/logo.jpeg" alt="Logo">
+      <span class="logo-text">ZeroOneEta</span>
+    </a>
+    <div>
+      <a href="#features">Features</a>
+      <a href="#solutions">Pricing</a>
+      <a href="#about">About</a>
     </div>
-  </header>
+  </div>
+</nav>
 
-  <section id="products" class="section container">
-    <h2>Our Products</h2>
-    <div class="cards">
-      <div class="card">
-        <h3>AI Platform</h3>
-        <p>Complete MLOps lifecycle for model development, deployment, and monitoring.</p>
-        <a href="#" class="btn btn-outline">Learn More</a>
-      </div>
-      <div class="card">
-        <h3>Adversarial AI Testing eBook</h3>
-        <p>Proactively find vulnerabilities with our industry-leading red teaming guide.</p>
-        <a href="https://zerooneeta.gumroad.com/l/mczwmg" class="btn btn-outline">Buy eBook ($15)</a>
-      </div>
-      <div class="card">
-        <h3>Cybersecurity AI</h3>
-        <p>AI-driven threat detection and automated incident response.</p>
-        <a href="#contact" class="btn btn-outline">Contact Us</a>
-      </div>
-    </div>
-  </section>
+<section id="home" class="hero">
+  <div class="container">
+    <h1>Advanced AI Solutions for Modern Enterprises</h1>
+    <p>Harnessing machine intelligence for data generation, predictive analytics, and automation systems.</p>
 
-  <section id="use-cases" class="section bg-light">
-    <div class="container">
-      <h2>How It Works</h2>
-      <div class="cards">
-        <div class="card">
-          <h4>Select Product</h4>
-          <p>Choose the solution best suited to your needs.</p>
+    <div class="hero-dual">
+
+      <!-- Software -->
+      <div>
+        <div class="slideshow-container">
+          <img class="slide software-slide" src="https://raw.githubusercontent.com/ZeroOneEta/ZeroOneEta/refs/heads/main/dataset_generation.jpg">
+          <img class="slide software-slide" src="https://raw.githubusercontent.com/ZeroOneEta/ZeroOneEta/refs/heads/main/about_us.jpg">
+          <img class="slide software-slide" src="https://raw.githubusercontent.com/ZeroOneEta/ZeroOneEta/refs/heads/main/settings.jpg">
         </div>
-        <div class="card">
-          <h4>Integrate Quickly</h4>
-          <p>Use our API or user-friendly interface to get started.</p>
-        </div>
-        <div class="card">
-          <h4>Configure & Deploy</h4>
-          <p>Customize settings and launch your solution in minutes.</p>
-        </div>
-        <div class="card">
-          <h4>Scale & Secure</h4>
-          <p>Grow confidently with built-in security and monitoring.
-</p>
+        <div class="product-tag">
+          <h3>CreativeDatasetMaker</h3>
+          <div class="price">$10</div>
+          <a href="https://zerooneeta.gumroad.com/l/hhlwt" class="btn btn-primary">Get Software</a>
         </div>
       </div>
-    </div>
-  </section>
 
-  <section id="testimonials" class="section container">
-    <h2>Trusted by Leaders</h2>
-    <div class="cards">
-      <div class="card testimonial">
-        <p>“ZeroOneEta accelerated our AI rollout while keeping our data secure.”</p>
-        <h5>- Alex Chen, CTO at FinTechCorp</h5>
+      <!-- Book -->
+      <div>
+        <div class="slideshow-container">
+          <img class="slide book-slide" src="https://public-files.gumroad.com/2wm991ly70kpmbwobkrephtyxuf6">
+          <img class="slide book-slide" src="https://public-files.gumroad.com/c7umk9yihcxpg4va2rtcc819dnt8">
+        </div>
+        <div class="product-tag">
+          <h3>AI Red Teaming Book</h3>
+          <div class="price">$15</div>
+          <a href="https://zerooneeta.gumroad.com/l/mczwmg" class="btn btn-primary">Buy Book</a>
+        </div>
       </div>
-      <div class="card testimonial">
-        <p>“The adversarial testing guide is a must-have resource for any AI team.”</p>
-        <h5>- Maria Lopez, Head of AI at HealthPlus</h5>
-      </div>
-    </div>
-  </section>
 
-  <section id="blog" class="section bg-light container">
-    <h2>From Our Blog</h2>
-    <div class="cards">
-      <div class="card">
-        <h3>5 AI Strategies for 2026</h3>
-        <p>Explore the top trends shaping enterprise AI this year.</p>
-        <a href="blog.html" class="btn btn-primary">Read More</a>
-      </div>
-      <div class="card">
-        <h3>Securing AI Workflows</h3>
-        <p>Best practices to safeguard your machine learning pipelines.</p>
-        <a href="blog.html" class="btn btn-primary">Read More</a>
-      </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <footer id="contact" class="section footer">
-    <div class="container">
-      <h2>Contact Us</h2>
-      <p>Email: zerooneeta@gmail.com</p>
+<section id="features" class="section">
+  <div class="container">
+    <h2 class="section-title">Powerful AI Capabilities</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <h3>Intelligent Data Generation</h3>
+        <p>Create high-quality datasets tailored to your needs.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Predictive Analytics</h3>
+        <p>Unlock insights with advanced machine learning models.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Automation Systems</h3>
+        <p>Streamline operations with AI-driven workflows.</p>
+      </div>
     </div>
-  </footer>
+  </div>
+</section>
+
+<section id="solutions" class="section">
+  <div class="container">
+    <h2 class="section-title">Pricing</h2>
+    <div class="product-grid">
+
+      <div class="product-card">
+        <h3>Starter</h3>
+        <div class="price">$0</div>
+        <p>Evaluation license</p>
+        <a href="https://zerooneeta.gumroad.com/l/irlkh" class="btn btn-outline">Start</a>
+      </div>
+
+      <div class="product-card">
+        <h3>Professional</h3>
+        <div class="price">$10</div>
+        <p>Full software license</p>
+        <a href="https://zerooneeta.gumroad.com/l/hhlwt" class="btn btn-primary">Buy</a>
+      </div>
+
+      <div class="product-card">
+        <h3>AI Red Teaming Book</h3>
+        <div class="price">$15</div>
+        <p>Digital download</p>
+        <a href="https://zerooneeta.gumroad.com/l/mczwmg" class="btn btn-primary">Buy</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>© 2025 ZeroOneEta. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+function createSlideshow(slides, interval) {
+  let index = 0;
+  slides[index].classList.add('active');
+
+  setInterval(() => {
+    slides[index].classList.remove('active');
+    index = (index + 1) % slides.length;
+    slides[index].classList.add('active');
+  }, interval);
+}
+
+createSlideshow(document.querySelectorAll('.software-slide'), 4000);
+createSlideshow(document.querySelectorAll('.book-slide'), 5000);
+</script>
+
 </body>
 </html>
