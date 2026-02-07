@@ -227,21 +227,113 @@
       margin-top: 40px;
     }
 
-    .hero-image {
-      margin-top: 80px;
-      border-radius: 16px;
+    /* Slideshow Container with 3:4 Aspect Ratio - NO PADDING HACK */
+    .slideshow-container {
+      position: relative;
+      width: 100%;
+      max-width: 800px; /* Adjusted for 3:4 ratio */
+      margin: 60px auto 0;
+      aspect-ratio: 4/3; /* TRUE 3:4 ASPECT RATIO */
       overflow: hidden;
+      border-radius: 16px;
       box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
       border: 1px solid var(--border);
-      max-width: 1000px;
-      margin-left: auto;
-      margin-right: auto;
+      background-color: var(--card-bg);
     }
-
-    .hero-image img {
+    
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
-      height: auto;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Crops images to maintain 3:4 ratio */
       display: block;
+      image-rendering: -webkit-optimize-contrast; /* Sharper image rendering */
+    }
+    
+    .slide.active {
+      opacity: 1;
+      position: relative;
+      z-index: 10;
+    }
+    
+    /* Navigation Controls */
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 45px;
+      height: 45px;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: white;
+      font-weight: bold;
+      font-size: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      z-index: 20;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    .prev:hover, .next:hover {
+      background-color: rgba(37, 99, 235, 0.9);
+      transform: translateY(-50%) scale(1.1);
+      box-shadow: 0 0 15px rgba(37, 99, 235, 0.7);
+    }
+    
+    .prev {
+      left: 15px;
+    }
+    
+    .next {
+      right: 15px;
+    }
+    
+    .dots-container {
+      position: absolute;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 20;
+    }
+    
+    .dot {
+      cursor: pointer;
+      height: 10px;
+      width: 10px;
+      background-color: rgba(255, 255, 255, 0.6);
+      border-radius: 50%;
+      display: inline-block;
+      transition: all 0.4s ease;
+      border: 2px solid transparent;
+    }
+    
+    .dot:hover {
+      background-color: rgba(255, 255, 255, 0.8);
+      transform: scale(1.2);
+    }
+    
+    .dot.active {
+      background-color: white;
+      border-color: var(--primary);
+      transform: scale(1.3);
+      box-shadow: 0 0 8px rgba(37, 99, 235, 0.8);
     }
 
     /* Features Section */
@@ -472,24 +564,6 @@
       align-items: center;
       gap: 15px;
     }
-    .slideshow-container {
-      position: relative;
-      width: 100%;
-      height: auto;
-    }
-    
-    .slide {
-      position: absolute;
-      width: 100%;
-      height: auto;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-    }
-    
-    .slide.active {
-      opacity: 1;
-      position: relative;
-    }
 
     .author-avatar {
       width: 50px;
@@ -714,6 +788,10 @@
       .about-image {
         order: -1;
       }
+      
+      .slideshow-container {
+        max-width: 95%;
+      }
     }
     
     @media (max-width: 768px) {
@@ -753,6 +831,21 @@
         color: var(--text-light);
         font-size: 1.5rem;
         cursor: pointer;
+      }
+      
+      .slideshow-container {
+        max-width: 95%;
+        margin-top: 40px;
+      }
+      
+      .prev, .next {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+      }
+      
+      .dots-container {
+        bottom: 20px;
       }
     }
     
@@ -795,16 +888,39 @@
           <a href="#solutions" class="btn btn-outline">Explore Solutions</a>
         </div>
       </div>
-      <div class="hero-image slideshow-container">
-        <img class="slide" src="https://raw.githubusercontent.com/ZeroOneEta/ZeroOneEta/refs/heads/main/dataset_generation.jpg" alt="CreativeDatasetMaker Interface" />
-        <img class="slide" src="https://raw.githubusercontent.com/ZeroOneEta/ZeroOneEta/refs/heads/main/about_us.jpg" alt="CreativeDatasetMaker Interface" />
-        <img class="slide" src="https://raw.githubusercontent.com/ZeroOneEta/ZeroOneEta/refs/heads/main/settings.jpg" alt="CreativeDatasetMaker Interface" />
-        <img class="slide" src="https://public-files.gumroad.com/2wm991ly70kpmbwobkrephtyxuf6" alt="AI Red Teaming Front cover" />
-        <img class="slide" src="https://public-files.gumroad.com/c7umk9yihcxpg4va2rtcc819dnt8" alt="AI Red Teaming Back cover" />
+      <div class="slideshow-container">
+        <div class="slide active">
+          <img src="https://raw.githubusercontent.com/ZeroOneEta/ZeroOneEta/refs/heads/main/dataset_generation.jpg" alt="CreativeDatasetMaker Interface">
+        </div>
+        <div class="slide">
+          <img src="https://raw.githubusercontent.com/ZeroOneEta/ZeroOneEta/refs/heads/main/about_us.jpg" alt="Team Collaboration">
+        </div>
+        <div class="slide">
+          <img src="https://raw.githubusercontent.com/ZeroOneEta/ZeroOneEta/refs/heads/main/settings.jpg" alt="Platform Settings">
+        </div>
+        <div class="slide">
+          <img src="https://public-files.gumroad.com/2wm991ly70kpmbwobkrephtyxuf6" alt="AI Red Teaming Front cover">
+        </div>
+        <div class="slide">
+          <img src="https://public-files.gumroad.com/c7umk9yihcxpg4va2rtcc819dnt8" alt="AI Red Teaming Back cover">
+        </div>
+        
+        <!-- Navigation Controls -->
+        <a class="prev">&#10094;</a>
+        <a class="next">&#10095;</a>
+        
+        <div class="dots-container">
+          <span class="dot active" data-index="0"></span>
+          <span class="dot" data-index="1"></span>
+          <span class="dot" data-index="2"></span>
+          <span class="dot" data-index="3"></span>
+          <span class="dot" data-index="4"></span>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- Rest of the sections remain unchanged -->
   <section id="features" class="section">
     <div class="container">
       <h2 class="section-title">Powerful AI Capabilities</h2>
@@ -845,7 +961,7 @@
       
       <div class="tabs">
         <button class="tab active" data-tab="dataset">Creative Dataset Maker</button>
-        <button class="tab active" data-tab="dataset">AI Red Teaming</button>
+        <button class="tab" data-tab="red-teaming">AI Red Teaming</button>
       </div>
       
       <div id="dataset" class="tab-content active">
@@ -902,6 +1018,25 @@
         </div>
       </div>
       
+      <div id="red-teaming" class="tab-content">
+        <div class="product-grid">
+          <div class="product-card">
+            <h3>AI Red Teaming eBook</h3>
+            <div class="price">$15</div>
+            <div class="price-sub">Digital Edition</div>
+            <p>Comprehensive guide to adversarial AI testing</p>
+            <a href="https://zerooneeta.gumroad.com/l/mczwmg" target="_blank" class="btn btn-primary">Purchase Now</a>
+            <div class="divider"></div>
+            <ul>
+              <li>Foundational concepts of AI vulnerabilities</li>
+              <li>Step-by-step red teaming methodologies</li>
+              <li>Real-world case studies and examples</li>
+              <li>Frameworks for building secure AI systems</li>
+              <li>Best practices for AI security audits</li>
+            </ul>
+          </div>
+        </div>
+      </div>
      </section>
 
   <section class="section testimonials">
@@ -1038,81 +1173,142 @@
 
   <script>
     // Tab functionality
-    const tabs = document.querySelectorAll('.tab');
-    const tabContents = document.querySelectorAll('.tab-content');
-    
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        // Remove active class from all tabs and contents
-        tabs.forEach(t => t.classList.remove('active'));
-        tabContents.forEach(c => c.classList.remove('active'));
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabs = document.querySelectorAll('.tab');
+      const tabContents = document.querySelectorAll('.tab-content');
+      
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => t.classList.remove('active'));
+          tabContents.forEach(c => c.classList.remove('active'));
+          
+          tab.classList.add('active');
+          
+          const tabId = tab.getAttribute('data-tab');
+          if (tabId === 'dataset') {
+            document.getElementById('dataset').classList.add('active');
+          } else if (tabId === 'red-teaming') {
+            document.getElementById('red-teaming').classList.add('active');
+          }
+        });
+      });
+      
+      // Mobile menu toggle
+      const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+      const navLinks = document.querySelector('.nav-links');
+      
+      mobileMenuBtn.addEventListener('click', () => {
+        navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+      });
+      
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          
+          const target = document.querySelector(targetId);
+          if (target) {
+            window.scrollTo({
+              top: target.offsetTop - 80,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+      
+      // Slideshow functionality with TRUE 3:4 aspect ratio
+      const slides = document.querySelectorAll('.slide');
+      const dots = document.querySelectorAll('.dot');
+      const prevBtn = document.querySelector('.prev');
+      const nextBtn = document.querySelector('.next');
+      let slideIndex = 0;
+      let slideInterval;
+      
+      // Show slide at specified index
+      function showSlide(index) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
         
-        // Add active class to clicked tab
-        tab.classList.add('active');
+        // Handle index wrapping
+        if (index >= slides.length) slideIndex = 0;
+        else if (index < 0) slideIndex = slides.length - 1;
+        else slideIndex = index;
         
-        // Show corresponding content
-        const tabId = tab.getAttribute('data-tab');
-        document.getElementById(tabId).classList.add('active');
+        slides[slideIndex].classList.add('active');
+        dots[slideIndex].classList.add('active');
+      }
+      
+      // Navigation functions
+      function nextSlide() {
+        showSlide(slideIndex + 1);
+        resetInterval();
+      }
+      
+      function prevSlide() {
+        showSlide(slideIndex - 1);
+        resetInterval();
+      }
+      
+      function goToSlide(index) {
+        showSlide(index);
+        resetInterval();
+      }
+      
+      // Reset auto-advance timer
+      function resetInterval() {
+        clearInterval(slideInterval);
+        slideInterval = setInterval(nextSlide, 5000);
+      }
+      
+      // Initialize slideshow
+      showSlide(slideIndex);
+      resetInterval();
+      
+      // Event listeners
+      nextBtn.addEventListener('click', nextSlide);
+      prevBtn.addEventListener('click', prevSlide);
+      
+      dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+          const index = parseInt(dot.getAttribute('data-index'));
+          goToSlide(index);
+        });
       });
-    });
-    
-    // Mobile menu toggle
-    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    const navLinks = document.querySelector('.nav-links');
-    
-    mobileMenuBtn.addEventListener('click', () => {
-      navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-    });
-    
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          window.scrollTo({
-            top: target.offsetTop - 80,
-            behavior: 'smooth'
-          });
-        }
+      
+      // Keyboard navigation
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') nextSlide();
+        else if (e.key === 'ArrowLeft') prevSlide();
       });
-    });
-    
-    // Animation on scroll
-    const observerOptions = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.1
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animated');
-        }
+      
+      // Pause on hover
+      const slideshowContainer = document.querySelector('.slideshow-container');
+      slideshowContainer.addEventListener('mouseenter', () => {
+        clearInterval(slideInterval);
       });
-    }, observerOptions);
-    
-    document.querySelectorAll('.feature-card, .product-card, .testimonial-card').forEach(card => {
-      observer.observe(card);
+      
+      slideshowContainer.addEventListener('mouseleave', resetInterval);
+      
+      // Touch swipe support for mobile
+      let touchStartX = 0;
+      let touchEndX = 0;
+      
+      slideshowContainer.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      });
+      
+      slideshowContainer.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+      });
+      
+      function handleSwipe() {
+        if (touchStartX - touchEndX > 50) nextSlide(); // Swipe left
+        if (touchEndX - touchStartX > 50) prevSlide(); // Swipe right
+      }
     });
-
-  // Slideshow functionality
-  let slideIndex = 0;
-  const slides = document.querySelectorAll('.slide');
-
-  function showSlides() {
-    slides.forEach((slide, i) => {
-      slide.classList.remove('active');
-    });
-
-    slideIndex = (slideIndex + 1) % slides.length;
-    slides[slideIndex].classList.add('active');
-  }
-
-  // Start slideshow
-  slides[0].classList.add('active'); // Show the first slide initially
-  setInterval(showSlides, 4000); // Change every 4 seconds
   </script>
 </body>
 </html>
