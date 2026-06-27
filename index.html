@@ -22,6 +22,7 @@
       --green:   #10b981;
       --green-dim: rgba(16,185,129,0.1);
       --amber:   #f59e0b;
+      --pink:    #ec4899;
       --red:     #ef4444;
       --text:    #e2e8f0;
       --dim:     #94a3b8;
@@ -155,10 +156,14 @@
     .tag-core  { background:var(--primary-dim); color:var(--primary); border:1px solid rgba(6,182,212,0.2); }
     .tag-build { background:var(--green-dim); color:var(--green); border:1px solid rgba(16,185,129,0.2); }
     .tag-consult { background:rgba(245,158,11,0.1); color:var(--amber); border:1px solid rgba(245,158,11,0.2); }
+    .tag-acoustic { background:var(--green-dim); color:var(--green); border:1px solid rgba(16,185,129,0.2); }
+    .tag-beam { background:rgba(245,158,11,0.1); color:var(--amber); border:1px solid rgba(245,158,11,0.2); }
+    .tag-dl { background:rgba(236,72,153,0.1); color:var(--pink); border:1px solid rgba(236,72,153,0.2); }
     .skill-name { color:var(--dim); flex:1; }
 
     /* ── SERVICES ── */
     .services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+    .services-4 { grid-template-columns:repeat(2,1fr); }
     .svc-card {
       background:var(--card); border:1px solid var(--border); border-radius:12px;
       padding:30px 26px; position:relative; overflow:hidden; transition:all 0.3s;
@@ -203,6 +208,92 @@
     .stack-tags { display:flex; gap:5px; flex-wrap:wrap; }
     .st { font-family:var(--mono); font-size:0.67rem; color:var(--muted); background:rgba(255,255,255,0.04); padding:2px 7px; border-radius:3px; }
     .tool-arrow { color:var(--primary); font-size:0.9rem; }
+
+    /* ── DSP PLAYGROUND ── */
+    #dsp { background:var(--bg-2); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+    .dsp-grid { display:grid; grid-template-columns:0.85fr 1.15fr; gap:56px; align-items:center; }
+    .dsp-concepts { display:flex; flex-direction:column; gap:14px; margin-top:8px; }
+    .dsp-concept {
+      display:flex; gap:14px; align-items:flex-start; padding:14px 16px;
+      background:var(--card); border:1px solid var(--border); border-radius:10px;
+      transition:all 0.25s; cursor:default;
+    }
+    .dsp-concept.live { border-color:var(--primary); box-shadow:0 0 0 1px var(--primary), 0 0 28px rgba(6,182,212,0.12); }
+    .dsp-concept-num { font-family:var(--mono); font-size:0.78rem; color:var(--primary); font-weight:700; min-width:24px; }
+    .dsp-concept h4 { font-size:0.9rem; color:var(--text); margin-bottom:3px; }
+    .dsp-concept p  { font-size:0.78rem; color:var(--muted); line-height:1.55; }
+    .dsp-box {
+      background:#000c18; border:1px solid var(--glow); border-radius:12px; overflow:hidden;
+      box-shadow:0 0 60px rgba(6,182,212,0.08), 0 30px 60px rgba(0,0,0,0.45);
+    }
+    .dsp-head { background:#0a1526; padding:11px 16px; display:flex; align-items:center; gap:8px; border-bottom:1px solid var(--border); }
+    .dsp-head-title { font-family:var(--mono); font-size:0.74rem; color:var(--muted); margin-left:4px; }
+    .dsp-screen { padding:18px 20px; }
+    .dsp-cmd { font-family:var(--mono); font-size:0.78rem; color:var(--primary); min-height:1.3em; margin-bottom:10px; white-space:nowrap; overflow:hidden; }
+    .dsp-plot {
+      font-family:var(--mono); font-size:0.7rem; line-height:1.0; color:var(--primary);
+      white-space:pre; margin:0; overflow:hidden; text-shadow:0 0 6px rgba(6,182,212,0.35);
+    }
+    .dsp-cap { font-family:var(--mono); font-size:0.72rem; color:var(--green); margin-top:10px; min-height:1.2em; }
+    .dsp-pills { display:flex; flex-wrap:wrap; gap:7px; margin-top:14px; }
+    .dsp-pill {
+      font-family:var(--mono); font-size:0.66rem; letter-spacing:0.04em; color:var(--muted);
+      background:rgba(255,255,255,0.03); border:1px solid var(--border); padding:3px 10px; border-radius:50px; transition:all 0.25s;
+    }
+    .dsp-pill.live { color:var(--bg); background:var(--primary); border-color:var(--primary); }
+
+    /* ── APPLICATIONS / WHO I WORK WITH ── */
+    #apps { background:var(--bg); }
+    .apps-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+    .app-card {
+      background:var(--card); border:1px solid var(--border); border-radius:12px;
+      padding:28px 24px; display:flex; flex-direction:column; transition:all 0.3s; position:relative; overflow:hidden;
+    }
+    .app-card::after {
+      content:''; position:absolute; top:0; left:0; right:0; height:2px;
+      background:linear-gradient(90deg, var(--primary), transparent); opacity:0; transition:opacity 0.3s;
+    }
+    .app-card:hover { border-color:rgba(6,182,212,0.3); transform:translateY(-4px); box-shadow:0 20px 40px rgba(0,0,0,0.3); }
+    .app-card:hover::after { opacity:1; }
+    .app-icon { width:44px; height:44px; background:var(--primary-dim); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.15rem; color:var(--primary); margin-bottom:16px; }
+    .app-card h3 { font-size:1rem; font-weight:700; color:var(--text); margin-bottom:9px; }
+    .app-card p  { font-size:0.84rem; color:var(--muted); line-height:1.65; margin-bottom:14px; }
+    .app-who {
+      font-family:var(--mono); font-size:0.72rem; color:var(--dim); line-height:1.6;
+      background:rgba(255,255,255,0.02); border-left:2px solid var(--primary); padding:8px 12px; border-radius:0 6px 6px 0; margin-bottom:14px;
+    }
+    .app-who b { color:var(--primary); font-weight:500; }
+    .app-ref { margin-top:auto; }
+    .app-ref a {
+      font-family:var(--mono); font-size:0.72rem; color:var(--green); text-decoration:none;
+      display:inline-flex; align-items:center; gap:7px; line-height:1.4;
+    }
+    .app-ref a:hover { text-decoration:underline; }
+    .app-ref i { color:var(--green); }
+
+    /* ── PUBLICATIONS ── */
+    #papers { background:var(--bg-2); border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+    .pub-metrics { display:flex; gap:14px; flex-wrap:wrap; margin-bottom:44px; }
+    .pub-metric { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:16px 26px; text-align:center; }
+    .pub-metric-n { font-family:var(--mono); font-size:1.9rem; font-weight:700; color:var(--primary); line-height:1; }
+    .pub-metric-l { font-size:0.7rem; color:var(--muted); margin-top:6px; text-transform:uppercase; letter-spacing:0.08em; }
+    .pub-list { display:flex; flex-direction:column; gap:12px; }
+    .pub-card {
+      display:flex; gap:18px; align-items:flex-start; padding:20px 22px;
+      background:var(--card); border:1px solid var(--border); border-radius:11px;
+      text-decoration:none; transition:all 0.25s;
+    }
+    .pub-card:hover { border-color:rgba(6,182,212,0.4); transform:translateX(4px); box-shadow:0 14px 30px rgba(0,0,0,0.3); }
+    .pub-cite {
+      font-family:var(--mono); text-align:center; min-width:62px; padding:8px 0;
+      background:var(--primary-dim); border:1px solid rgba(6,182,212,0.2); border-radius:8px; flex-shrink:0;
+    }
+    .pub-cite-n { font-size:1.15rem; font-weight:700; color:var(--primary); line-height:1; }
+    .pub-cite-l { font-size:0.58rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.07em; margin-top:3px; }
+    .pub-info h4 { font-size:0.95rem; color:var(--text); line-height:1.4; margin-bottom:6px; }
+    .pub-meta { font-family:var(--mono); font-size:0.74rem; color:var(--muted); }
+    .pub-meta .venue { color:var(--green); }
+    .pub-foot { margin-top:32px; }
 
     /* ── CMD BLOCK ── */
     #cmd { background:#000a14; border-top:1px solid var(--border); }
@@ -295,13 +386,18 @@
       .contact-grid{ grid-template-columns:1fr; gap:48px; }
       .cmd-cols    { grid-template-columns:1fr; gap:36px; }
       .foot-inner  { grid-template-columns:1fr 1fr; }
+      .dsp-grid    { grid-template-columns:1fr; gap:40px; }
+      .apps-grid   { grid-template-columns:repeat(2,1fr); }
     }
     @media (max-width:768px) {
       .hero h1 { font-size:2.4rem; }
       .s-title { font-size:2rem; }
-      .services-grid { grid-template-columns:1fr; }
+      .services-grid, .services-4 { grid-template-columns:1fr; }
       .tools-grid { grid-template-columns:1fr; }
       .about-stats { grid-template-columns:repeat(3,1fr); }
+      .dsp-plot { font-size:0.6rem; }
+      .pub-card { flex-direction:column; gap:12px; }
+      .apps-grid { grid-template-columns:1fr; }
       .nav-links { display:none; }
       .mobile-btn { display:block; }
       .nav-links.open {
@@ -327,8 +423,9 @@
     <ul class="nav-links" id="navLinks">
       <li><a href="#about">About</a></li>
       <li><a href="#services">Services</a></li>
-      <li><a href="#tools">Tools</a></li>
-      <li><a href="blog.html">Blog</a></li>
+      <li><a href="#dsp">Live Demo</a></li>
+      <li><a href="#apps">Industries</a></li>
+      <li><a href="#papers">Research</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <a href="#contact" class="nav-hire">Hire Me →</a>
@@ -341,8 +438,8 @@
   <div class="hero-inner">
     <div>
       <div class="hero-badge"><span class="hero-badge-dot"></span>Available for Remote Contract Work</div>
-      <h1>PhD-Level Precision.<br><em>Production-Ready</em> Code.</h1>
-      <p class="hero-desc">Signal processing researcher turned AI engineer. I build real-time systems, audio DSP tools, robotic perception pipelines, and AI-powered applications — then ship them to production.</p>
+      <h1>Signal Processing.<br><em>Acoustics</em>. Deep Learning.</h1>
+      <p class="hero-desc">PhD signal-processing engineer specialising in acoustics, beamforming, and deep learning. I turn raw sensor and audio data into actionable intelligence — from microphone-array processing to neural inference, deployed to production.</p>
       <div class="hero-btns">
         <a href="#tools" class="btn-primary">See My Work</a>
         <a href="#contact" class="btn-ghost">Hire Me for a Project</a>
@@ -367,8 +464,8 @@
         <p class="s-label">// about</p>
         <h2 class="s-title">Engineering from first principles.</h2>
         <div class="about-text">
-          <p>I hold a PhD in Signal Processing for Robotics from the IT University of Copenhagen. My research spans acoustic sensor arrays, robotic perception, and real-time signal analysis — work I now apply directly to production systems.</p>
-          <p>With experience spanning Europe, the Middle East, and Asia-Pacific, I've consulted for research labs, startups, and enterprises. Every engagement begins at the mathematics and ends with working, deployed code.</p>
+          <p>I hold a PhD in signal processing from the IT University of Copenhagen. My work centres on four things: <strong style="color:var(--text)">digital signal processing, acoustics, beamforming, and deep learning</strong> — from microphone-array geometry and room-impulse modelling to neural networks trained on raw signals.</p>
+          <p>With experience spanning Europe, the Middle East, and Asia-Pacific, I've consulted for research labs, startups, and enterprises. Every engagement begins at the mathematics and ends with working, deployed code — not just a notebook.</p>
           <p>Currently available remotely for contract work globally — from focused technical spikes to multi-month engagements. CET timezone, 24h response time.</p>
         </div>
         <div class="about-stats">
@@ -377,25 +474,25 @@
             <div class="stat-l">Signal Processing</div>
           </div>
           <div class="stat">
-            <div class="stat-n">10+</div>
-            <div class="stat-l">Tools Deployed</div>
+            <div class="stat-n">87</div>
+            <div class="stat-l">Citations · h-index 5</div>
           </div>
           <div class="stat">
-            <div class="stat-n">CET</div>
-            <div class="stat-l">Timezone · Remote</div>
+            <div class="stat-n">Remote</div>
+            <div class="stat-l">Global · CET</div>
           </div>
         </div>
       </div>
 
       <div class="skill-list fade-up">
-        <div class="skill-row"><span class="skill-tag tag-core">CORE</span><span class="skill-name">Signal Processing &amp; DSP</span><i class="fas fa-wave-square" style="color:var(--primary)"></i></div>
-        <div class="skill-row"><span class="skill-tag tag-core">CORE</span><span class="skill-name">Robotics &amp; Sensor Fusion</span><i class="fas fa-robot" style="color:var(--primary)"></i></div>
-        <div class="skill-row"><span class="skill-tag tag-build">BUILD</span><span class="skill-name">Python · Flask · FastAPI</span><i class="fab fa-python" style="color:var(--green)"></i></div>
-        <div class="skill-row"><span class="skill-tag tag-build">BUILD</span><span class="skill-name">AI/ML Engineering &amp; LLM Integration</span><i class="fas fa-brain" style="color:var(--green)"></i></div>
-        <div class="skill-row"><span class="skill-tag tag-build">BUILD</span><span class="skill-name">Real-time Dashboards &amp; Data Viz</span><i class="fas fa-chart-line" style="color:var(--green)"></i></div>
-        <div class="skill-row"><span class="skill-tag tag-build">BUILD</span><span class="skill-name">Audio Systems &amp; Acoustic Modelling</span><i class="fas fa-microphone-alt" style="color:var(--green)"></i></div>
-        <div class="skill-row"><span class="skill-tag tag-consult">CONSULT</span><span class="skill-name">Research Consulting &amp; Technical Writing</span><i class="fas fa-file-alt" style="color:var(--amber)"></i></div>
-        <div class="skill-row"><span class="skill-tag tag-consult">CONSULT</span><span class="skill-name">Training &amp; Workshop Delivery</span><i class="fas fa-chalkboard-teacher" style="color:var(--amber)"></i></div>
+        <div class="skill-row"><span class="skill-tag tag-core">DSP</span><span class="skill-name">Spectral analysis · filtering · FFT · convolution</span><i class="fas fa-wave-square" style="color:var(--primary)"></i></div>
+        <div class="skill-row"><span class="skill-tag tag-core">DSP</span><span class="skill-name">Adaptive filters · noise reduction · feature extraction</span><i class="fas fa-sliders-h" style="color:var(--primary)"></i></div>
+        <div class="skill-row"><span class="skill-tag tag-acoustic">ACOUSTICS</span><span class="skill-name">Room impulse response &amp; reverberation modelling</span><i class="fas fa-volume-up" style="color:var(--green)"></i></div>
+        <div class="skill-row"><span class="skill-tag tag-acoustic">ACOUSTICS</span><span class="skill-name">Source localisation · sound-field analysis</span><i class="fas fa-microphone-alt" style="color:var(--green)"></i></div>
+        <div class="skill-row"><span class="skill-tag tag-beam">BEAMFORMING</span><span class="skill-name">Microphone-array design · delay-and-sum · MVDR</span><i class="fas fa-broadcast-tower" style="color:var(--amber)"></i></div>
+        <div class="skill-row"><span class="skill-tag tag-beam">BEAMFORMING</span><span class="skill-name">Direction-of-arrival (DOA) · spatial filtering</span><i class="fas fa-location-arrow" style="color:var(--amber)"></i></div>
+        <div class="skill-row"><span class="skill-tag tag-dl">DEEP&nbsp;LEARNING</span><span class="skill-name">CNNs/RNNs/Transformers on raw &amp; spectral signals</span><i class="fas fa-brain" style="color:var(--pink)"></i></div>
+        <div class="skill-row"><span class="skill-tag tag-dl">DEEP&nbsp;LEARNING</span><span class="skill-name">Audio classification · denoising · model deployment</span><i class="fas fa-project-diagram" style="color:var(--pink)"></i></div>
       </div>
     </div>
   </div>
@@ -406,49 +503,83 @@
   <div class="section-inner">
     <p class="s-label">// services</p>
     <h2 class="s-title">What you can hire me for.</h2>
-    <p class="s-sub">Remote-first. Fixed-scope contracts or ongoing advisory. Available globally from a CET timezone — overlapping with European, Middle Eastern, and US Eastern business hours.</p>
+    <p class="s-sub">Four deep specialisms — not a long generic menu. Remote-first, fixed-scope contracts or ongoing advisory, available globally from a CET timezone overlapping European, Middle Eastern, and US Eastern hours.</p>
 
-    <div class="services-grid">
+    <div class="services-grid services-4">
       <div class="svc-card fade-up">
         <div class="svc-icon"><i class="fas fa-wave-square"></i></div>
         <h3>Signal Processing &amp; DSP</h3>
-        <p>Audio signal chains, acoustic modelling, beamforming, noise reduction, vibration analysis, and sensor data conditioning. From theory to embedded deployment.</p>
-        <div class="tag-list"><span class="tg">MATLAB</span><span class="tg">Python</span><span class="tg">scipy</span><span class="tg">pyroomacoustics</span><span class="tg">librosa</span></div>
+        <p>Spectral analysis, FFT pipelines, FIR/IIR filter design, convolution, adaptive filtering, noise reduction, and feature extraction — from the maths to optimised, real-time code.</p>
+        <div class="tag-list"><span class="tg">Python</span><span class="tg">MATLAB</span><span class="tg">scipy.signal</span><span class="tg">NumPy</span><span class="tg">librosa</span></div>
       </div>
 
       <div class="svc-card fade-up">
-        <div class="svc-icon"><i class="fas fa-robot"></i></div>
-        <h3>Robotics &amp; Perception</h3>
-        <p>Robotic sensor fusion, localization, audio-based perception, and real-time signal pipelines for autonomous and semi-autonomous platforms.</p>
-        <div class="tag-list"><span class="tg">ROS</span><span class="tg">sensor fusion</span><span class="tg">localization</span><span class="tg">C++</span><span class="tg">Python</span></div>
+        <div class="svc-icon"><i class="fas fa-volume-up"></i></div>
+        <h3>Acoustics</h3>
+        <p>Room impulse-response and reverberation modelling, sound-field analysis, source localisation, and acoustic simulation for audio, speech, and sensing applications.</p>
+        <div class="tag-list"><span class="tg">pyroomacoustics</span><span class="tg">RIR</span><span class="tg">RT60</span><span class="tg">room modelling</span><span class="tg">SoundFile</span></div>
+      </div>
+
+      <div class="svc-card fade-up">
+        <div class="svc-icon"><i class="fas fa-broadcast-tower"></i></div>
+        <h3>Beamforming &amp; Array Processing</h3>
+        <p>Microphone- and sensor-array design, delay-and-sum and MVDR beamformers, direction-of-arrival estimation, and spatial filtering for noisy, multi-source environments.</p>
+        <div class="tag-list"><span class="tg">delay-and-sum</span><span class="tg">MVDR</span><span class="tg">DOA</span><span class="tg">spatial filtering</span><span class="tg">arrays</span></div>
       </div>
 
       <div class="svc-card fade-up">
         <div class="svc-icon"><i class="fas fa-brain"></i></div>
-        <h3>AI / ML Engineering</h3>
-        <p>Custom AI tools, LLM integration, model evaluation pipelines, and AI red-teaming. Applications that actually ship to users — not just Jupyter notebooks.</p>
-        <div class="tag-list"><span class="tg">PyTorch</span><span class="tg">LLMs</span><span class="tg">Ollama</span><span class="tg">HuggingFace</span><span class="tg">OpenAI API</span></div>
+        <h3>Deep Learning</h3>
+        <p>Neural networks for signals and audio — CNNs, RNNs, and Transformers on raw waveforms and spectrograms. Classification, denoising, and model deployment to production.</p>
+        <div class="tag-list"><span class="tg">PyTorch</span><span class="tg">CNN/RNN</span><span class="tg">Transformers</span><span class="tg">spectrograms</span><span class="tg">ONNX</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ DSP PLAYGROUND ══ -->
+<section id="dsp" class="section">
+  <div class="section-inner">
+    <p class="s-label">// live demo</p>
+    <h2 class="s-title">Signal processing, running live.</h2>
+    <p class="s-sub">These aren't stock images — the terminal below computes and animates each concept in real time, the same primitives I build production systems on. It cycles automatically through four fundamentals.</p>
+
+    <div class="dsp-grid">
+      <div class="dsp-concepts fade-up">
+        <div class="dsp-concept" data-demo="0">
+          <span class="dsp-concept-num">01</span>
+          <div><h4>Signal Synthesis</h4><p>Summing sinusoids and additive noise — the raw time-domain signal everything starts from.</p></div>
+        </div>
+        <div class="dsp-concept" data-demo="1">
+          <span class="dsp-concept-num">02</span>
+          <div><h4>FFT / Spectrum</h4><p>Transforming to the frequency domain reveals the hidden tones as sharp spectral peaks.</p></div>
+        </div>
+        <div class="dsp-concept" data-demo="2">
+          <span class="dsp-concept-num">03</span>
+          <div><h4>FIR Low-Pass Filter</h4><p>A designed filter strips high-frequency noise, recovering the clean underlying waveform.</p></div>
+        </div>
+        <div class="dsp-concept" data-demo="3">
+          <span class="dsp-concept-num">04</span>
+          <div><h4>Beamforming</h4><p>An 8-mic array steers its main lobe toward a source — spatial filtering in action.</p></div>
+        </div>
       </div>
 
-      <div class="svc-card fade-up">
-        <div class="svc-icon"><i class="fas fa-chart-network"></i></div>
-        <h3>Real-time Data Systems</h3>
-        <p>Live dashboards, WebSocket-driven monitoring, geospatial visualisations, and analytics pipelines — built on Flask/FastAPI, production-deployed.</p>
-        <div class="tag-list"><span class="tg">Flask</span><span class="tg">WebSockets</span><span class="tg">Leaflet.js</span><span class="tg">APScheduler</span><span class="tg">SQLite/MySQL</span></div>
-      </div>
-
-      <div class="svc-card fade-up">
-        <div class="svc-icon"><i class="fas fa-chalkboard-teacher"></i></div>
-        <h3>Training &amp; Workshops</h3>
-        <p>Technical workshops on DSP, Python for engineers, AI/ML fundamentals, and applied signal processing. Delivered remotely to research teams and industry groups.</p>
-        <div class="tag-list"><span class="tg">DSP courses</span><span class="tg">Python</span><span class="tg">AI fundamentals</span><span class="tg">hands-on labs</span></div>
-      </div>
-
-      <div class="svc-card fade-up">
-        <div class="svc-icon"><i class="fas fa-file-alt"></i></div>
-        <h3>Research &amp; Technical Consulting</h3>
-        <p>Literature reviews, feasibility studies, grant proposal support, and technical due diligence for signal processing and AI projects. Academic and industry clients.</p>
-        <div class="tag-list"><span class="tg">PhD-level</span><span class="tg">technical writing</span><span class="tg">research</span><span class="tg">IEEE standards</span></div>
+      <div class="dsp-box fade-up">
+        <div class="dsp-head">
+          <span class="t-dot r"></span><span class="t-dot y"></span><span class="t-dot g"></span>
+          <span class="dsp-head-title">dsp-playground — python3</span>
+        </div>
+        <div class="dsp-screen">
+          <div class="dsp-cmd" id="dspCmd">$ _</div>
+          <pre class="dsp-plot" id="dspPlot"></pre>
+          <div class="dsp-cap" id="dspCap"></div>
+          <div class="dsp-pills">
+            <span class="dsp-pill" data-pill="0">synthesis</span>
+            <span class="dsp-pill" data-pill="1">fft</span>
+            <span class="dsp-pill" data-pill="2">fir-filter</span>
+            <span class="dsp-pill" data-pill="3">beamform</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -458,69 +589,10 @@
 <section id="tools" class="section">
   <div class="section-inner">
     <p class="s-label">// portfolio</p>
-    <h2 class="s-title">Tools I've built &amp; deployed.</h2>
-    <p class="s-sub">Each project is a working system — not a prototype. Click any card to see the full write-up, tech stack, and live demo link.</p>
+    <h2 class="s-title">Engineering, not just papers.</h2>
+    <p class="s-sub">Research is only half the job. I ship working audio and DSP software — these are interactive tools I've built and deployed, turning the theory above into systems people actually use.</p>
 
-    <div class="tools-grid">
-
-      <div class="tool-card fade-up">
-        <div class="tool-preview">
-          <span style="color:var(--primary)">$ ./eagle-eye --start</span><br>
-          <span style="color:var(--dim)">&gt; Connecting OpenSky Network...</span><br>
-          <span style="color:var(--dim)">&gt; Aircraft tracked: </span><span style="color:var(--green)">12,847</span><br>
-          <span style="color:var(--dim)">&gt; Marine vessels: </span><span style="color:var(--green)">4,231</span><br>
-          <span style="color:var(--dim)">&gt; GeoFence alerts: </span><span style="color:var(--green)">0</span><br>
-          <span style="color:var(--dim)">&gt; Status: </span><span style="color:var(--green)">● LIVE</span>
-        </div>
-        <div class="tool-body">
-          <span class="tool-badge">Real-time · Geospatial</span>
-          <h3>Eagle Eye — Global Traffic Monitor</h3>
-          <p>Palantir-style world map tracking 12k+ aircraft, marine vessels, and land traffic with GeoFencing, weather overlays, and WebSocket push.</p>
-        </div>
-        <div class="tool-foot">
-          <div class="stack-tags"><span class="st">Flask</span><span class="st">WebSocket</span><span class="st">Leaflet.js</span><span class="st">SQLite</span></div>
-          <a href="#contact" class="tool-arrow" title="Hire for similar work">Hire for this →</a>
-        </div>
-      </div>
-
-      <div class="tool-card fade-up">
-        <div class="tool-preview">
-          <span style="color:var(--primary)">$ annotate --file speech.wav</span><br>
-          <span style="color:var(--dim)">&gt; Loaded: 44100 Hz, stereo</span><br>
-          <span style="color:var(--dim)">&gt; Waveform rendered ✓</span><br>
-          <span style="color:var(--dim)">&gt; Regions: </span><span style="color:var(--green)">7</span><br>
-          <span style="color:var(--dim)">&gt; Export: </span><span style="color:var(--amber)">JSON / CSV</span><br>
-          <span style="color:var(--dim)">&gt; Saved: </span><span style="color:var(--green)">annotations_v2.json ✓</span>
-        </div>
-        <div class="tool-body">
-          <span class="tool-badge">Audio · ML Dataset</span>
-          <h3>Audio Annotate</h3>
-          <p>Browser-based audio annotation tool for labelling speech, environmental sounds, and signal events. Exports training-ready datasets for ML pipelines.</p>
-        </div>
-        <div class="tool-foot">
-          <div class="stack-tags"><span class="st">Flask</span><span class="st">Web Audio API</span><span class="st">WaveSurfer.js</span></div>
-          <a href="#contact" class="tool-arrow">Hire for this →</a>
-        </div>
-      </div>
-
-      <div class="tool-card fade-up">
-        <div class="tool-preview">
-          <span style="color:var(--primary)">$ check-hw --model llama3:70b</span><br>
-          <span style="color:var(--dim)">&gt; RAM: 32 GB | VRAM: 8 GB</span><br>
-          <span style="color:var(--dim)">&gt; Model size: 40 GB (Q4_K)</span><br>
-          <span style="color:var(--dim)">&gt; Result: </span><span style="color:var(--amber)">PARTIAL</span><br>
-          <span style="color:var(--dim)">&gt; Recommended: </span><span style="color:var(--green)">llama3:8b-q4</span>
-        </div>
-        <div class="tool-body">
-          <span class="tool-badge">AI · Developer Tool</span>
-          <h3>Can I Run LLMs?</h3>
-          <p>Hardware compatibility checker for local LLMs. Scans system specs and recommends the best quantised models that fit RAM/VRAM constraints.</p>
-        </div>
-        <div class="tool-foot">
-          <div class="stack-tags"><span class="st">Flask</span><span class="st">psutil</span><span class="st">HuggingFace API</span></div>
-          <a href="#contact" class="tool-arrow">Hire for this →</a>
-        </div>
-      </div>
+    <div class="tools-grid tools-3">
 
       <div class="tool-card fade-up">
         <div class="tool-preview">
@@ -531,9 +603,9 @@
           <span style="color:var(--dim)">&gt; RT60: </span><span style="color:var(--green)">0.43s</span>
         </div>
         <div class="tool-body">
-          <span class="tool-badge">DSP · Acoustics · GUI</span>
+          <span class="tool-badge">Acoustics · Beamforming · GUI</span>
           <h3>Room Acoustics Simulator</h3>
-          <p>Interactive GUI for simulating room impulse responses with pyroomacoustics. Configure geometry, mic arrays, and visualise acoustic properties.</p>
+          <p>Interactive GUI for simulating room impulse responses with pyroomacoustics. Configure geometry, place microphone arrays, and visualise RIR, RT60, and acoustic properties.</p>
         </div>
         <div class="tool-foot">
           <div class="stack-tags"><span class="st">Python</span><span class="st">pyroomacoustics</span><span class="st">CustomTkinter</span></div>
@@ -543,42 +615,161 @@
 
       <div class="tool-card fade-up">
         <div class="tool-preview">
-          <span style="color:var(--primary)">$ generate --topic robotics --n 500</span><br>
-          <span style="color:var(--dim)">&gt; Model: gpt-4o-mini</span><br>
-          <span style="color:var(--dim)">&gt; ████████████████ 500/500</span><br>
-          <span style="color:var(--dim)">&gt; Deduped: </span><span style="color:var(--green)">487 unique</span><br>
-          <span style="color:var(--dim)">&gt; Export: </span><span style="color:var(--green)">dataset.csv ✓</span>
+          <span style="color:var(--primary)">$ annotate --file speech.wav</span><br>
+          <span style="color:var(--dim)">&gt; Loaded: 44100 Hz, stereo</span><br>
+          <span style="color:var(--dim)">&gt; Waveform rendered ✓</span><br>
+          <span style="color:var(--dim)">&gt; Regions: </span><span style="color:var(--green)">7</span><br>
+          <span style="color:var(--dim)">&gt; Export: </span><span style="color:var(--green)">annotations.json ✓</span>
         </div>
         <div class="tool-body">
-          <span class="tool-badge">AI · Data Generation</span>
-          <h3>Creative Dataset Maker</h3>
-          <p>AI-powered synthetic dataset generation for fine-tuning and evaluation. Define domain, schema, and sample count — get training-ready data in minutes.</p>
+          <span class="tool-badge">Audio · ML Dataset</span>
+          <h3>Audio Annotate</h3>
+          <p>Browser-based audio annotation tool for labelling speech, environmental sounds, and signal events — building the clean, training-ready datasets deep-learning models depend on.</p>
         </div>
         <div class="tool-foot">
-          <div class="stack-tags"><span class="st">Python</span><span class="st">OpenAI API</span><span class="st">CSV / JSON</span></div>
+          <div class="stack-tags"><span class="st">Web Audio API</span><span class="st">WaveSurfer.js</span><span class="st">Flask</span></div>
           <a href="#contact" class="tool-arrow">Hire for this →</a>
         </div>
       </div>
 
       <div class="tool-card fade-up">
         <div class="tool-preview">
-          <span style="color:var(--primary)">$ pitch-gen --company "RoboSense"</span><br>
-          <span style="color:var(--dim)">&gt; Analysing brief...</span><br>
-          <span style="color:var(--dim)">&gt; Slide 1: Problem ✓</span><br>
-          <span style="color:var(--dim)">&gt; Slide 2: Market ✓  ...</span><br>
-          <span style="color:var(--dim)">&gt; Export: </span><span style="color:var(--green)">pitch.pptx ✓</span>
+          <span style="color:var(--primary)">$ dataset-gen --domain audio</span><br>
+          <span style="color:var(--dim)">&gt; Augment: noise + reverb...</span><br>
+          <span style="color:var(--dim)">&gt; Samples: </span><span style="color:var(--green)">5,000</span><br>
+          <span style="color:var(--dim)">&gt; Splits: train/val/test ✓</span><br>
+          <span style="color:var(--dim)">&gt; Export: </span><span style="color:var(--green)">dataset.tar ✓</span>
         </div>
         <div class="tool-body">
-          <span class="tool-badge">AI · Productivity</span>
-          <h3>AI Pitch Deck Generator</h3>
-          <p>Automated pitch deck creation from a company brief. LLM-generated slide content, structured narrative, and professional PPTX export.</p>
+          <span class="tool-badge">Deep Learning · Data</span>
+          <h3>Audio Dataset Generator</h3>
+          <p>Pipeline for generating and augmenting audio datasets — adding controlled noise, reverberation, and room simulation to train robust signal and speech models.</p>
         </div>
         <div class="tool-foot">
-          <div class="stack-tags"><span class="st">Flask</span><span class="st">LLM</span><span class="st">python-pptx</span></div>
+          <div class="stack-tags"><span class="st">Python</span><span class="st">pyroomacoustics</span><span class="st">NumPy</span></div>
           <a href="#contact" class="tool-arrow">Hire for this →</a>
         </div>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- ══ APPLICATIONS / WHO I WORK WITH ══ -->
+<section id="apps" class="section">
+  <div class="section-inner">
+    <p class="s-label">// who I work with</p>
+    <h2 class="s-title">Built for research-driven teams.</h2>
+    <p class="s-sub">My work sits where peer-reviewed acoustics meets shipping product. These are the kinds of R&amp;D teams and deep-tech startups I'm a strong fit for — each domain backed by my published, cited research.</p>
+
+    <div class="apps-grid">
+
+      <div class="app-card fade-up">
+        <div class="app-icon"><i class="fas fa-assistive-listening-systems"></i></div>
+        <h3>Hearing Aids &amp; Hearables</h3>
+        <p>Multi-microphone beamforming, acoustic echo estimation, and DOA estimation for hearing devices and smart earbuds — extracting a target voice from noise.</p>
+        <div class="app-who"><b>For:</b> hearing-device &amp; hearable R&amp;D teams (Demant · GN · WS&nbsp;Audiology · Sonova&#8209;class)</div>
+        <div class="app-ref"><a href="https://scholar.google.com/citations?user=n0Sr370AAAAJ&hl=en" target="_blank"><i class="fas fa-file-alt"></i>Backed by: EM methods for multichannel TOA/DOA estimation of acoustic echoes</a></div>
+      </div>
+
+      <div class="app-card fade-up">
+        <div class="app-icon"><i class="fas fa-microphone-lines"></i></div>
+        <h3>Voice AI &amp; Far-Field Capture</h3>
+        <p>Far-field speech enhancement, ego-noise suppression, and deep-learning denoising — the front-end signal chain that makes voice interfaces robust in the real world.</p>
+        <div class="app-who"><b>For:</b> voice-AI, far-field ASR &amp; noise-cancellation startups (Krisp&#8209;class)</div>
+        <div class="app-ref"><a href="https://scholar.google.com/citations?user=n0Sr370AAAAJ&hl=en" target="_blank"><i class="fas fa-file-alt"></i>Backed by: Sound-based distance estimation in the presence of ego noise</a></div>
+      </div>
+
+      <div class="app-card fade-up">
+        <div class="app-icon"><i class="fas fa-robot"></i></div>
+        <h3>Robot &amp; Drone Audition</h3>
+        <p>Acoustic mapping and SLAM from echoes, reflector localisation, and audio-based perception for platforms that need to sense space through sound.</p>
+        <div class="app-who"><b>For:</b> autonomous-robot &amp; drone makers, acoustic-SLAM deep-tech startups</div>
+        <div class="app-ref"><a href="https://scholar.google.com/citations?user=n0Sr370AAAAJ&hl=en" target="_blank"><i class="fas fa-file-alt"></i>Backed by: Spatial map generation using acoustic echoes for robotic platforms (23 citations)</a></div>
+      </div>
+
+      <div class="app-card fade-up">
+        <div class="app-icon"><i class="fas fa-vr-cardboard"></i></div>
+        <h3>Spatial &amp; Immersive Audio</h3>
+        <p>Room impulse-response modelling, reverberation, and acoustic reflector estimation for realistic spatial audio in AR/VR and immersive experiences.</p>
+        <div class="app-who"><b>For:</b> spatial-audio teams at AR/VR, gaming &amp; immersive-media labs</div>
+        <div class="app-ref"><a href="https://scholar.google.com/citations?user=n0Sr370AAAAJ&hl=en" target="_blank"><i class="fas fa-file-alt"></i>Backed by: Estimation of acoustic echoes using expectation-maximization methods</a></div>
+      </div>
+
+      <div class="app-card fade-up">
+        <div class="app-icon"><i class="fas fa-location-crosshairs"></i></div>
+        <h3>Indoor Navigation &amp; Sensing</h3>
+        <p>Model-based localisation, distance estimation, and array signal processing for GPS-denied indoor navigation and acoustic sensing systems.</p>
+        <div class="app-who"><b>For:</b> indoor-positioning &amp; sensing startups; array-processing R&amp;D</div>
+        <div class="app-ref"><a href="https://scholar.google.com/citations?user=n0Sr370AAAAJ&hl=en" target="_blank"><i class="fas fa-file-alt"></i>Backed by: Model-based acoustic reflector localization with a robotic platform</a></div>
+      </div>
+
+      <div class="app-card fade-up">
+        <div class="app-icon"><i class="fas fa-volume-high"></i></div>
+        <h3>Consumer &amp; Pro Audio</h3>
+        <p>Microphone-array design, adaptive filtering, and DSP/deep-learning pipelines for speakers, conferencing hardware, and professional audio products.</p>
+        <div class="app-who"><b>For:</b> speaker, microphone &amp; conferencing-hardware R&amp;D (B&amp;O · Sonos · Shure&#8209;class)</div>
+        <div class="app-ref"><a href="https://scholar.google.com/citations?user=n0Sr370AAAAJ&hl=en" target="_blank"><i class="fas fa-graduation-cap"></i>See all peer-reviewed publications →</a></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ PUBLICATIONS ══ -->
+<section id="papers" class="section">
+  <div class="section-inner">
+    <p class="s-label">// research</p>
+    <h2 class="s-title">Peer-reviewed &amp; cited.</h2>
+    <p class="s-sub">The skills above aren't claims — they're published, independently cited research in IEEE, EUSIPCO, and EURASIP venues. Here's the verifiable track record.</p>
+
+    <div class="pub-metrics fade-up">
+      <div class="pub-metric"><div class="pub-metric-n">87</div><div class="pub-metric-l">Citations</div></div>
+      <div class="pub-metric"><div class="pub-metric-n">5</div><div class="pub-metric-l">h-index</div></div>
+      <div class="pub-metric"><div class="pub-metric-n">5</div><div class="pub-metric-l">i10-index</div></div>
+      <div class="pub-metric"><div class="pub-metric-n">IEEE</div><div class="pub-metric-l">EUSIPCO · EURASIP</div></div>
+    </div>
+
+    <div class="pub-list">
+      <a href="https://scholar.google.com/citations?user=n0Sr370AAAAJ&hl=en" target="_blank" class="pub-card fade-up">
+        <div class="pub-cite"><div class="pub-cite-n">23</div><div class="pub-cite-l">cited</div></div>
+        <div class="pub-info">
+          <h4>A framework for spatial map generation using acoustic echoes for robotic platforms</h4>
+          <div class="pub-meta"><span class="venue">Robotics and Autonomous Systems</span> · 2022</div>
+        </div>
+      </a>
+      <a href="https://scholar.google.com/citations?user=n0Sr370AAAAJ&hl=en" target="_blank" class="pub-card fade-up">
+        <div class="pub-cite"><div class="pub-cite-n">16</div><div class="pub-cite-l">cited</div></div>
+        <div class="pub-info">
+          <h4>Sound-based distance estimation for indoor navigation in the presence of ego noise</h4>
+          <div class="pub-meta"><span class="venue">EUSIPCO — European Signal Processing Conf.</span> · 2019</div>
+        </div>
+      </a>
+      <a href="https://scholar.google.com/citations?user=n0Sr370AAAAJ&hl=en" target="_blank" class="pub-card fade-up">
+        <div class="pub-cite"><div class="pub-cite-n">15</div><div class="pub-cite-l">cited</div></div>
+        <div class="pub-info">
+          <h4>Estimation of acoustic echoes using expectation-maximization methods</h4>
+          <div class="pub-meta"><span class="venue">EURASIP Journal on Audio, Speech, and Music Processing</span> · 2020</div>
+        </div>
+      </a>
+      <a href="https://scholar.google.com/citations?user=n0Sr370AAAAJ&hl=en" target="_blank" class="pub-card fade-up">
+        <div class="pub-cite"><div class="pub-cite-n">14</div><div class="pub-cite-l">cited</div></div>
+        <div class="pub-info">
+          <h4>An EM method for multichannel TOA and DOA estimation of acoustic echoes</h4>
+          <div class="pub-meta"><span class="venue">IEEE WASPAA</span> · 2019</div>
+        </div>
+      </a>
+      <a href="https://scholar.google.com/citations?user=n0Sr370AAAAJ&hl=en" target="_blank" class="pub-card fade-up">
+        <div class="pub-cite"><div class="pub-cite-n">10</div><div class="pub-cite-l">cited</div></div>
+        <div class="pub-info">
+          <h4>A model-based approach to acoustic reflector localization with a robotic platform</h4>
+          <div class="pub-meta"><span class="venue">IEEE/RSJ IROS</span> · 2020</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="pub-foot fade-up">
+      <a href="https://scholar.google.com/citations?user=n0Sr370AAAAJ&hl=en" target="_blank" class="btn-ghost"><i class="fab fa-google" style="margin-right:8px"></i>View full Google Scholar profile →</a>
     </div>
   </div>
 </section>
@@ -599,19 +790,18 @@
         <div class="cmd-cols">
           <div>
             <div class="cmd-col-head">TECHNICAL STACK</div>
-            <div class="cmd-row"><span class="cmd-k">languages</span><span class="cmd-v">Python · MATLAB · C++ · JavaScript · SQL</span></div>
-            <div class="cmd-row"><span class="cmd-k">frameworks</span><span class="cmd-v">Flask · FastAPI · PyTorch · NumPy · SciPy</span></div>
-            <div class="cmd-row"><span class="cmd-k">dsp_tools</span><span class="cmd-v">pyroomacoustics · librosa · scipy.signal</span></div>
-            <div class="cmd-row"><span class="cmd-k">ai_tools</span><span class="cmd-v">OpenAI · Ollama · HuggingFace · LangChain</span></div>
-            <div class="cmd-row"><span class="cmd-k">databases</span><span class="cmd-v">SQLite · MySQL · PostgreSQL</span></div>
-            <div class="cmd-row"><span class="cmd-k">deployment</span><span class="cmd-v">Linux · Docker · PythonAnywhere · GitHub CI</span></div>
-            <div class="cmd-row"><span class="cmd-k">viz</span><span class="cmd-v">Leaflet.js · Matplotlib · Plotly · D3.js</span></div>
+            <div class="cmd-row"><span class="cmd-k">languages</span><span class="cmd-v">Python · MATLAB · C++</span></div>
+            <div class="cmd-row"><span class="cmd-k">dsp</span><span class="cmd-v">scipy.signal · NumPy · librosa · FFT/FIR/IIR</span></div>
+            <div class="cmd-row"><span class="cmd-k">acoustics</span><span class="cmd-v">pyroomacoustics · RIR · RT60 · beamforming</span></div>
+            <div class="cmd-row"><span class="cmd-k">arrays</span><span class="cmd-v">delay-and-sum · MVDR · DOA · spatial filtering</span></div>
+            <div class="cmd-row"><span class="cmd-k">deep_learning</span><span class="cmd-v">PyTorch · CNN/RNN/Transformer · ONNX</span></div>
+            <div class="cmd-row"><span class="cmd-k">deployment</span><span class="cmd-v">Linux · Docker · Flask/FastAPI · GitHub CI</span></div>
             <br>
             <div class="cmd-col-head">ENGAGEMENT TYPES</div>
-            <div class="cmd-row"><span class="cmd-k">type_1</span><span class="cmd-v g">Fixed-scope deliverable contract</span></div>
-            <div class="cmd-row"><span class="cmd-k">type_2</span><span class="cmd-v g">Ongoing advisory / part-time retainer</span></div>
-            <div class="cmd-row"><span class="cmd-k">type_3</span><span class="cmd-v g">Remote technical workshop</span></div>
-            <div class="cmd-row"><span class="cmd-k">type_4</span><span class="cmd-v g">Research &amp; technical consulting</span></div>
+            <div class="cmd-row"><span class="cmd-k">type_1</span><span class="cmd-v g">Fixed-scope DSP / acoustics deliverable</span></div>
+            <div class="cmd-row"><span class="cmd-k">type_2</span><span class="cmd-v g">Ongoing R&amp;D advisory / retainer</span></div>
+            <div class="cmd-row"><span class="cmd-k">type_3</span><span class="cmd-v g">Algorithm prototyping → production</span></div>
+            <div class="cmd-row"><span class="cmd-k">type_4</span><span class="cmd-v g">Research &amp; technical due diligence</span></div>
           </div>
           <div>
             <div class="cmd-col-head">AVAILABILITY</div>
@@ -622,10 +812,11 @@
             <div class="cmd-row"><span class="cmd-k">response_time</span><span class="cmd-v a">&lt; 24 hours</span></div>
             <br>
             <div class="cmd-col-head">CREDENTIALS</div>
-            <div class="cmd-row"><span class="cmd-k">degree</span><span class="cmd-v">PhD — Signal Processing for Robotics</span></div>
-            <div class="cmd-row"><span class="cmd-k">institution</span><span class="cmd-v">IT University of Copenhagen</span></div>
-            <div class="cmd-row"><span class="cmd-k">experience_in</span><span class="cmd-v">Europe · Middle East · APAC</span></div>
-            <div class="cmd-row"><span class="cmd-k">publications</span><span class="cmd-v">IEEE · peer-reviewed journals</span></div>
+            <div class="cmd-row"><span class="cmd-k">degree</span><span class="cmd-v">PhD — Signal Processing &amp; Acoustics</span></div>
+            <div class="cmd-row"><span class="cmd-k">research_at</span><span class="cmd-v">Aalborg University · audio &amp; robot audition</span></div>
+            <div class="cmd-row"><span class="cmd-k">citations</span><span class="cmd-v a">87 · h-index 5 · i10-index 5</span></div>
+            <div class="cmd-row"><span class="cmd-k">venues</span><span class="cmd-v">IEEE · EUSIPCO · EURASIP · IROS</span></div>
+            <div class="cmd-row"><span class="cmd-k">scholar</span><span class="cmd-v"><a href="https://scholar.google.com/citations?user=n0Sr370AAAAJ&hl=en" target="_blank">Google Scholar profile</a></span></div>
             <div class="cmd-row"><span class="cmd-k">linkedin</span><span class="cmd-v"><a href="https://linkedin.com/in/usamasaqib" target="_blank">linkedin.com/in/usamasaqib</a></span></div>
           </div>
         </div>
@@ -646,6 +837,7 @@
         <div class="contact-methods">
           <a href="mailto:zerooneeta@gmail.com" class="c-method"><i class="fas fa-envelope"></i>zerooneeta@gmail.com</a>
           <a href="https://linkedin.com/in/usamasaqib" target="_blank" class="c-method"><i class="fab fa-linkedin-in"></i>linkedin.com/in/usamasaqib</a>
+          <a href="https://scholar.google.com/citations?user=n0Sr370AAAAJ&hl=en" target="_blank" class="c-method"><i class="fas fa-graduation-cap"></i>Google Scholar — 87 citations</a>
           <a href="https://github.com/ZeroOneEta" target="_blank" class="c-method"><i class="fab fa-github"></i>github.com/ZeroOneEta</a>
         </div>
       </div>
@@ -660,11 +852,10 @@
           <select name="type">
             <option value="">Select engagement type</option>
             <option>Signal Processing / DSP</option>
-            <option>Robotics &amp; Perception</option>
-            <option>AI / ML Engineering</option>
-            <option>Real-time Dashboard / Data System</option>
-            <option>Training &amp; Workshop</option>
-            <option>Research Consulting</option>
+            <option>Acoustics &amp; Room Modelling</option>
+            <option>Beamforming &amp; Array Processing</option>
+            <option>Deep Learning for Signals / Audio</option>
+            <option>Research &amp; Technical Due Diligence</option>
             <option>Other</option>
           </select>
         </div>
@@ -683,38 +874,39 @@
   <div class="foot-inner">
     <div class="foot-brand">
       <span style="font-family:var(--mono);font-size:1rem;color:var(--primary);font-weight:700;">ZeroOneEta</span>
-      <p>PhD-level signal processing and AI engineering, available remotely for contract work worldwide.</p>
+      <p>PhD signal processing, acoustics, beamforming &amp; deep learning — peer-reviewed research, available remotely for contract work worldwide.</p>
       <div class="social-row">
         <a href="https://linkedin.com/in/usamasaqib" target="_blank" class="soc-link"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://scholar.google.com/citations?user=n0Sr370AAAAJ&hl=en" target="_blank" class="soc-link"><i class="fas fa-graduation-cap"></i></a>
         <a href="https://github.com/ZeroOneEta" target="_blank" class="soc-link"><i class="fab fa-github"></i></a>
         <a href="mailto:zerooneeta@gmail.com" class="soc-link"><i class="fas fa-envelope"></i></a>
       </div>
     </div>
     <div class="foot-col">
-      <h4>Services</h4>
+      <h4>Expertise</h4>
       <div class="foot-links">
-        <a href="#services">Signal Processing</a>
-        <a href="#services">Robotics &amp; Perception</a>
-        <a href="#services">AI / ML Engineering</a>
-        <a href="#services">Training &amp; Workshops</a>
-        <a href="#services">Research Consulting</a>
+        <a href="#services">Signal Processing &amp; DSP</a>
+        <a href="#services">Acoustics</a>
+        <a href="#services">Beamforming &amp; Arrays</a>
+        <a href="#services">Deep Learning</a>
+        <a href="#dsp">Live Demo</a>
       </div>
     </div>
     <div class="foot-col">
-      <h4>Portfolio</h4>
+      <h4>Industries</h4>
       <div class="foot-links">
-        <a href="#tools">Eagle Eye</a>
-        <a href="#tools">Audio Annotate</a>
-        <a href="#tools">Can I Run LLMs?</a>
-        <a href="#tools">Room Acoustics</a>
-        <a href="#tools">Dataset Maker</a>
+        <a href="#apps">Hearing &amp; Hearables</a>
+        <a href="#apps">Voice AI</a>
+        <a href="#apps">Robot &amp; Drone Audition</a>
+        <a href="#apps">Spatial Audio</a>
+        <a href="#apps">Consumer Audio</a>
       </div>
     </div>
     <div class="foot-col">
-      <h4>Resources</h4>
+      <h4>Research</h4>
       <div class="foot-links">
-        <a href="blog.html">Blog</a>
-        <a href="https://zerooneeta.gumroad.com" target="_blank">Gumroad Store</a>
+        <a href="#papers">Publications</a>
+        <a href="https://scholar.google.com/citations?user=n0Sr370AAAAJ&hl=en" target="_blank">Google Scholar</a>
         <a href="https://linkedin.com/in/usamasaqib" target="_blank">LinkedIn</a>
         <a href="#contact">Hire Me</a>
       </div>
@@ -730,17 +922,17 @@
 /* ── Terminal animation ── */
 const LINES = [
   {t:'cmd', s:'whoami'},
-  {t:'out', s:'Usama Saqib, PhD — Signal Processing & AI Engineer', c:'c'},
+  {t:'out', s:'Usama Saqib, PhD — Signal Processing Engineer', c:'c'},
   {t:'br'},
   {t:'cmd', s:'cat expertise.txt'},
-  {t:'out', s:'PhD · Signal Processing · Robotics · Audio DSP'},
-  {t:'out', s:'AI/ML · Real-time Systems · Python · Flask'},
+  {t:'out', s:'Signal Processing · Acoustics'},
+  {t:'out', s:'Beamforming · Deep Learning'},
+  {t:'br'},
+  {t:'cmd', s:'cat research.txt'},
+  {t:'out', s:'87 citations · h-index 5 · IEEE / EUSIPCO / EURASIP', c:'a'},
   {t:'br'},
   {t:'cmd', s:'./check-availability --contract'},
-  {t:'out', s:'● OPEN FOR CONTRACT WORK · Remote Global · CET', c:'g'},
-  {t:'br'},
-  {t:'cmd', s:'ls ./deployed-tools/'},
-  {t:'out', s:'eagle-eye/  audio-annotate/  canrunllms/  room-acoustics/'},
+  {t:'out', s:'● OPEN FOR CONTRACT WORK · Remote · Global', c:'g'},
 ];
 const body = document.getElementById('termBody');
 const sleep = ms => new Promise(r => setTimeout(r, ms));
@@ -780,6 +972,121 @@ const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
 }, {threshold: 0.08});
 document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+/* ── DSP Playground (live animated demos) ── */
+(function () {
+  const COLS = 56, ROWS = 11;
+  const plot = document.getElementById('dspPlot');
+  const cmdEl = document.getElementById('dspCmd');
+  const capEl = document.getElementById('dspCap');
+  if (!plot) return;
+
+  const blank = () => Array.from({ length: ROWS }, () => Array(COLS).fill(' '));
+  const render = g => { plot.textContent = g.map(r => r.join('')).join('\n'); };
+
+  function wave(vals) {
+    const g = blank(), mid = (ROWS - 1) / 2;
+    for (let x = 0; x < COLS; x++) {
+      if (g[Math.round(mid)][x] === ' ') g[Math.round(mid)][x] = '·';
+    }
+    for (let x = 0; x < COLS; x++) {
+      const v = Math.max(-1, Math.min(1, vals[x]));
+      const y = Math.max(0, Math.min(ROWS - 1, Math.round(mid - v * mid)));
+      g[y][x] = '█';
+    }
+    return g;
+  }
+  function bars(h, axisLabels) {
+    const g = blank();
+    for (let x = 0; x < COLS; x++) {
+      const hh = Math.round(Math.max(0, Math.min(1, h[x])) * (ROWS - 1));
+      for (let y = 0; y < hh; y++) g[ROWS - 1 - y][x] = '█';
+    }
+    for (let x = 0; x < COLS; x++) if (g[ROWS - 1][x] === ' ') g[ROWS - 1][x] = '─';
+    return g;
+  }
+
+  const demos = [
+    { cmd: 'gen(sig="sin(3t)+0.5·sin(9t)", noise=0.2)', cap: 'time-domain signal · 2 tones + noise', dur: 70,
+      frame: f => {
+        const v = [];
+        for (let x = 0; x < COLS; x++) {
+          const t = (x + f) * 0.30;
+          v.push((Math.sin(t * 0.55) + 0.5 * Math.sin(t * 1.65) + (Math.random() - 0.5) * 0.45) / 1.7);
+        }
+        return wave(v);
+      } },
+    { cmd: 'np.fft.rfft(sig, n=512, window="hann")', cap: 'frequency domain · peaks @ 3 Hz and 9 Hz', dur: 70,
+      frame: f => {
+        const grow = Math.min(1, f / 26);
+        const h = [];
+        for (let x = 0; x < COLS; x++) {
+          const p1 = Math.exp(-((x - 11) ** 2) / 7);
+          const p2 = Math.exp(-((x - 30) ** 2) / 7);
+          const floor = 0.04 + 0.05 * Math.random();
+          h.push((floor + 0.96 * p1 + 0.62 * p2) * grow);
+        }
+        return bars(h);
+      } },
+    { cmd: 'firwin(64, cutoff=6Hz, window="hamming")', cap: 'FIR low-pass · noise removed, tone recovered', dur: 80,
+      frame: f => {
+        const a = Math.min(1, Math.max(0, (f - 8) / 50));
+        const v = [];
+        for (let x = 0; x < COLS; x++) {
+          const t = x * 0.30;
+          const noisy = Math.sin(t * 0.55) + 0.55 * Math.sin(t * 1.9) + (Math.random() - 0.5) * 0.6;
+          const clean = Math.sin(t * 0.55);
+          v.push(((1 - a) * noisy + a * clean) / 1.7);
+        }
+        return wave(v);
+      } },
+    { cmd: 'beamform(mics=8, doa=35°, method="delay-sum")', cap: 'array beampattern · main lobe locked @ 35°', dur: 90,
+      frame: f => {
+        const target = 35;
+        const steer = Math.min(target, -90 + f * (target + 90) / 45);
+        const N = 8, h = [];
+        for (let x = 0; x < COLS; x++) {
+          const ang = -90 + 180 * x / (COLS - 1);
+          const psi = Math.PI * Math.sin((ang - steer) * Math.PI / 180);
+          let af = Math.abs(Math.sin(N * psi / 2) / (N * Math.sin(psi / 2)));
+          if (!isFinite(af)) af = 1;
+          h.push(af);
+        }
+        return bars(h);
+      } },
+  ];
+
+  const concepts = document.querySelectorAll('.dsp-concept');
+  const pills = document.querySelectorAll('.dsp-pill');
+  let di = 0, frame = 0, typed = 0, started = false;
+
+  function setActive(i) {
+    concepts.forEach(c => c.classList.toggle('live', +c.dataset.demo === i));
+    pills.forEach(p => p.classList.toggle('live', +p.dataset.pill === i));
+  }
+
+  function tick() {
+    const d = demos[di];
+    if (typed < d.cmd.length) {
+      typed++;
+      cmdEl.textContent = '>>> ' + d.cmd.slice(0, typed) + '▋';
+    } else {
+      cmdEl.textContent = '>>> ' + d.cmd;
+      render(d.frame(frame));
+      capEl.textContent = '# ' + d.cap;
+      frame++;
+      if (frame > d.dur) { di = (di + 1) % demos.length; typed = 0; frame = 0; setActive(di); }
+    }
+  }
+
+  // start only when scrolled into view
+  const io = new IntersectionObserver(es => {
+    es.forEach(e => {
+      if (e.isIntersecting && !started) { started = true; setActive(0); setInterval(tick, 55); }
+    });
+  }, { threshold: 0.2 });
+  io.observe(document.getElementById('dsp'));
+})();
 
 /* ── Contact form (mailto fallback) ── */
 document.getElementById('contactForm').addEventListener('submit', function(e) {
