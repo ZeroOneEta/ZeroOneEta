@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Usama Saqib, PhD — Signal Processing & AI Consultant | ZeroOneEta</title>
-  <meta name="description" content="PhD-level signal processing and AI engineering consultant. Expert in robotics, audio DSP, real-time systems, and applied ML. Available for remote contract work globally.">
+  <title>ZeroOneEta — Signal Processing, Acoustics, Beamforming & Deep Learning Studio</title>
+  <meta name="description" content="ZeroOneEta is a specialist signal-processing studio: acoustics, beamforming, microphone arrays, and deep learning for audio. Peer-reviewed, IEEE-published research, available remotely for contract work worldwide.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -49,7 +49,7 @@
     .nav-brand { text-decoration:none; display:flex; flex-direction:column; }
     .nav-brand-name { font-family:var(--mono); font-size:1.05rem; font-weight:700; color:var(--primary); letter-spacing:-0.01em; }
     .nav-brand-sub  { font-family:var(--mono); font-size:0.68rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase; margin-top:1px; }
-    .nav-links { display:flex; gap:32px; list-style:none; }
+    .nav-links { display:flex; gap:26px; list-style:none; }
     .nav-links a { font-family:var(--mono); font-size:0.85rem; color:var(--dim); text-decoration:none; transition:color 0.2s; }
     .nav-links a:hover { color:var(--primary); }
     .nav-hire {
@@ -64,7 +64,7 @@
     /* ── HERO ── */
     .hero {
       min-height:100vh; display:flex; align-items:center;
-      padding:100px 24px 80px; position:relative; overflow:hidden;
+      padding:96px 24px 48px; position:relative; overflow:hidden;
       background:radial-gradient(ellipse 70% 40% at 50% 0%, rgba(6,182,212,0.07), transparent);
     }
     .hero::before {
@@ -87,11 +87,11 @@
     .hero-badge-dot { width:7px; height:7px; background:var(--green); border-radius:50%; animation:pulse 1.8s ease infinite; }
     @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.3;transform:scale(0.8)} }
     .hero h1 {
-      font-size:3.4rem; font-weight:800; line-height:1.08;
-      letter-spacing:-0.04em; color:var(--text); margin-bottom:20px;
+      font-size:3rem; font-weight:800; line-height:1.08;
+      letter-spacing:-0.04em; color:var(--text); margin-bottom:18px;
     }
     .hero h1 em { font-style:normal; color:var(--primary); }
-    .hero-desc { font-size:1.05rem; color:var(--dim); line-height:1.75; margin-bottom:36px; max-width:500px; }
+    .hero-desc { font-size:1rem; color:var(--dim); line-height:1.7; margin-bottom:24px; max-width:520px; }
     .hero-btns { display:flex; gap:14px; flex-wrap:wrap; }
     .btn-primary {
       background:var(--primary); color:var(--bg); padding:12px 28px; border-radius:8px;
@@ -105,6 +105,42 @@
       text-decoration:none; cursor:pointer; transition:all 0.2s; display:inline-block;
     }
     .btn-ghost:hover { border-color:var(--primary); color:var(--primary); transform:translateY(-2px); }
+
+    /* Hero skills (above the fold) */
+    .hero-skills { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-bottom:22px; max-width:480px; }
+    .hero-skill {
+      display:flex; align-items:center; gap:11px; padding:12px 15px;
+      background:var(--card); border:1px solid var(--border); border-radius:9px;
+      text-decoration:none; transition:all 0.2s;
+    }
+    .hero-skill:hover { border-color:var(--primary); transform:translateY(-2px); box-shadow:0 8px 20px rgba(0,0,0,0.3); }
+    .hero-skill i { color:var(--primary); font-size:1rem; width:18px; text-align:center; }
+    .hero-skill span { font-family:var(--mono); font-size:0.82rem; font-weight:500; color:var(--text); }
+
+    /* Hero stats */
+    .hero-stats { display:flex; gap:26px; margin-bottom:28px; }
+    .hstat { display:flex; flex-direction:column; }
+    .hstat b { font-family:var(--mono); font-size:1.15rem; color:var(--primary); font-weight:700; line-height:1; }
+    .hstat span { font-size:0.69rem; color:var(--muted); margin-top:6px; text-transform:uppercase; letter-spacing:0.06em; }
+
+    /* Interactive DSP terminal */
+    .iterm { background:#000c18; border:1px solid var(--glow); border-radius:12px; overflow:hidden;
+      box-shadow:0 0 55px rgba(6,182,212,0.10), 0 40px 80px rgba(0,0,0,0.5); display:flex; flex-direction:column; }
+    .iterm-bar { background:#0a1526; padding:11px 16px; display:flex; align-items:center; gap:8px; border-bottom:1px solid var(--border); }
+    .iterm-title { flex:1; text-align:center; font-family:var(--mono); font-size:0.73rem; color:var(--muted); }
+    .iterm-body { padding:18px 20px 16px; }
+    .iterm-plot { font-family:var(--mono); font-size:0.74rem; line-height:1.05; color:var(--primary); white-space:pre;
+      margin:0; min-height:158px; text-shadow:0 0 6px rgba(6,182,212,0.35); overflow:hidden; }
+    .iterm-cap { font-family:var(--mono); font-size:0.72rem; color:var(--green); margin:10px 0 12px; min-height:1.1em; }
+    .iterm-line { display:flex; align-items:center; gap:9px; border-top:1px solid var(--border); padding-top:13px; }
+    .iterm-prompt { font-family:var(--mono); color:var(--primary); font-weight:700; }
+    .iterm-input { flex:1; background:transparent; border:none; outline:none; color:var(--text);
+      font-family:var(--mono); font-size:0.82rem; caret-color:var(--primary); }
+    .iterm-input::placeholder { color:var(--muted); }
+    .iterm-chips { display:flex; flex-wrap:wrap; gap:7px; padding:0 20px 18px; }
+    .iterm-chip { font-family:var(--mono); font-size:0.72rem; color:var(--primary); background:var(--primary-dim);
+      border:1px solid rgba(6,182,212,0.25); padding:5px 13px; border-radius:50px; cursor:pointer; transition:all 0.2s; }
+    .iterm-chip:hover { background:var(--primary); color:var(--bg); box-shadow:0 0 16px var(--primary-glow); }
 
     /* Terminal */
     .terminal {
@@ -395,8 +431,8 @@
       .services-grid, .services-4 { grid-template-columns:1fr; }
       .tools-grid { grid-template-columns:1fr; }
       .about-stats { grid-template-columns:repeat(3,1fr); }
-      .dsp-plot { font-size:0.6rem; }
-      .pub-card { flex-direction:column; gap:12px; }
+      .iterm-plot { font-size:0.58rem; }
+      .hero-stats { gap:18px; }
       .apps-grid { grid-template-columns:1fr; }
       .nav-links { display:none; }
       .mobile-btn { display:block; }
@@ -418,40 +454,69 @@
   <div class="nav-inner">
     <a href="#home" class="nav-brand">
       <span class="nav-brand-name">ZeroOneEta</span>
-      <span class="nav-brand-sub">Usama Saqib, PhD</span>
+      <span class="nav-brand-sub">DSP · Acoustics · Deep Learning</span>
     </a>
     <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Terminal</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#services">Services</a></li>
-      <li><a href="#dsp">Live Demo</a></li>
       <li><a href="#apps">Industries</a></li>
-      <li><a href="#papers">Research</a></li>
+      <li><a href="blog.html">Insights</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <a href="#contact" class="nav-hire">Hire Me →</a>
+    <a href="#contact" class="nav-hire">Start a Project →</a>
     <button class="mobile-btn" id="mobileBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
   </div>
 </nav>
 
-<!-- ══ HERO ══ -->
+<!-- ══ HERO (command-center) ══ -->
 <section id="home" class="hero">
   <div class="hero-inner">
-    <div>
-      <div class="hero-badge"><span class="hero-badge-dot"></span>Available for Remote Contract Work</div>
+    <div class="hero-left">
+      <div class="hero-badge"><span class="hero-badge-dot"></span>Open for new projects · Remote · Global</div>
       <h1>Signal Processing.<br><em>Acoustics</em>. Deep Learning.</h1>
-      <p class="hero-desc">PhD signal-processing engineer specialising in acoustics, beamforming, and deep learning. I turn raw sensor and audio data into actionable intelligence — from microphone-array processing to neural inference, deployed to production.</p>
+      <p class="hero-desc">ZeroOneEta is a specialist signal-processing studio — microphone-array beamforming to neural inference, grounded in IEEE-published research and shipped to production.</p>
+
+      <div class="hero-skills">
+        <a href="#services" class="hero-skill"><i class="fas fa-wave-square"></i><span>Signal Processing</span></a>
+        <a href="#services" class="hero-skill"><i class="fas fa-volume-up"></i><span>Acoustics</span></a>
+        <a href="#services" class="hero-skill"><i class="fas fa-broadcast-tower"></i><span>Beamforming</span></a>
+        <a href="#services" class="hero-skill"><i class="fas fa-brain"></i><span>Deep Learning</span></a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hstat"><b>IEEE</b><span>Published research</span></div>
+        <div class="hstat"><b>Remote</b><span>Global · CET</span></div>
+        <div class="hstat"><b>&lt;24h</b><span>Response time</span></div>
+      </div>
+
       <div class="hero-btns">
-        <a href="#tools" class="btn-primary">See My Work</a>
-        <a href="#contact" class="btn-ghost">Hire Me for a Project</a>
+        <a href="#contact" class="btn-primary">Start a Project</a>
+        <a href="#services" class="btn-ghost">Our Services</a>
       </div>
     </div>
 
-    <div class="terminal">
-      <div class="t-bar">
+    <!-- Interactive DSP terminal -->
+    <div class="iterm">
+      <div class="iterm-bar">
         <span class="t-dot r"></span><span class="t-dot y"></span><span class="t-dot g"></span>
-        <span class="t-bar-title">usama@zerooneta ~ $</span>
+        <span class="iterm-title">dsp-shell — interactive · type a command</span>
       </div>
-      <div class="t-body" id="termBody"></div>
+      <div class="iterm-body">
+        <pre class="iterm-plot" id="itPlot"></pre>
+        <div class="iterm-cap" id="itCap"># try a command — or click a chip below</div>
+        <div class="iterm-line">
+          <span class="iterm-prompt">$</span>
+          <input id="itInput" class="iterm-input" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="DSP terminal input" placeholder="type 'help' and press enter…" />
+        </div>
+      </div>
+      <div class="iterm-chips">
+        <button class="iterm-chip" data-cmd="synth">synth</button>
+        <button class="iterm-chip" data-cmd="fft">fft</button>
+        <button class="iterm-chip" data-cmd="lowpass">lowpass</button>
+        <button class="iterm-chip" data-cmd="beamform --doa 35">beamform</button>
+        <button class="iterm-chip" data-cmd="help">help</button>
+      </div>
     </div>
   </div>
 </section>
@@ -464,9 +529,9 @@
         <p class="s-label">// about</p>
         <h2 class="s-title">Engineering from first principles.</h2>
         <div class="about-text">
-          <p>I hold a PhD in signal processing from the IT University of Copenhagen. My work centres on four things: <strong style="color:var(--text)">digital signal processing, acoustics, beamforming, and deep learning</strong> — from microphone-array geometry and room-impulse modelling to neural networks trained on raw signals.</p>
-          <p>With experience spanning Europe, the Middle East, and Asia-Pacific, I've consulted for research labs, startups, and enterprises. Every engagement begins at the mathematics and ends with working, deployed code — not just a notebook.</p>
-          <p>Currently available remotely for contract work globally — from focused technical spikes to multi-month engagements. CET timezone, 24h response time.</p>
+          <p>ZeroOneEta is a specialist signal-processing studio. We focus on four things: <strong style="color:var(--text)">digital signal processing, acoustics, beamforming, and deep learning</strong> — from microphone-array geometry and room-impulse modelling to neural networks trained on raw signals.</p>
+          <p>Our work is grounded in peer-reviewed research — a PhD in signal processing and acoustics, with published, independently cited work in IEEE, EUSIPCO, and EURASIP venues. Every engagement begins at the mathematics and ends with working, deployed code — not just a notebook.</p>
+          <p>We work remotely with research labs, deep-tech startups, and enterprises worldwide — from focused technical spikes to multi-month engagements. CET timezone, 24-hour response time.</p>
         </div>
         <div class="about-stats">
           <div class="stat">
@@ -502,7 +567,7 @@
 <section id="services" class="section">
   <div class="section-inner">
     <p class="s-label">// services</p>
-    <h2 class="s-title">What you can hire me for.</h2>
+    <h2 class="s-title">What you can hire us for.</h2>
     <p class="s-sub">Four deep specialisms — not a long generic menu. Remote-first, fixed-scope contracts or ongoing advisory, available globally from a CET timezone overlapping European, Middle Eastern, and US Eastern hours.</p>
 
     <div class="services-grid services-4">
@@ -537,60 +602,12 @@
   </div>
 </section>
 
-<!-- ══ DSP PLAYGROUND ══ -->
-<section id="dsp" class="section">
-  <div class="section-inner">
-    <p class="s-label">// live demo</p>
-    <h2 class="s-title">Signal processing, running live.</h2>
-    <p class="s-sub">These aren't stock images — the terminal below computes and animates each concept in real time, the same primitives I build production systems on. It cycles automatically through four fundamentals.</p>
-
-    <div class="dsp-grid">
-      <div class="dsp-concepts fade-up">
-        <div class="dsp-concept" data-demo="0">
-          <span class="dsp-concept-num">01</span>
-          <div><h4>Signal Synthesis</h4><p>Summing sinusoids and additive noise — the raw time-domain signal everything starts from.</p></div>
-        </div>
-        <div class="dsp-concept" data-demo="1">
-          <span class="dsp-concept-num">02</span>
-          <div><h4>FFT / Spectrum</h4><p>Transforming to the frequency domain reveals the hidden tones as sharp spectral peaks.</p></div>
-        </div>
-        <div class="dsp-concept" data-demo="2">
-          <span class="dsp-concept-num">03</span>
-          <div><h4>FIR Low-Pass Filter</h4><p>A designed filter strips high-frequency noise, recovering the clean underlying waveform.</p></div>
-        </div>
-        <div class="dsp-concept" data-demo="3">
-          <span class="dsp-concept-num">04</span>
-          <div><h4>Beamforming</h4><p>An 8-mic array steers its main lobe toward a source — spatial filtering in action.</p></div>
-        </div>
-      </div>
-
-      <div class="dsp-box fade-up">
-        <div class="dsp-head">
-          <span class="t-dot r"></span><span class="t-dot y"></span><span class="t-dot g"></span>
-          <span class="dsp-head-title">dsp-playground — python3</span>
-        </div>
-        <div class="dsp-screen">
-          <div class="dsp-cmd" id="dspCmd">$ _</div>
-          <pre class="dsp-plot" id="dspPlot"></pre>
-          <div class="dsp-cap" id="dspCap"></div>
-          <div class="dsp-pills">
-            <span class="dsp-pill" data-pill="0">synthesis</span>
-            <span class="dsp-pill" data-pill="1">fft</span>
-            <span class="dsp-pill" data-pill="2">fir-filter</span>
-            <span class="dsp-pill" data-pill="3">beamform</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ══ TOOLS SHOWCASE ══ -->
 <section id="tools" class="section">
   <div class="section-inner">
     <p class="s-label">// portfolio</p>
     <h2 class="s-title">Engineering, not just papers.</h2>
-    <p class="s-sub">Research is only half the job. I ship working audio and DSP software — these are interactive tools I've built and deployed, turning the theory above into systems people actually use.</p>
+    <p class="s-sub">Research is only half the job. We ship working audio and DSP software — interactive tools we've built and deployed, turning the theory above into systems people actually use.</p>
 
     <div class="tools-grid tools-3">
 
@@ -658,9 +675,9 @@
 <!-- ══ APPLICATIONS / WHO I WORK WITH ══ -->
 <section id="apps" class="section">
   <div class="section-inner">
-    <p class="s-label">// who I work with</p>
+    <p class="s-label">// who we work with</p>
     <h2 class="s-title">Built for research-driven teams.</h2>
-    <p class="s-sub">My work sits where peer-reviewed acoustics meets shipping product. These are the kinds of R&amp;D teams and deep-tech startups I'm a strong fit for — each domain backed by my published, cited research.</p>
+    <p class="s-sub">Our work sits where peer-reviewed acoustics meets shipping product. These are the kinds of R&amp;D teams and deep-tech startups we're a strong fit for — each domain backed by published, independently cited research.</p>
 
     <div class="apps-grid">
 
@@ -716,64 +733,6 @@
   </div>
 </section>
 
-<!-- ══ PUBLICATIONS ══ -->
-<section id="papers" class="section">
-  <div class="section-inner">
-    <p class="s-label">// research</p>
-    <h2 class="s-title">Peer-reviewed &amp; cited.</h2>
-    <p class="s-sub">The skills above aren't claims — they're published, independently cited research in IEEE, EUSIPCO, and EURASIP venues. Here's the verifiable track record.</p>
-
-    <div class="pub-metrics fade-up">
-      <div class="pub-metric"><div class="pub-metric-n">87</div><div class="pub-metric-l">Citations</div></div>
-      <div class="pub-metric"><div class="pub-metric-n">5</div><div class="pub-metric-l">h-index</div></div>
-      <div class="pub-metric"><div class="pub-metric-n">5</div><div class="pub-metric-l">i10-index</div></div>
-      <div class="pub-metric"><div class="pub-metric-n">IEEE</div><div class="pub-metric-l">EUSIPCO · EURASIP</div></div>
-    </div>
-
-    <div class="pub-list">
-      <a href="https://scholar.google.com/citations?user=n0Sr370AAAAJ&hl=en" target="_blank" class="pub-card fade-up">
-        <div class="pub-cite"><div class="pub-cite-n">23</div><div class="pub-cite-l">cited</div></div>
-        <div class="pub-info">
-          <h4>A framework for spatial map generation using acoustic echoes for robotic platforms</h4>
-          <div class="pub-meta"><span class="venue">Robotics and Autonomous Systems</span> · 2022</div>
-        </div>
-      </a>
-      <a href="https://scholar.google.com/citations?user=n0Sr370AAAAJ&hl=en" target="_blank" class="pub-card fade-up">
-        <div class="pub-cite"><div class="pub-cite-n">16</div><div class="pub-cite-l">cited</div></div>
-        <div class="pub-info">
-          <h4>Sound-based distance estimation for indoor navigation in the presence of ego noise</h4>
-          <div class="pub-meta"><span class="venue">EUSIPCO — European Signal Processing Conf.</span> · 2019</div>
-        </div>
-      </a>
-      <a href="https://scholar.google.com/citations?user=n0Sr370AAAAJ&hl=en" target="_blank" class="pub-card fade-up">
-        <div class="pub-cite"><div class="pub-cite-n">15</div><div class="pub-cite-l">cited</div></div>
-        <div class="pub-info">
-          <h4>Estimation of acoustic echoes using expectation-maximization methods</h4>
-          <div class="pub-meta"><span class="venue">EURASIP Journal on Audio, Speech, and Music Processing</span> · 2020</div>
-        </div>
-      </a>
-      <a href="https://scholar.google.com/citations?user=n0Sr370AAAAJ&hl=en" target="_blank" class="pub-card fade-up">
-        <div class="pub-cite"><div class="pub-cite-n">14</div><div class="pub-cite-l">cited</div></div>
-        <div class="pub-info">
-          <h4>An EM method for multichannel TOA and DOA estimation of acoustic echoes</h4>
-          <div class="pub-meta"><span class="venue">IEEE WASPAA</span> · 2019</div>
-        </div>
-      </a>
-      <a href="https://scholar.google.com/citations?user=n0Sr370AAAAJ&hl=en" target="_blank" class="pub-card fade-up">
-        <div class="pub-cite"><div class="pub-cite-n">10</div><div class="pub-cite-l">cited</div></div>
-        <div class="pub-info">
-          <h4>A model-based approach to acoustic reflector localization with a robotic platform</h4>
-          <div class="pub-meta"><span class="venue">IEEE/RSJ IROS</span> · 2020</div>
-        </div>
-      </a>
-    </div>
-
-    <div class="pub-foot fade-up">
-      <a href="https://scholar.google.com/citations?user=n0Sr370AAAAJ&hl=en" target="_blank" class="btn-ghost"><i class="fab fa-google" style="margin-right:8px"></i>View full Google Scholar profile →</a>
-    </div>
-  </div>
-</section>
-
 <!-- ══ CMD / SPECS ══ -->
 <section id="cmd" class="section">
   <div class="section-inner">
@@ -798,17 +757,16 @@
             <div class="cmd-row"><span class="cmd-k">deployment</span><span class="cmd-v">Linux · Docker · Flask/FastAPI · GitHub CI</span></div>
             <br>
             <div class="cmd-col-head">ENGAGEMENT TYPES</div>
-            <div class="cmd-row"><span class="cmd-k">type_1</span><span class="cmd-v g">Fixed-scope DSP / acoustics deliverable</span></div>
-            <div class="cmd-row"><span class="cmd-k">type_2</span><span class="cmd-v g">Ongoing R&amp;D advisory / retainer</span></div>
-            <div class="cmd-row"><span class="cmd-k">type_3</span><span class="cmd-v g">Algorithm prototyping → production</span></div>
-            <div class="cmd-row"><span class="cmd-k">type_4</span><span class="cmd-v g">Research &amp; technical due diligence</span></div>
+            <div class="cmd-row"><span class="cmd-k">deliverable</span><span class="cmd-v g">Fixed-scope DSP / acoustics project</span></div>
+            <div class="cmd-row"><span class="cmd-k">retainer</span><span class="cmd-v g">Ongoing R&amp;D advisory</span></div>
+            <div class="cmd-row"><span class="cmd-k">prototyping</span><span class="cmd-v g">Algorithm prototype → production</span></div>
+            <div class="cmd-row"><span class="cmd-k">consulting</span><span class="cmd-v g">Research &amp; technical due diligence</span></div>
           </div>
           <div>
             <div class="cmd-col-head">AVAILABILITY</div>
             <div class="cmd-row"><span class="cmd-k">status</span><span class="cmd-v g">● OPEN FOR NEW PROJECTS</span></div>
             <div class="cmd-row"><span class="cmd-k">mode</span><span class="cmd-v">Remote — global</span></div>
             <div class="cmd-row"><span class="cmd-k">timezone</span><span class="cmd-v">CET / CEST (UTC+1 / UTC+2)</span></div>
-            <div class="cmd-row"><span class="cmd-k">languages</span><span class="cmd-v">English (fluent) · Urdu (native)</span></div>
             <div class="cmd-row"><span class="cmd-k">response_time</span><span class="cmd-v a">&lt; 24 hours</span></div>
             <br>
             <div class="cmd-col-head">CREDENTIALS</div>
@@ -832,7 +790,7 @@
       <div class="fade-up">
         <p class="s-label">// contact</p>
         <h2 class="s-title">Start a project.</h2>
-        <p>Describe what you're trying to build, the problem domain, and your timeline. I'll respond within 24 hours with an honest assessment of fit and a rough scope.</p>
+        <p>Describe what you're trying to build, the problem domain, and your timeline. We'll respond within 24 hours with an honest assessment of fit and a rough scope.</p>
         <p>No obligation. No sales call required for an initial technical assessment.</p>
         <div class="contact-methods">
           <a href="mailto:zerooneeta@gmail.com" class="c-method"><i class="fas fa-envelope"></i>zerooneeta@gmail.com</a>
@@ -889,7 +847,7 @@
         <a href="#services">Acoustics</a>
         <a href="#services">Beamforming &amp; Arrays</a>
         <a href="#services">Deep Learning</a>
-        <a href="#dsp">Live Demo</a>
+        <a href="#home">Interactive Terminal</a>
       </div>
     </div>
     <div class="foot-col">
@@ -903,64 +861,157 @@
       </div>
     </div>
     <div class="foot-col">
-      <h4>Research</h4>
+      <h4>Studio</h4>
       <div class="foot-links">
-        <a href="#papers">Publications</a>
-        <a href="https://scholar.google.com/citations?user=n0Sr370AAAAJ&hl=en" target="_blank">Google Scholar</a>
-        <a href="https://linkedin.com/in/usamasaqib" target="_blank">LinkedIn</a>
-        <a href="#contact">Hire Me</a>
+        <a href="blog.html">Insights</a>
+        <a href="https://scholar.google.com/citations?user=n0Sr370AAAAJ&hl=en" target="_blank">Research</a>
+        <a href="#contact">Start a Project</a>
+        <a href="mailto:zerooneeta@gmail.com">Email Us</a>
       </div>
     </div>
   </div>
   <div class="foot-bottom">
-    <span class="foot-copy">© 2026 ZeroOneEta · Usama Saqib, PhD</span>
+    <span class="foot-copy">© 2026 ZeroOneEta · Signal Processing Studio</span>
     <span class="foot-copy">Available globally · CET timezone · Remote-first</span>
   </div>
 </footer>
 
 <script>
-/* ── Terminal animation ── */
-const LINES = [
-  {t:'cmd', s:'whoami'},
-  {t:'out', s:'Usama Saqib, PhD — Signal Processing Engineer', c:'c'},
-  {t:'br'},
-  {t:'cmd', s:'cat expertise.txt'},
-  {t:'out', s:'Signal Processing · Acoustics'},
-  {t:'out', s:'Beamforming · Deep Learning'},
-  {t:'br'},
-  {t:'cmd', s:'cat research.txt'},
-  {t:'out', s:'87 citations · h-index 5 · IEEE / EUSIPCO / EURASIP', c:'a'},
-  {t:'br'},
-  {t:'cmd', s:'./check-availability --contract'},
-  {t:'out', s:'● OPEN FOR CONTRACT WORK · Remote · Global', c:'g'},
-];
-const body = document.getElementById('termBody');
-const sleep = ms => new Promise(r => setTimeout(r, ms));
+/* ── Interactive DSP terminal ── */
+(function () {
+  const COLS = 52, ROWS = 11;
+  const plot = document.getElementById('itPlot');
+  const cap  = document.getElementById('itCap');
+  const input = document.getElementById('itInput');
+  if (!plot) return;
 
-async function type(text, el) {
-  for (const ch of text) { el.textContent += ch; await sleep(22 + Math.random()*18); }
-}
+  const blank = () => Array.from({ length: ROWS }, () => Array(COLS).fill(' '));
+  const draw  = g => { plot.textContent = g.map(r => r.join('')).join('\n'); };
 
-async function run() {
-  for (const line of LINES) {
-    if (line.t === 'br') { body.appendChild(document.createElement('br')); await sleep(120); continue; }
-    if (line.t === 'cmd') {
-      const row = document.createElement('div'); row.className = 't-row';
-      const p = document.createElement('span'); p.className = 't-prompt'; p.textContent = '$ ';
-      const c = document.createElement('span'); c.className = 't-cmd';
-      row.append(p, c); body.appendChild(row);
-      await sleep(280); await type(line.s, c); await sleep(180);
-    } else {
-      const o = document.createElement('div'); o.className = 't-out' + (line.c ? ' '+line.c : '');
-      body.appendChild(o); await type(line.s, o); await sleep(60);
+  function wave(vals) {
+    const g = blank(), mid = (ROWS - 1) / 2;
+    for (let x = 0; x < COLS; x++) if (g[Math.round(mid)][x] === ' ') g[Math.round(mid)][x] = '·';
+    for (let x = 0; x < COLS; x++) {
+      const v = Math.max(-1, Math.min(1, vals[x]));
+      const y = Math.max(0, Math.min(ROWS - 1, Math.round(mid - v * mid)));
+      g[y][x] = '█';
     }
+    return g;
   }
-  const row = document.createElement('div'); row.className = 't-row';
-  const p = document.createElement('span'); p.className = 't-prompt'; p.textContent = '$ ';
-  const cur = document.createElement('span'); cur.className = 't-cursor';
-  row.append(p, cur); body.appendChild(row);
-}
-window.addEventListener('load', run);
+  function bars(h) {
+    const g = blank();
+    for (let x = 0; x < COLS; x++) {
+      const hh = Math.round(Math.max(0, Math.min(1, h[x])) * (ROWS - 1));
+      for (let y = 0; y < hh; y++) g[ROWS - 1 - y][x] = '█';
+    }
+    for (let x = 0; x < COLS; x++) if (g[ROWS - 1][x] === ' ') g[ROWS - 1][x] = '─';
+    return g;
+  }
+
+  // each factory returns a render function f -> grid
+  const dSynth = () => f => {
+    const v = [];
+    for (let x = 0; x < COLS; x++) {
+      const t = (x + f) * 0.30;
+      v.push((Math.sin(t * 0.55) + 0.5 * Math.sin(t * 1.65) + (Math.random() - 0.5) * 0.45) / 1.7);
+    }
+    return wave(v);
+  };
+  const dFft = () => f => {
+    const grow = Math.min(1, f / 26), h = [];
+    for (let x = 0; x < COLS; x++) {
+      const p1 = Math.exp(-((x - 10) ** 2) / 6), p2 = Math.exp(-((x - 28) ** 2) / 6);
+      h.push((0.04 + 0.05 * Math.random() + 0.96 * p1 + 0.62 * p2) * grow);
+    }
+    return bars(h);
+  };
+  const dLow = () => f => {
+    const a = Math.min(1, Math.max(0, (f - 8) / 50)), v = [];
+    for (let x = 0; x < COLS; x++) {
+      const t = x * 0.30;
+      const noisy = Math.sin(t * 0.55) + 0.55 * Math.sin(t * 1.9) + (Math.random() - 0.5) * 0.6;
+      const clean = Math.sin(t * 0.55);
+      v.push(((1 - a) * noisy + a * clean) / 1.7);
+    }
+    return wave(v);
+  };
+  const dBeam = (doa) => f => {
+    const steer = Math.min(doa, -90 + f * (doa + 90) / 45), N = 8, h = [];
+    for (let x = 0; x < COLS; x++) {
+      const ang = -90 + 180 * x / (COLS - 1);
+      const psi = Math.PI * Math.sin((ang - steer) * Math.PI / 180);
+      let af = Math.abs(Math.sin(N * psi / 2) / (N * Math.sin(psi / 2)));
+      if (!isFinite(af)) af = 1;
+      h.push(af);
+    }
+    return bars(h);
+  };
+
+  let timer = null, frame = 0, render = null;
+  function stop() { if (timer) { clearInterval(timer); timer = null; } }
+  function play(fn, caption) {
+    stop(); render = fn; frame = 0; cap.textContent = caption;
+    timer = setInterval(() => { draw(render(frame++)); }, 55);
+  }
+  function text(lines, caption) {
+    stop(); const g = blank();
+    lines.forEach((ln, i) => { if (i < ROWS) for (let x = 0; x < Math.min(ln.length, COLS); x++) g[i][x] = ln[x]; });
+    draw(g); cap.textContent = caption;
+  }
+
+  function runCmd(raw) {
+    const line = (raw || '').trim();
+    if (!line) return;
+    const parts = line.split(/\s+/), cmd = parts[0].toLowerCase();
+    if (['synth', 'signal', 'gen'].includes(cmd))
+      play(dSynth(), '> ' + line + '   ·   time-domain signal: 2 tones + noise');
+    else if (['fft', 'spectrum'].includes(cmd))
+      play(dFft(), '> ' + line + '   ·   FFT spectrum: peaks at 3 Hz and 9 Hz');
+    else if (['lowpass', 'filter', 'fir'].includes(cmd))
+      play(dLow(), '> ' + line + '   ·   FIR low-pass: high-freq noise removed');
+    else if (['beamform', 'beam'].includes(cmd)) {
+      let doa = 35; const i = parts.indexOf('--doa');
+      if (i >= 0 && parts[i + 1] != null) { const d = parseFloat(parts[i + 1]); if (!isNaN(d)) doa = Math.max(-80, Math.min(80, d)); }
+      play(dBeam(doa), '> ' + line + '   ·   8-mic beampattern, main lobe @ ' + doa + '°');
+    }
+    else if (cmd === 'help' || cmd === '?')
+      text([
+        'ZeroOneEta DSP shell · commands:',
+        '',
+        '  synth      time-domain signal (sines + noise)',
+        '  fft        frequency spectrum (FFT)',
+        '  lowpass    FIR low-pass filter demo',
+        '  beamform   array beampattern',
+        '             e.g.  beamform --doa 50',
+        '  about      what we do',
+        '  clear      reset the screen'
+      ], '# pick a command or click a chip below');
+    else if (cmd === 'about' || cmd === 'whoami')
+      text([
+        'ZeroOneEta — Signal Processing Studio',
+        '',
+        '  DSP · Acoustics · Beamforming · Deep Learning',
+        '  IEEE-published research, shipped to prod.',
+        '',
+        '  > Start a project: see Contact below.'
+      ], '# about ZeroOneEta');
+    else if (cmd === 'clear' || cmd === 'cls') {
+      stop(); draw(blank()); cap.textContent = "# type 'help' to list commands";
+    }
+    else
+      text(['command not found: ' + cmd, '', "type 'help' to see what you can run."], '# unknown command');
+  }
+
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter') { runCmd(input.value); input.value = ''; }
+  });
+  document.querySelectorAll('.iterm-chip').forEach(b => {
+    b.addEventListener('click', () => { input.value = b.dataset.cmd; runCmd(b.dataset.cmd); input.focus(); });
+  });
+
+  // intro demo
+  play(dBeam(35), '> beamform --doa 35   ·   8-mic beampattern, main lobe @ 35°');
+})();
 
 /* ── Mobile nav ── */
 document.getElementById('mobileBtn').addEventListener('click', () => {
@@ -972,121 +1023,6 @@ const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
 }, {threshold: 0.08});
 document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
-
-/* ── DSP Playground (live animated demos) ── */
-(function () {
-  const COLS = 56, ROWS = 11;
-  const plot = document.getElementById('dspPlot');
-  const cmdEl = document.getElementById('dspCmd');
-  const capEl = document.getElementById('dspCap');
-  if (!plot) return;
-
-  const blank = () => Array.from({ length: ROWS }, () => Array(COLS).fill(' '));
-  const render = g => { plot.textContent = g.map(r => r.join('')).join('\n'); };
-
-  function wave(vals) {
-    const g = blank(), mid = (ROWS - 1) / 2;
-    for (let x = 0; x < COLS; x++) {
-      if (g[Math.round(mid)][x] === ' ') g[Math.round(mid)][x] = '·';
-    }
-    for (let x = 0; x < COLS; x++) {
-      const v = Math.max(-1, Math.min(1, vals[x]));
-      const y = Math.max(0, Math.min(ROWS - 1, Math.round(mid - v * mid)));
-      g[y][x] = '█';
-    }
-    return g;
-  }
-  function bars(h, axisLabels) {
-    const g = blank();
-    for (let x = 0; x < COLS; x++) {
-      const hh = Math.round(Math.max(0, Math.min(1, h[x])) * (ROWS - 1));
-      for (let y = 0; y < hh; y++) g[ROWS - 1 - y][x] = '█';
-    }
-    for (let x = 0; x < COLS; x++) if (g[ROWS - 1][x] === ' ') g[ROWS - 1][x] = '─';
-    return g;
-  }
-
-  const demos = [
-    { cmd: 'gen(sig="sin(3t)+0.5·sin(9t)", noise=0.2)', cap: 'time-domain signal · 2 tones + noise', dur: 70,
-      frame: f => {
-        const v = [];
-        for (let x = 0; x < COLS; x++) {
-          const t = (x + f) * 0.30;
-          v.push((Math.sin(t * 0.55) + 0.5 * Math.sin(t * 1.65) + (Math.random() - 0.5) * 0.45) / 1.7);
-        }
-        return wave(v);
-      } },
-    { cmd: 'np.fft.rfft(sig, n=512, window="hann")', cap: 'frequency domain · peaks @ 3 Hz and 9 Hz', dur: 70,
-      frame: f => {
-        const grow = Math.min(1, f / 26);
-        const h = [];
-        for (let x = 0; x < COLS; x++) {
-          const p1 = Math.exp(-((x - 11) ** 2) / 7);
-          const p2 = Math.exp(-((x - 30) ** 2) / 7);
-          const floor = 0.04 + 0.05 * Math.random();
-          h.push((floor + 0.96 * p1 + 0.62 * p2) * grow);
-        }
-        return bars(h);
-      } },
-    { cmd: 'firwin(64, cutoff=6Hz, window="hamming")', cap: 'FIR low-pass · noise removed, tone recovered', dur: 80,
-      frame: f => {
-        const a = Math.min(1, Math.max(0, (f - 8) / 50));
-        const v = [];
-        for (let x = 0; x < COLS; x++) {
-          const t = x * 0.30;
-          const noisy = Math.sin(t * 0.55) + 0.55 * Math.sin(t * 1.9) + (Math.random() - 0.5) * 0.6;
-          const clean = Math.sin(t * 0.55);
-          v.push(((1 - a) * noisy + a * clean) / 1.7);
-        }
-        return wave(v);
-      } },
-    { cmd: 'beamform(mics=8, doa=35°, method="delay-sum")', cap: 'array beampattern · main lobe locked @ 35°', dur: 90,
-      frame: f => {
-        const target = 35;
-        const steer = Math.min(target, -90 + f * (target + 90) / 45);
-        const N = 8, h = [];
-        for (let x = 0; x < COLS; x++) {
-          const ang = -90 + 180 * x / (COLS - 1);
-          const psi = Math.PI * Math.sin((ang - steer) * Math.PI / 180);
-          let af = Math.abs(Math.sin(N * psi / 2) / (N * Math.sin(psi / 2)));
-          if (!isFinite(af)) af = 1;
-          h.push(af);
-        }
-        return bars(h);
-      } },
-  ];
-
-  const concepts = document.querySelectorAll('.dsp-concept');
-  const pills = document.querySelectorAll('.dsp-pill');
-  let di = 0, frame = 0, typed = 0, started = false;
-
-  function setActive(i) {
-    concepts.forEach(c => c.classList.toggle('live', +c.dataset.demo === i));
-    pills.forEach(p => p.classList.toggle('live', +p.dataset.pill === i));
-  }
-
-  function tick() {
-    const d = demos[di];
-    if (typed < d.cmd.length) {
-      typed++;
-      cmdEl.textContent = '>>> ' + d.cmd.slice(0, typed) + '▋';
-    } else {
-      cmdEl.textContent = '>>> ' + d.cmd;
-      render(d.frame(frame));
-      capEl.textContent = '# ' + d.cap;
-      frame++;
-      if (frame > d.dur) { di = (di + 1) % demos.length; typed = 0; frame = 0; setActive(di); }
-    }
-  }
-
-  // start only when scrolled into view
-  const io = new IntersectionObserver(es => {
-    es.forEach(e => {
-      if (e.isIntersecting && !started) { started = true; setActive(0); setInterval(tick, 55); }
-    });
-  }, { threshold: 0.2 });
-  io.observe(document.getElementById('dsp'));
-})();
 
 /* ── Contact form (mailto fallback) ── */
 document.getElementById('contactForm').addEventListener('submit', function(e) {
