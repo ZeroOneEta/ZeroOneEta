@@ -3,1061 +3,307 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ZeroOneEta | AI-Powered Synthetic Data Solutions</title>
+  <title>Insights — ZeroOneEta | Signal Processing & Acoustics Notes</title>
+  <meta name="description" content="Technical notes from ZeroOneEta on signal processing, acoustics, beamforming, and deep learning for audio — written by practising researchers.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --primary: #2a7fff;
-      --secondary: #0f3057;
-      --dark: #1a1a2e;
-      --darker: #0d0d1a;
-      --card-bg: #1e2736;
-      --border: #2c3e50;
-      --text-light: #f5f9fc;
-      --text-secondary: #b0c4de;
+      --bg:#030712; --bg-2:#070d1a; --bg-3:#0d1424; --card:#0d1424;
+      --border:#1a2540; --glow:#0e4f6e; --primary:#06b6d4;
+      --primary-dim:rgba(6,182,212,0.12); --primary-glow:rgba(6,182,212,0.25);
+      --green:#10b981; --green-dim:rgba(16,185,129,0.1); --amber:#f59e0b; --pink:#ec4899;
+      --text:#e2e8f0; --dim:#94a3b8; --muted:#475569;
+      --mono:'JetBrains Mono','Courier New',monospace; --sans:'Inter','Segoe UI',sans-serif;
     }
-    
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    html {
-      scroll-behavior: smooth;
-    }
+    *,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; scroll-padding-top:72px; }
+    body { font-family:var(--sans); background:var(--bg); color:var(--text); line-height:1.7; overflow-x:hidden; }
+    a { color:var(--primary); }
 
-    body {
-      font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, var(--darker), var(--dark));
-      color: var(--text-light);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
+    /* NAV */
+    nav { position:sticky; top:0; z-index:200; background:rgba(3,7,18,0.92); backdrop-filter:blur(14px); border-bottom:1px solid var(--border); }
+    .nav-inner { max-width:1100px; margin:0 auto; padding:0 24px; display:flex; align-items:center; justify-content:space-between; height:72px; }
+    .nav-brand { text-decoration:none; display:flex; flex-direction:column; }
+    .nav-brand-name { font-family:var(--mono); font-size:1.05rem; font-weight:700; color:var(--primary); }
+    .nav-brand-sub { font-family:var(--mono); font-size:0.68rem; color:var(--muted); letter-spacing:0.1em; text-transform:uppercase; margin-top:1px; }
+    .nav-links { display:flex; gap:26px; list-style:none; }
+    .nav-links a { font-family:var(--mono); font-size:0.85rem; color:var(--dim); text-decoration:none; transition:color 0.2s; }
+    .nav-links a:hover { color:var(--primary); }
+    .nav-hire { font-family:var(--mono); font-size:0.83rem; font-weight:700; background:var(--primary); color:var(--bg); padding:8px 20px; border-radius:6px; text-decoration:none; transition:all 0.2s; }
+    .nav-hire:hover { background:#22d3ee; box-shadow:0 0 22px var(--primary-glow); }
+    .mobile-btn { display:none; background:none; border:none; color:var(--text); font-size:1.25rem; cursor:pointer; }
 
-    @supports (font-variation-settings: normal) {
-      body { font-family: 'Inter var', sans-serif; }
-    }
+    /* HEADER */
+    .ins-header { padding:90px 24px 60px; position:relative; overflow:hidden; border-bottom:1px solid var(--border);
+      background:radial-gradient(ellipse 70% 50% at 50% 0%, rgba(6,182,212,0.07), transparent); }
+    .ins-header::before { content:''; position:absolute; inset:0; pointer-events:none;
+      background-image:linear-gradient(rgba(6,182,212,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(6,182,212,0.025) 1px,transparent 1px);
+      background-size:44px 44px; }
+    .ins-inner { max-width:1100px; margin:0 auto; position:relative; }
+    .s-label { font-family:var(--mono); font-size:0.72rem; color:var(--primary); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:12px; }
+    .ins-header h1 { font-size:2.8rem; font-weight:800; letter-spacing:-0.03em; line-height:1.08; margin-bottom:16px; }
+    .ins-header p { font-size:1.05rem; color:var(--dim); max-width:640px; line-height:1.75; }
 
-    nav {
-      background-color: rgba(26, 26, 46, 0.98);
-      padding: 18px 8%;
-      display: flex;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      backdrop-filter: blur(12px);
-      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
-      border-bottom: 1px solid rgba(44, 62, 80, 0.3);
-    }
+    /* LAYOUT */
+    .wrap { max-width:1100px; margin:0 auto; padding:64px 24px; display:grid; grid-template-columns:1fr 280px; gap:56px; align-items:start; }
 
-    nav img {
-      height: 42px;
-      margin-right: 30px;
-    }
+    /* ARTICLE */
+    .article-tags { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:18px; }
+    .a-tag { font-family:var(--mono); font-size:0.68rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--primary); background:var(--primary-dim); border:1px solid rgba(6,182,212,0.2); padding:3px 10px; border-radius:50px; }
+    .article h2 { font-size:2rem; font-weight:800; letter-spacing:-0.02em; line-height:1.15; margin-bottom:14px; }
+    .article-meta { font-family:var(--mono); font-size:0.76rem; color:var(--muted); margin-bottom:36px; display:flex; gap:18px; flex-wrap:wrap; }
+    .article-meta span { display:flex; align-items:center; gap:7px; }
+    .article-meta i { color:var(--primary); }
+    .article h3 { font-size:1.3rem; font-weight:700; margin:40px 0 14px; color:var(--text); display:flex; align-items:center; gap:10px; }
+    .article h3::before { content:'#'; color:var(--primary); font-family:var(--mono); font-weight:700; }
+    .article p { color:var(--dim); margin-bottom:18px; font-size:0.98rem; }
+    .article p strong { color:var(--text); font-weight:600; }
+    .article ul { margin:0 0 18px 0; padding-left:0; list-style:none; }
+    .article li { color:var(--dim); font-size:0.96rem; margin-bottom:11px; padding-left:26px; position:relative; }
+    .article li::before { content:'▸'; position:absolute; left:6px; color:var(--primary); }
+    .article li strong { color:var(--text); }
+    .eq { font-family:var(--mono); font-size:0.92rem; color:var(--primary); background:rgba(6,182,212,0.05);
+      border:1px solid var(--border); border-radius:8px; padding:14px 18px; margin:0 0 18px; text-align:center; overflow-x:auto; }
+    .inline-code { font-family:var(--mono); font-size:0.86em; color:var(--green); background:rgba(16,185,129,0.08); padding:1px 6px; border-radius:4px; }
 
-    .nav-links {
-      display: flex;
-      flex: 1;
-    }
-    
-    nav a {
-      color: var(--text-light);
-      margin-right: 32px;
-      text-decoration: none;
-      font-size: 1.05rem;
-      font-weight: 500;
-      padding: 8px 0;
-      transition: color 0.3s ease;
-      position: relative;
-    }
+    /* CODE BLOCK */
+    .code-block { background:#000c18; border:1px solid var(--glow); border-radius:12px; overflow:hidden; margin:0 0 24px; box-shadow:0 0 40px rgba(6,182,212,0.06); }
+    .code-head { background:#0a1526; padding:10px 16px; display:flex; align-items:center; gap:8px; border-bottom:1px solid var(--border); }
+    .cd { width:11px; height:11px; border-radius:50%; }
+    .cd.r{background:#ff5f57;} .cd.y{background:#ffbd2e;} .cd.g{background:#28c840;}
+    .code-title { font-family:var(--mono); font-size:0.72rem; color:var(--muted); margin-left:6px; }
+    .code-block pre { padding:20px 22px; overflow-x:auto; font-family:var(--mono); font-size:0.78rem; line-height:1.7; color:var(--dim); }
+    .code-block .kw { color:var(--pink); }
+    .code-block .fn { color:var(--primary); }
+    .code-block .st { color:var(--amber); }
+    .code-block .cm { color:var(--muted); font-style:italic; }
+    .code-block .nm { color:var(--green); }
 
-    nav a:hover {
-      color: var(--primary);
-    }
-    
-    nav a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--primary);
-      transition: width 0.3s ease;
-    }
-    
-    nav a:hover::after {
-      width: 100%;
-    }
+    .callout { background:var(--green-dim); border-left:3px solid var(--green); border-radius:0 8px 8px 0; padding:16px 20px; margin:0 0 24px; }
+    .callout p { color:var(--text); margin:0; font-size:0.94rem; }
+    .callout b { color:var(--green); }
 
-    header {
-      background: linear-gradient(135deg, var(--secondary), var(--dark));
-      padding: 100px 20px 80px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
+    /* SIDEBAR */
+    .side { position:sticky; top:96px; display:flex; flex-direction:column; gap:22px; }
+    .side-card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:22px; }
+    .side-card h4 { font-family:var(--mono); font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--primary); margin-bottom:14px; }
+    .toc a { display:block; color:var(--dim); text-decoration:none; font-size:0.84rem; padding:6px 0; border-bottom:1px solid rgba(255,255,255,0.04); transition:color 0.2s; }
+    .toc a:hover { color:var(--primary); }
+    .topic-list { display:flex; flex-direction:column; gap:9px; }
+    .topic-list span { font-family:var(--mono); font-size:0.76rem; color:var(--dim); display:flex; align-items:center; gap:9px; }
+    .topic-list i { color:var(--primary); width:14px; }
+    .side-cta { background:linear-gradient(145deg, rgba(6,182,212,0.1), var(--card)); border:1px solid rgba(6,182,212,0.3); }
+    .side-cta p { font-size:0.86rem; color:var(--dim); margin-bottom:14px; line-height:1.6; }
+    .side-cta a { display:block; text-align:center; font-family:var(--mono); font-size:0.82rem; font-weight:700; background:var(--primary); color:var(--bg); padding:10px; border-radius:7px; text-decoration:none; transition:all 0.2s; }
+    .side-cta a:hover { background:#22d3ee; box-shadow:0 0 22px var(--primary-glow); }
 
-    header h1 {
-      font-size: 3rem;
-      margin: 0;
-      color: var(--text-light);
-      margin-bottom: 20px;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-    }
+    /* MORE TOPICS */
+    .more { border-top:1px solid var(--border); background:var(--bg-2); padding:72px 24px; }
+    .more-inner { max-width:1100px; margin:0 auto; }
+    .more h3 { font-size:1.6rem; font-weight:800; letter-spacing:-0.02em; margin-bottom:8px; }
+    .more-sub { color:var(--dim); font-size:0.96rem; margin-bottom:36px; }
+    .more-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .more-card { background:var(--card); border:1px solid var(--border); border-radius:11px; padding:24px; transition:all 0.3s; }
+    .more-card:hover { border-color:rgba(6,182,212,0.3); transform:translateY(-4px); box-shadow:0 18px 36px rgba(0,0,0,0.3); }
+    .more-card .mc-status { font-family:var(--mono); font-size:0.66rem; letter-spacing:0.07em; text-transform:uppercase; color:var(--amber); background:rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.2); padding:2px 9px; border-radius:50px; display:inline-block; margin-bottom:12px; }
+    .more-card h4 { font-size:1rem; font-weight:700; color:var(--text); margin-bottom:8px; }
+    .more-card p { font-size:0.84rem; color:var(--muted); line-height:1.6; }
 
-    .subtitle {
-      font-size: 1.3rem;
-      max-width: 760px;
-      margin: 0 auto;
-      color: var(--text-secondary);
-      font-weight: 400;
-    }
-    
-    .accent-text {
-      color: var(--primary);
-      font-weight: 600;
-    }
+    /* FOOTER */
+    footer { background:var(--bg-2); border-top:1px solid var(--border); padding:44px 24px; }
+    .foot-inner { max-width:1100px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:18px; }
+    .foot-inner .brand { font-family:var(--mono); color:var(--primary); font-weight:700; }
+    .foot-links { display:flex; gap:20px; }
+    .foot-links a { color:var(--muted); text-decoration:none; font-size:0.84rem; transition:color 0.2s; }
+    .foot-links a:hover { color:var(--primary); }
+    .foot-copy { font-family:var(--mono); font-size:0.76rem; color:var(--muted); width:100%; text-align:center; padding-top:18px; border-top:1px solid var(--border); margin-top:8px; }
 
-    .slideshow-container {
-      position: relative;
-      width: 85%;
-      max-width: 1000px;
-      margin: 50px auto;
-      overflow: hidden;
-      border-radius: 12px;
-      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
-    }
-
-    .slide {
-      display: none;
-      animation: fade 1.5s ease;
-    }
-    
-    @keyframes fade {
-      from { opacity: 0.4; }
-      to { opacity: 1; }
-    }
-
-    .slide img {
-      width: 100%;
-      height: auto;
-      border-radius: 12px;
-      display: block;
-    }
-
-    .content {
-      padding: 60px 8%;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .section-title {
-      font-size: 2.2rem;
-      color: var(--primary);
-      padding-bottom: 15px;
-      margin: 60px 0 40px;
-      text-align: center;
-      font-weight: 700;
-      position: relative;
-    }
-    
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 4px;
-      background: var(--primary);
-      border-radius: 4px;
-    }
-
-    .content p {
-      font-size: 1.1rem;
-      margin-bottom: 28px;
-      line-height: 1.7;
-      text-align: center;
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-      color: var(--text-light);
-    }
-    
-    .content ul {
-      list-style-type: none;
-      padding-left: 0;
-      max-width: 800px;
-      margin: 0 auto 50px;
-    }
-    
-    .content li {
-      margin-bottom: 16px;
-      font-size: 1.1rem;
-      padding: 16px 24px 16px 60px;
-      position: relative;
-      background: rgba(30, 39, 54, 0.7);
-      border-radius: 10px;
-      border-left: 3px solid var(--primary);
-      transition: transform 0.3s ease;
-    }
-    
-    .content li:hover {
-      transform: translateX(10px);
-    }
-    
-    .content li::before {
-      content: "•";
-      position: absolute;
-      left: 30px;
-      top: 16px;
-      color: var(--primary);
-      font-size: 1.5rem;
-    }
-
-    .cta-button {
-      display: inline-block;
-      margin-top: 25px;
-      padding: 14px 38px;
-      background: var(--primary);
-      color: #fff;
-      font-size: 1.1rem;
-      font-weight: 600;
-      text-decoration: none;
-      border-radius: 8px;
-      transition: all 0.3s ease;
-      border: none;
-      box-shadow: 0 6px 20px rgba(42, 127, 255, 0.25);
-    }
-
-    .cta-button:hover {
-      background: #1a6ae6;
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(42, 127, 255, 0.35);
-    }
-    
-    .product-box-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 40px;
-      margin-top: 60px;
-    }
-
-    .product-box {
-      background: linear-gradient(145deg, #1e2736, #1a2230);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 40px 35px;
-      width: 100%;
-      max-width: 450px;
-      text-align: center;
-      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .product-box:hover {
-      box-shadow: 0 15px 40px rgba(42, 127, 255, 0.15);
-      border-color: rgba(42, 127, 255, 0.4);
-    }
-
-    .product-box h2 {
-      font-size: 1.7rem;
-      margin-top: 0;
-      margin-bottom: 15px;
-      color: var(--text-light);
-    }
-    
-    .product-box .price {
-      font-size: 2rem;
-      font-weight: 700;
-      margin: 15px 0 5px;
-      color: var(--primary);
-    }
-    
-    .product-box .price-sub {
-      font-size: 1rem;
-      color: var(--text-secondary);
-      margin-bottom: 25px;
-    }
-
-    .product-box p {
-      font-size: 1.05rem;
-      margin-bottom: 25px;
-      color: var(--text-secondary);
-    }
-
-    .product-box ul {
-      list-style: none;
-      padding: 0;
-      text-align: left;
-      margin-top: 30px;
-    }
-
-    .product-box li {
-      margin: 16px 0;
-      font-size: 1rem;
-      padding: 12px 20px 12px 50px;
-      background: rgba(40, 50, 70, 0.4);
-      border-radius: 8px;
-      position: relative;
-      border-left: none;
-    }
-    
-    .product-box li::before {
-      content: "✓";
-      position: absolute;
-      left: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--primary);
-      font-weight: bold;
-    }
-    
-    .divider {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--border), transparent);
-      margin: 30px 0;
-    }
-
-    .mission-statement {
-      background: rgba(42, 127, 255, 0.08);
-      border-left: 4px solid var(--primary);
-      padding: 30px;
-      margin: 50px auto;
-      border-radius: 0 10px 10px 0;
-      max-width: 800px;
-    }
-
-    .mission-statement p {
-      font-style: italic;
-      text-align: left;
-      color: var(--text-secondary);
-      font-size: 1.15rem;
-      line-height: 1.8;
-    }
-
-    footer {
-      text-align: center;
-      padding: 50px 20px;
-      font-size: 1rem;
-      color: var(--text-secondary);
-      background-color: #0d0d1a;
-      margin-top: 80px;
-      border-top: 1px solid rgba(44, 62, 80, 0.4);
-    }
-    
-    .contact-info {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin: 25px 0;
-    }
-    
-    .contact-info a {
-      color: var(--primary);
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-    
-    .contact-info a:hover {
-      color: #fff;
-      text-decoration: underline;
-    }
-    
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 18px;
-      margin: 30px 0;
-    }
-    
-    .social-links a {
-      display: inline-flex;
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
-      background: rgba(42, 127, 255, 0.15);
-      color: var(--primary);
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      transition: all 0.3s ease;
-    }
-    
-    .social-links a:hover {
-      background: var(--primary);
-      color: #fff;
-      transform: translateY(-3px);
-    }
-    
-    /* Blog content */
-    .blog-section {
-      max-width: 1000px;
-      margin: 40px auto;
-      padding: 0 8%;
-    }
-
-    .blog-card {
-      background: linear-gradient(145deg, #1e2736, #1a2230);
-      border-radius: 14px;
-      overflow: hidden;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
-      transition: transform 0.3s ease;
-      border: 1px solid var(--border);
-    }
-
-    .blog-card:hover {
-      transform: translateY(-7px);
-    }
-
-    .blog-header {
-      padding: 35px;
-      background: linear-gradient(90deg, var(--secondary), var(--primary));
-    }
-
-    .blog-header h2 {
-      margin: 0;
-      font-size: 2.2rem;
-      color: white;
-    }
-
-    .blog-meta {
-      display: flex;
-      margin-top: 20px;
-      color: rgba(255, 255, 255, 0.85);
-      font-size: 0.95rem;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-
-    .blog-meta span {
-      display: flex;
-      align-items: center;
-    }
-
-    .blog-meta span i {
-      margin-right: 8px;
-    }
-
-    .blog-content {
-      padding: 40px;
-    }
-    
-    .blog-content p {
-      font-size: 1.1rem;
-      margin-bottom: 25px;
-      line-height: 1.7;
-      text-align: left;
-    }
-    
-    .blog-content h3 {
-      font-size: 1.6rem;
-      color: var(--primary);
-      margin-top: 35px;
-      margin-bottom: 20px;
-      position: relative;
-      padding-bottom: 8px;
-    }
-    
-    .blog-content h3::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 60px;
-      height: 3px;
-      background: var(--primary);
-    }
-    
-    .blog-content ul {
-      padding-left: 0;
-      margin-bottom: 30px;
-      text-align: left;
-    }
-    
-    .blog-content li {
-      margin-bottom: 15px;
-      font-size: 1.1rem;
-      position: relative;
-      padding-left: 35px;
-      background: rgba(40, 50, 70, 0.3);
-      border-left: 3px solid var(--primary);
-    }
-    
-    .blog-content li::before {
-      content: "•";
-      position: absolute;
-      left: 15px;
-      color: var(--primary);
-      font-size: 1.5rem;
-    }
-    
-    .blog-content li strong {
-      color: var(--primary);
-    }
-    
-    .blog-highlight {
-      background: rgba(42, 127, 255, 0.1);
-      border-left: 4px solid var(--primary);
-      padding: 25px;
-      margin: 30px 0;
-      border-radius: 0 10px 10px 0;
-      font-size: 1.1rem;
-    }
-    
-    .blog-cta {
-      text-align: center;
-      margin-top: 40px;
-    }
-    
-    .feature-list {
-      list-style: none;
-      padding: 0;
-      margin: 30px 0;
-    }
-    
-    .feature-list li {
-      background: rgba(30, 39, 54, 0.5);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 25px;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: flex-start;
-      transition: transform 0.3s ease;
-    }
-    
-    .feature-list li:hover {
-      transform: translateY(-5px);
-    }
-    
-    .feature-list .emoji {
-      font-size: 1.8rem;
-      margin-right: 20px;
-      min-width: 40px;
-    }
-    
-    .feature-list .feature-content {
-      flex: 1;
-    }
-    
-    .feature-list h4 {
-      margin: 0 0 10px 0;
-      font-size: 1.3rem;
-      color: var(--primary);
-    }
-
-    /* Table Styles */
-    .data-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 35px 0;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-      border-radius: 10px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-    }
-    
-    .data-table th, .data-table td {
-      padding: 18px;
-      text-align: left;
-      border-bottom: 1px solid var(--border);
-    }
-    
-    .data-table thead {
-      background: linear-gradient(90deg, var(--secondary), var(--primary));
-      color: white;
-    }
-    
-    .data-table tbody tr {
-      background-color: var(--card-bg);
-      transition: background-color 0.3s;
-    }
-    
-    .data-table tbody tr:hover {
-      background-color: rgba(42, 127, 255, 0.1);
-    }
-    
-    .data-table tbody tr:nth-child(even) {
-      background-color: rgba(30, 39, 54, 0.5);
-    }
-    
-    .data-table th:first-child, .data-table td:first-child {
-      padding-left: 30px;
-    }
-    
-    .data-table th:last-child, .data-table td:last-child {
-      padding-right: 30px;
-    }
-
-    /* Case Study Styles */
-    .case-study {
-      background: rgba(30, 39, 54, 0.5);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 30px;
-      margin: 35px 0;
-      position: relative;
-      transition: transform 0.3s ease;
-    }
-    
-    .case-study:hover {
-      transform: translateY(-5px);
-    }
-    
-    .case-study::before {
-      content: "🏆";
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      font-size: 1.8rem;
-    }
-    
-    .case-study h4 {
-      margin-top: 0;
-      color: var(--primary);
-      font-size: 1.4rem;
-      padding-left: 45px;
-      margin-bottom: 15px;
-    }
-
-    .case-study p {
-      text-align: left;
-      padding-left: 45px;
-    }
-    
-    .benefits-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      margin: 40px 0;
-    }
-    
-    .benefit-card {
-      background: linear-gradient(145deg, #1e2736, #1a2230);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 30px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    
-    .benefit-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
-    }
-    
-    .benefit-card h3 {
-      color: var(--primary);
-      margin-top: 0;
-      font-size: 1.4rem;
-      margin-bottom: 15px;
-    }
-
-    /* Responsive design */
-    @media (max-width: 900px) {
-      nav {
-        padding: 15px 5%;
-      }
-      
-      .nav-links {
-        justify-content: flex-start;
-        flex-wrap: wrap;
-      }
-      
-      nav a {
-        margin: 0 20px 10px 0;
-        font-size: 1rem;
-      }
-      
-      header {
-        padding: 80px 20px 60px;
-      }
-      
-      header h1 {
-        font-size: 2.4rem;
-      }
-      
-      .subtitle {
-        font-size: 1.15rem;
-      }
-      
-      .section-title {
-        font-size: 1.9rem;
-      }
-    }
-    
-    @media (max-width: 768px) {
-      nav {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      
-      .nav-links {
-        margin-top: 20px;
-        width: 100%;
-      }
-      
-      nav a {
-        margin: 0 15px 10px 0;
-      }
-      
-      .product-box-container {
-        flex-direction: column;
-        align-items: center;
-        gap: 30px;
-      }
-      
-      .product-box {
-        max-width: 100%;
-      }
-      
-      .content {
-        padding: 50px 5%;
-      }
-      
-      .blog-header h2 {
-        font-size: 1.8rem;
-      }
-      
-      .blog-content {
-        padding: 30px;
-      }
-      
-      .blog-content h3 {
-        font-size: 1.4rem;
-      }
-      
-      .feature-list li {
-        flex-direction: column;
-      }
-      
-      .feature-list .emoji {
-        margin-bottom: 15px;
-      }
-      
-      .data-table {
-        display: block;
-        overflow-x: auto;
-      }
+    @media (max-width:900px) {
+      .wrap { grid-template-columns:1fr; gap:40px; }
+      .side { position:static; }
+      .more-grid { grid-template-columns:1fr; }
+      .nav-links { display:none; }
+      .mobile-btn { display:block; }
+      .nav-links.open { display:flex; flex-direction:column; position:absolute; top:72px; left:0; right:0; background:rgba(3,7,18,0.98); border-bottom:1px solid var(--border); padding:20px 24px; gap:16px; }
+      .ins-header h1 { font-size:2.1rem; }
     }
   </style>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <nav>
-    <img src="https://raw.githubusercontent.com/ZeroOneEta/ZeroOneEta/main/logo.jpeg" alt="ZeroOneEta Logo" />
-    <div class="nav-links">
-      <a href="https://zerooneeta.com">Home</a>
-      <a href="#synthetic-data">Blog</a>
-      <a href="#product">Solutions</a>
-      <a href="#about">Company</a>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <span class="nav-brand-name">ZeroOneEta</span>
+      <span class="nav-brand-sub">DSP · Acoustics · Deep Learning</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#dsp">Live Demo</a></li>
+      <li><a href="index.html#apps">Industries</a></li>
+      <li><a href="index.html#papers">Research</a></li>
+      <li><a href="blog.html">Insights</a></li>
+    </ul>
+    <a href="index.html#contact" class="nav-hire">Start a Project →</a>
+    <button class="mobile-btn" id="mobileBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+  </div>
+</nav>
+
+<header class="ins-header">
+  <div class="ins-inner">
+    <p class="s-label">// insights</p>
+    <h1>Technical notes from the studio.</h1>
+    <p>Practical, no-fluff writing on signal processing, acoustics, beamforming, and deep learning for audio — the same fundamentals behind our published research and the systems we ship.</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <article class="article">
+    <div class="article-tags">
+      <span class="a-tag">Beamforming</span>
+      <span class="a-tag">Array Processing</span>
+      <span class="a-tag">DSP</span>
     </div>
-  </nav>
+    <h2>Delay-and-Sum Beamforming, End to End</h2>
+    <div class="article-meta">
+      <span><i class="far fa-folder"></i> Fundamentals</span>
+      <span><i class="far fa-clock"></i> 9 min read</span>
+      <span><i class="fas fa-code"></i> Runnable NumPy</span>
+    </div>
 
-  <header id="home">
-    <h1>Synthetic Data: Unlocking AI/ML Potential</h1>
-    <p class="subtitle">Powering Innovation with Machine Learning, AI Agents & Synthetic Data</p>
-  </header>
+    <p>A single microphone hears everything in a room equally — the talker you want, the air-conditioning you don't, and every reflection in between. Put several microphones together as an <strong>array</strong>, and you gain something a single sensor can never have: a sense of <em>direction</em>. Delay-and-sum (DAS) beamforming is the simplest way to exploit it, and it's the foundation almost every more advanced spatial filter builds on.</p>
 
-  <!-- Blog Section -->
-  <div id="synthetic-data" class="content">
-    <div class="blog-section">
-      <div class="blog-card">
-        <div class="blog-header">
-          <h2>Synthetic Data for Computer Vision: A Game Changer</h2>
-          <div class="blog-meta">
-            <span><i class="far fa-calendar"></i> June 18, 2025</span>
-            <span><i class="far fa-clock"></i> 10 min read</span>
-            <span><i class="far fa-folder"></i> AI, Computer Vision</span>
-          </div>
-        </div>
-        <div class="blog-content">
-          <p><strong>Why Synthetic Data?</strong></p>
-          <p>Gathering and annotating real-world datasets for computer vision applications is expensive, time-consuming, and often insufficient to cover edge cases. Synthetic data, generated programmatically through simulation or rendering, offers an innovative alternative that addresses these challenges by providing abundant, perfectly labeled data at scale.</p>
+    <h3 id="intuition">The intuition</h3>
+    <p>A sound arriving from an angle reaches the microphones at slightly different times. A wavefront coming from broadside (straight ahead) hits every element at once; one arriving from the side reaches the nearest microphone first and the farthest last. That tiny time difference is the entire signal a beamformer works with.</p>
+    <p>Delay-and-sum does exactly what its name says: it <strong>delays each microphone signal so the wavefront from the direction you care about lines up</strong>, then sums. Signals from the target direction add constructively; everything else partially cancels.</p>
 
-          <h3>Executive Summary</h3>
-          <p>Synthetic data generation has emerged as a critical tool in advancing computer vision models, enabling researchers and engineers to overcome limitations of real datasets. By creating artificial yet realistic images and videos, it is possible to train models that generalize better to real-world conditions, handle rare events, and adapt to new domains without costly data collection efforts.</p>
+    <h3 id="geometry">The geometry</h3>
+    <p>For a uniform linear array with spacing <span class="inline-code">d</span> between elements and a far-field source at angle <span class="inline-code">θ</span> (measured from broadside), the extra distance the wave travels between adjacent microphones is <span class="inline-code">d·sin θ</span>. Dividing by the speed of sound <span class="inline-code">c ≈ 343 m/s</span> gives the inter-element delay:</p>
+    <div class="eq">τ(θ) = d · sin(θ) / c</div>
+    <p>In the frequency domain a delay is a phase shift, so the response of microphone <span class="inline-code">n</span> to a plane wave at frequency <span class="inline-code">f</span> is captured by the <strong>steering vector</strong>:</p>
+    <div class="eq">aₙ(θ) = exp(−j · 2πf · n · d · sin θ / c)</div>
+    <p>The steering vector is the whole game. To steer the array toward an angle, you weight each channel by the conjugate of its steering vector and average — that is delay-and-sum, written in the frequency domain.</p>
 
-          <h3>Key Benefits</h3>
-          <p>One of the primary advantages of synthetic data is the ability to produce unlimited quantities of labeled data. Labels such as bounding boxes, segmentation masks, and keypoints are automatically generated during rendering, eliminating the need for manual annotation. This reduces both cost and human error.</p>
-          <p>Moreover, synthetic data allows control over environmental variables like lighting, weather, and object placement. This control facilitates the creation of diverse training sets that improve model robustness and reduce bias. Synthetic environments can simulate rare or dangerous scenarios that are hard to capture otherwise, such as accidents or extreme weather conditions.</p>
+    <h3 id="code">Forty lines of NumPy</h3>
+    <p>Here is a complete, runnable beamformer: build the steering vector, then sweep angles to compute the array's spatial response (its <strong>beampattern</strong>).</p>
 
-          <h3>How to Use CDM (Computer Vision Data Management)</h3>
-          <p>When integrating synthetic data into your computer vision pipeline, it's essential to combine it judiciously with real-world data to maximize performance. Techniques like domain randomization and domain adaptation help bridge the gap between synthetic and real data distributions.</p>
-          <p>Data management platforms (such as CDM) assist in organizing, versioning, and augmenting datasets. They provide tools for visualizing synthetic samples alongside real images, tracking experiment metadata, and automating retraining workflows.</p>
+    <div class="code-block">
+      <div class="code-head"><span class="cd r"></span><span class="cd y"></span><span class="cd g"></span><span class="code-title">delay_and_sum.py</span></div>
+<pre><span class="kw">import</span> numpy <span class="kw">as</span> np
 
-          <h3>Examples and Use Cases</h3>
-          <p>Self-driving car companies leverage synthetic datasets to simulate urban, highway, and rural driving conditions with diverse vehicles and pedestrians. This synthetic data supplements real footage and enhances the training of perception and decision-making modules.</p>
-          <p>Robotics research benefits from synthetic data by simulating manipulation tasks in 3D environments, enabling robots to learn grasping and object recognition without extensive physical trials.</p>
+c   = <span class="nm">343.0</span>          <span class="cm"># speed of sound (m/s)</span>
+N   = <span class="nm">8</span>              <span class="cm"># number of microphones</span>
+d   = <span class="nm">0.04</span>           <span class="cm"># spacing (m) ~ λ/2 at ~4.3 kHz</span>
+f   = <span class="nm">2000.0</span>         <span class="cm"># analysis frequency (Hz)</span>
+mics = np.<span class="fn">arange</span>(N) * d
 
-          <h3>Challenges and Limitations</h3>
-          <p>Despite its advantages, synthetic data is not without challenges. The so-called "reality gap" — the difference between synthetic images and real sensor data — can lead to performance drops when models trained solely on synthetic data are deployed in the wild. Closing this gap requires careful domain adaptation and realistic rendering techniques.</p>
-          <p>Generating high-fidelity synthetic data can be computationally expensive, and simulation environments might fail to capture the full complexity of the real world. Therefore, synthetic data is best viewed as a complementary tool rather than a complete replacement for real datasets.</p>
+<span class="kw">def</span> <span class="fn">steering_vector</span>(theta_deg):
+    theta  = np.<span class="fn">deg2rad</span>(theta_deg)
+    delays = mics * np.<span class="fn">sin</span>(theta) / c
+    <span class="kw">return</span> np.<span class="fn">exp</span>(-<span class="nm">1j</span> * <span class="nm">2</span> * np.pi * f * delays)
 
-          <h3>Conclusion</h3>
-          <p>Synthetic data represents a transformative approach to training computer vision models. By providing scalable, diverse, and richly labeled data, it accelerates research and development while reducing costs. The future of computer vision will likely rely heavily on hybrid datasets that blend the best of real and synthetic worlds.</p>
-          <p>Embracing synthetic data requires thoughtful integration and domain expertise but promises significant payoffs in model robustness, safety, and scalability.</p>
-        </div>
+<span class="kw">def</span> <span class="fn">beampattern</span>(steer_deg, angles):
+    w = <span class="fn">steering_vector</span>(steer_deg) / N        <span class="cm"># DAS weights</span>
+    <span class="kw">return</span> np.<span class="fn">array</span>([np.<span class="fn">abs</span>(np.<span class="fn">vdot</span>(w, <span class="fn">steering_vector</span>(a)))
+                     <span class="kw">for</span> a <span class="kw">in</span> angles])
+
+angles = np.<span class="fn">linspace</span>(-<span class="nm">90</span>, <span class="nm">90</span>, <span class="nm">361</span>)
+gain   = <span class="fn">beampattern</span>(steer_deg=<span class="nm">35</span>, angles=angles)
+<span class="cm"># gain peaks at 35° — the array is now "listening" that way</span></pre>
+    </div>
+
+    <p>That <span class="inline-code">gain</span> array is the same curve the live demo on our homepage animates: a tall <strong>main lobe</strong> pointed at the steer angle, flanked by smaller <strong>side lobes</strong>. The main lobe is the directions you amplify; the side lobes are the leakage you'd rather not have.</p>
+
+    <h3 id="tradeoffs">Resolution, spacing, and aliasing</h3>
+    <p>Two design numbers dominate everything:</p>
+    <ul>
+      <li><strong>Beamwidth ∝ λ / (N·d).</strong> A bigger aperture — more elements, or wider spacing — gives a narrower main lobe and sharper directional resolution. Low frequencies (long λ) are inherently harder to resolve, which is why small arrays struggle with bass.</li>
+      <li><strong>Spacing must satisfy d ≤ λ/2.</strong> Go wider and the array can no longer tell certain angles apart: a second full-height main lobe — a <strong>grating lobe</strong> — appears at the wrong direction. This is spatial aliasing, the exact analogue of Nyquist in time.</li>
+    </ul>
+    <div class="callout"><p><b>Rule of thumb:</b> pick element spacing at half a wavelength of the <em>highest</em> frequency you need to steer cleanly. At 4.3&nbsp;kHz that's about 4&nbsp;cm; above it, expect grating lobes unless you compensate in software.</p></div>
+
+    <h3 id="limits">Where delay-and-sum stops</h3>
+    <p>DAS is robust, cheap, and never does anything surprising — but it's <strong>data-independent</strong>. It places the same fixed beam regardless of where the noise actually is. If an interferer sits squarely in a side lobe, DAS has no way to null it.</p>
+    <p>That's the point where adaptive beamformers earn their keep. <strong>MVDR</strong> (minimum-variance distortionless response) uses the measured spatial covariance to steer nulls toward interference while keeping unit gain on the target. It can dramatically outperform DAS — at the cost of needing a reliable covariance estimate and careful regularisation, which is where real engineering effort goes.</p>
+    <p>In practice we usually start a project with DAS as a baseline that is guaranteed to work, then move to MVDR or superdirective designs only where the measured improvement justifies the added fragility. The published research behind this studio — including <a href="https://scholar.google.com/citations?user=n0Sr370AAAAJ&hl=en" target="_blank">multichannel TOA/DOA estimation and acoustic-echo work</a> — lives in exactly that territory: getting reliable direction and timing estimates out of arrays in noisy, reverberant rooms.</p>
+
+    <h3 id="takeaway">Takeaway</h3>
+    <p>Delay-and-sum is fifty lines of code and a single idea — align, then sum — yet it already exposes every tension in array processing: aperture versus resolution, spacing versus aliasing, robustness versus adaptivity. Get comfortable here and the advanced methods stop looking like magic and start looking like principled trade-offs.</p>
+  </article>
+
+  <aside class="side">
+    <div class="side-card">
+      <h4>On this page</h4>
+      <nav class="toc">
+        <a href="#intuition">The intuition</a>
+        <a href="#geometry">The geometry</a>
+        <a href="#code">Forty lines of NumPy</a>
+        <a href="#tradeoffs">Resolution &amp; aliasing</a>
+        <a href="#limits">Where DAS stops</a>
+        <a href="#takeaway">Takeaway</a>
+      </nav>
+    </div>
+    <div class="side-card">
+      <h4>We work on</h4>
+      <div class="topic-list">
+        <span><i class="fas fa-wave-square"></i>Signal processing &amp; DSP</span>
+        <span><i class="fas fa-volume-up"></i>Acoustics &amp; RIR modelling</span>
+        <span><i class="fas fa-broadcast-tower"></i>Beamforming &amp; arrays</span>
+        <span><i class="fas fa-brain"></i>Deep learning for audio</span>
+      </div>
+    </div>
+    <div class="side-card side-cta">
+      <h4>Have an array problem?</h4>
+      <p>We design, prototype, and ship microphone-array and DSP systems for research teams and deep-tech startups.</p>
+      <a href="index.html#contact">Start a Project →</a>
+    </div>
+  </aside>
+</div>
+
+<section class="more">
+  <div class="more-inner">
+    <h3>More on the way.</h3>
+    <p class="more-sub">Notes we're writing next — all grounded in work we've actually published or shipped, never generic filler.</p>
+    <div class="more-grid">
+      <div class="more-card">
+        <span class="mc-status">In progress</span>
+        <h4>Estimating Acoustic Echoes with EM</h4>
+        <p>How expectation-maximization recovers the time-of-arrival and direction of early reflections — and why echoes are signal, not noise.</p>
+      </div>
+      <div class="more-card">
+        <span class="mc-status">In progress</span>
+        <h4>RIR &amp; RT60 from First Principles</h4>
+        <p>Modelling room impulse responses with the image-source method, and what reverberation time actually tells you about a space.</p>
+      </div>
+      <div class="more-card">
+        <span class="mc-status">In progress</span>
+        <h4>Spectrograms for Neural Nets</h4>
+        <p>Choosing window length, hop, and mel scaling when a CNN — not a human — is the consumer of your time-frequency representation.</p>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- Synthetic Data Introduction Section -->
-  <div class="content" id="synthetic-data">
-    <h2 class="section-title">Why Synthetic Data?</h2>
-    <p>In today's data-hungry AI landscape, organizations face a paradoxical crisis: <strong>while global data generation explodes (projected at 120+ zettabytes in 2023)</strong>, suitability—not quantity—remains the bottleneck. Stringent privacy laws, biased datasets, and scarce high-risk scenarios (like fraud or rare diseases) cripple innovation. Synthetic data emerges as the keystone solution, artificially generating data that mirrors real-world statistical properties without containing actual sensitive information. By 2024, <strong>Gartner predicts 60% of AI data will be synthetically generated</strong>—a seismic shift in how enterprises build intelligent systems.</p>
-    
-    <h3>Why Traditional Data Fails Modern AI</h3>
-    <ul>
-      <li><strong>Privacy Paralysis</strong>: Healthcare and financial institutions sit on untapped data goldmines. Anonymization often destroys critical statistical patterns, while "de-identified" data can be re-identified through correlation attacks.</li>
-      <li><strong>Bias Blind Spots</strong>: Real-world data perpetuates historical inequities. A bank's loan dataset might underrepresent marginalized groups, causing AI to deny credit unfairly.</li>
-      <li><strong>Corner Case Scarcity</strong>: Autonomous vehicles require millions of crash scenarios; fraud detection needs thousands of fraudulent transactions. Collecting these organically is impractical.</li>
-    </ul>
-    
-    <h3>The Synthetic Advantage: Beyond Privacy</h3>
-    <p>Synthetic data isn't just a privacy shield—it's a <strong>strategic accelerator</strong> with measurable ROI:</p>
-    
-    <table class="data-table">
-      <thead>
-        <tr>
-          <th>Benefit</th>
-          <th>Impact</th>
-          <th>Industry Use Case</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>Cost Reduction</strong></td>
-          <td>Cuts data acquisition costs by 10–100x</td>
-          <td>Retail, Manufacturing</td>
-        </tr>
-        <tr>
-          <td><strong>Bias Mitigation</strong></td>
-          <td>Generates balanced samples for underrepresented groups</td>
-          <td>Banking, Healthcare</td>
-        </tr>
-        <tr>
-          <td><strong>Scenario Engineering</strong></td>
-          <td>Simulates edge cases (e.g., fraudulent transactions, rare tumors)</td>
-          <td>Autonomous Vehicles, Medical Imaging</td>
-        </tr>
-        <tr>
-          <td><strong>Speed to Market</strong></td>
-          <td>Generates 10,000+ labeled datasets in hours vs. months</td>
-          <td>Robotics, IoT</td>
-        </tr>
-      </tbody>
-    </table>
-    
-    <h3>Technical Breakthroughs Driving Adoption</h3>
-    <ul>
-      <li><strong>Generative AI</strong>: Models like GANs (Generative Adversarial Networks) pit two neural networks against each other—one generating data, the other detecting fakes—until the synthetic output is statistically indistinguishable from real data.</li>
-      <li><strong>Domain Randomization</strong>: Tools like NVIDIA Omniverse simulate infinite variations of objects/lighting/textures, training robots to handle unpredictable real-world conditions.</li>
-      <li><strong>Hybrid Approaches</strong>: Blending 5% real data with 95% synthetic data preserves correlations while eliminating re-identification risks.</li>
-    </ul>
-    
-    <h3>Case Studies: Synthetic Data in Action</h3>
-    
-    <div class="case-study">
-      <h4>Healthcare Revolution</h4>
-      <p>Curai trained diagnostic AI on 400,000 synthetic medical cases, avoiding HIPAA violations while achieving clinical-grade accuracy.</p>
+<footer>
+  <div class="foot-inner">
+    <span class="brand">ZeroOneEta</span>
+    <div class="foot-links">
+      <a href="index.html#services">Services</a>
+      <a href="index.html#papers">Research</a>
+      <a href="blog.html">Insights</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="https://scholar.google.com/citations?user=n0Sr370AAAAJ&hl=en" target="_blank">Scholar</a>
     </div>
-    
-    <div class="case-study">
-      <h4>Fraud Detection</h4>
-      <p>American Express used GANs to synthesize fraudulent transaction patterns, boosting detection rates by 15%.</p>
-    </div>
-    
-    <div class="case-study">
-      <h4>Autonomous Vehicles</h4>
-      <p>BMW's virtual factory generates 500,000+ crash scenarios daily, accelerating safe deployment without real-world testing.</p>
-    </div>
-    
-    <h3>Navigating Limitations Responsibly</h3>
-    <p>Synthetic data isn't a panacea. Key challenges include:</p>
-    <ul>
-      <li><strong>Realism Gaps</strong>: Overly simplistic models may miss subtle data nuances (e.g., tumor texture in MRI scans).</li>
-      <li><strong>Validation Complexity</strong>: Metrics like FID scores or "Inception Scores" help quantify fidelity but require expert implementation.</li>
-      <li><strong>Ethical Governance</strong>: Without rigorous auditing, synthetic data can amplify biases in source datasets.</li>
-    </ul>
-    
-    <div class="blog-highlight">
-      <p><strong>Best Practice</strong>: Adopt a "Synthetic-First" pipeline—generate data, then refine with targeted real-data injections for critical variables. Tools like Syntheticus automate iterative validation against privacy/bias benchmarks.</p>
-    </div>
-    
-    <h3>ZeroOneEta's Vision: Your Synthetic Data Partner</h3>
-    <p>At ZeroOneEta, we engineer <strong>purpose-built synthetic data solutions</strong> that go beyond mimicry to unlock new AI capabilities:</p>
-    <ul>
-      <li><strong>CreativeDatasetMaker Pro</strong>: Generates privacy-compliant tabular data with enforced business rules and automatic bias scanning.</li>
-      <li><strong>Domain-Specific Agents</strong>: Custom GANs for healthcare (patient records), finance (fraud chains), and retail (consumer behavior).</li>
-      <li><strong>Ethical Guardrails</strong>: Built-in IEEE 7009 compliance ensures synthetic datasets meet international fairness standards.</li>
-    </ul>
-    
-    <div class="blog-cta">
-      <a href="#product" class="cta-button">Explore Our Synthetic Data Tools</a>
-    </div>
+    <span class="foot-copy">© 2026 ZeroOneEta · Signal Processing Studio · Remote-first, global</span>
   </div>
+</footer>
 
-  <!-- Product Section -->
-  <div id="product" class="content">
-    <h2 class="section-title">CreativeDatasetMaker: Rapid Synthetic Dataset Generation</h2>
-    <p>To put these benefits into practice, tools like CreativeDatasetMaker offer a turn-key solution. CreativeDatasetMaker is an AI-powered tool from ZeroOneETA that generates custom synthetic data effortlessly. It is designed for ML engineers, data scientists, and business analysts who need high-quality data fast.</p>
-
-    <div class="slideshow-container">
-      <div class="slide">
-        <img src="https://raw.githubusercontent.com/ZeroOneEta/ZeroOneEta/main/dataset_generation.jpg" alt="Synthetic Data Generation Interface" />
-      </div>
-      <div class="slide">
-        <img src="https://raw.githubusercontent.com/ZeroOneEta/ZeroOneEta/main/settings.jpg" alt="Application Settings" />
-      </div>
-      <div class="slide">
-        <img src="https://raw.githubusercontent.com/ZeroOneEta/ZeroOneEta/main/about_us.jpg" alt="About the Application" />
-      </div>
-    </div>
-
-    <p>Users can claim a free one-day license key on the ZeroOneETA website to try it out. For ongoing projects, the Pro plan provides full access to advanced features. By automating dataset creation, CreativeDatasetMaker lets teams focus on model development and analysis instead of tedious data gathering.</p>
-
-    <h3>Target Users</h3>
-    <ul>
-      <li><strong>Data Scientists & ML Engineers</strong> – Generate diverse datasets to train and refine AI models</li>
-      <li><strong>Researchers</strong> – Create structured data for analytical studies and experimentation</li>
-      <li><strong>Educators & Students</strong> – Use AI-generated datasets for learning and projects</li>
-      <li><strong>Business Analysts</strong> – Speed up data-driven solutions with custom datasets</li>
-      <li>Generate and save datasets offline</li>
-    </ul>
-
-    <h3>Technical Requirements</h3>
-    <ul>
-      <li>Python 3.5 or above</li>
-      <li>OpenAI API Key</li>
-      <li>Internet connection for initial setup</li>
-    </ul>
-
-    <div class="product-box-container">
-      <div class="product-box">
-        <h2>Starter Plan</h2>
-        <div class="price">$0</div>
-        <div class="price-sub">Evaluation license</div>
-        <p>Comprehensive trial for platform assessment</p>
-        <a class="cta-button" href="https://zerooneeta.gumroad.com/l/irlkh" target="_blank">Start Evaluation</a>
-        <div class="divider"></div>
-        <h3>Core Features:</h3>
-        <ul>
-          <li>OpenAI API integration</li>
-          <li>14-day trial license</li>
-          <li>Email support channels</li>
-          <li>Basic dataset generation</li>
-          <li>CSV export functionality</li>
-        </ul>
-      </div>
-
-      <div class="product-box">
-        <h2>Professional Plan</h2>
-        <div class="price">$20</div>
-        <div class="price-sub">Monthly subscription</div>
-        <p>Enterprise-grade synthetic data generation</p>
-        <a class="cta-button" href="https://zerooneeta.gumroad.com/l/hhlwt" target="_blank">Subscribe Now</a>
-        <div class="divider"></div>
-        <h3>Enhanced Features:</h3>
-        <ul>
-          <li>All Starter features included</li>
-          <li>30-day renewable license</li>
-          <li>Advanced customization options</li>
-          <li>Multi-format exports (CSV, JSON, Excel)</li>
-          <li>Priority technical support</li>
-          <li>Increased generation capacity</li>
-        </ul>
-      </div>
-    </div>
-    
-    <p>With the right synthetic data workflow, your organization can reduce costs, protect privacy, and accelerate AI/ML innovation. Learn more about this tool and download it from the ZeroOneETA Gumroad page.</p>
-  </div>
-  
-  <div id="about" class="content">
-    <h2 class="section-title">Corporate Overview</h2>
-    <p>At ZeroOneEta, we are shaping the future of AI-driven solutions. Our expertise lies in Machine Learning, AI Agents, and Synthetic Data Generation, helping businesses leverage cutting-edge technology to enhance automation, decision-making, and digital transformation.</p>
-
-    <h3>Core Capabilities</h3>
-    <ul>
-      <li><strong>AI Agents</strong> – Intelligent automation designed to optimize workflows and enhance user experiences.</li>
-      <li><strong>Machine Learning Solutions</strong> – From predictive analytics to deep learning, we develop scalable models for diverse industries.</li>
-      <li><strong>Synthetic Data Generation</strong> – We craft high-quality synthetic datasets to train AI systems while preserving privacy and security.</li>
-    </ul>
-    
-    <div class="benefits-container">
-      <div class="benefit-card">
-        <h3>Innovation</h3>
-        <p>We push boundaries with cutting-edge AI research and development, creating solutions that transform industries.</p>
-      </div>
-      
-      <div class="benefit-card">
-        <h3>Ethics</h3>
-        <p>Responsible AI development is at our core, with built-in fairness metrics and bias detection in all our solutions.</p>
-      </div>
-      
-      <div class="benefit-card">
-        <h3>Collaboration</h3>
-        <p>We partner with clients to understand their unique challenges and co-create tailored AI solutions.</p>
-      </div>
-    </div>
-
-    <h3>Strategic Vision</h3>
-    <p>We aim to bridge the gap between theoretical advancements and real-world applications, empowering businesses to harness AI responsibly and efficiently.</p>
-    
-    <div class="mission-statement">
-      <p>"At ZeroOneEta, we believe AI should augment human potential, not replace it. Our solutions are designed to empower teams, accelerate innovation, and create new possibilities."</p>
-    </div>
-
-    <h3>Contact Information</h3>
-    <div class="contact-info">
-      <a href="mailto:zerooneeta@gmail.com">zerooneeta@gmail.com</a>
-      <a href="https://zerooneeta.com" target="_blank">zerooneeta.com</a>
-      <a href="https://linkedin.com/company/zerooneeta" target="_blank">LinkedIn Company Profile</a>
-    </div>
-       
-    <div class="social-links">
-      <a href="https://linkedin.com/company/zerooneeta" target="_blank">in</a>
-    </div>
-    
-    <div class="blog-cta">
-      <a href="mailto:zerooneeta@gmail.com" class="cta-button">Contact Our Team</a>
-    </div>
-  </div>
-
-  <footer>
-    <p>&copy; 2025 ZeroOneEta. All rights reserved. Sources: Industry and academic studies confirm synthetic data offers cost savings, scalability, privacy protection, and improved fairness in ML workflows.</p>
-    <p>Page updated: June 18, 2025</p>
-  </footer>
-
-  <script>
-    // Slideshow functionality
-    let slideIndex = 0;
-    const allSlides = document.querySelectorAll(".slideshow-container");
-
-    function cycleSlides(slideshow) {
-      const slides = slideshow.querySelectorAll(".slide");
-      slides.forEach(s => s.style.display = "none");
-      slideshow.dataset.index = (parseInt(slideshow.dataset.index || 0) + 1) % slides.length;
-      slides[slideshow.dataset.index].style.display = "block";
-    }
-
-    setInterval(() => {
-      allSlides.forEach(slideshow => cycleSlides(slideshow));
-    }, 5000);
-
-    window.addEventListener('DOMContentLoaded', () => {
-      allSlides.forEach(slideshow => {
-        slideshow.dataset.index = 0;
-        const slides = slideshow.querySelectorAll(".slide");
-        if (slides.length > 0) slides[0].style.display = "block";
-      });
-    });
-  </script>
+<script>
+  document.getElementById('mobileBtn').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+</script>
 </body>
 </html>
